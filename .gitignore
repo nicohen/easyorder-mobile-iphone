@@ -1,0 +1,12 @@
+.DS_Store
+*.swp
+*.so
+*~.nib
+build/
+*.pbxuser
+*.perspective*
+*.mode*
+*.xcuserstate
+*.xcbkptlist
+Hunting \Web.xcodeproj/xcuserdata/nicohen.xcuserdatad/xcdebugger/Breakpoints.xcbkptlist
+Hunting \Web.xcodeproj/xcuserdata/Fabrizio.xcuserdatad/xcdebugger/Breakpoints.xcbkptlist

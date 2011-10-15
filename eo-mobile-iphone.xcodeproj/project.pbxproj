@@ -1,0 +1,479 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		38CD651D1449163600B33631 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38CD651C1449163600B33631 /* UIKit.framework */; };
+		38CD651F1449163600B33631 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38CD651E1449163600B33631 /* Foundation.framework */; };
+		38CD65211449163600B33631 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38CD65201449163600B33631 /* CoreGraphics.framework */; };
+		38CD65271449163600B33631 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 38CD65251449163600B33631 /* InfoPlist.strings */; };
+		38CD65291449163600B33631 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 38CD65281449163600B33631 /* main.m */; };
+		38CD652D1449163600B33631 /* eo_mobile_iphoneAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 38CD652C1449163600B33631 /* eo_mobile_iphoneAppDelegate.m */; };
+		38CD65301449163600B33631 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38CD652E1449163600B33631 /* MainWindow.xib */; };
+		38CD65331449163600B33631 /* eo_mobile_iphoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38CD65321449163600B33631 /* eo_mobile_iphoneViewController.m */; };
+		38CD65361449163600B33631 /* eo_mobile_iphoneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38CD65341449163600B33631 /* eo_mobile_iphoneViewController.xib */; };
+		38CD653E1449163700B33631 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38CD653D1449163600B33631 /* SenTestingKit.framework */; };
+		38CD653F1449163700B33631 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38CD651C1449163600B33631 /* UIKit.framework */; };
+		38CD65401449163700B33631 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38CD651E1449163600B33631 /* Foundation.framework */; };
+		38CD65411449163700B33631 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38CD65201449163600B33631 /* CoreGraphics.framework */; };
+		38CD65491449163700B33631 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 38CD65471449163700B33631 /* InfoPlist.strings */; };
+		38CD654B1449163700B33631 /* eo_mobile_iphoneTests.h in Resources */ = {isa = PBXBuildFile; fileRef = 38CD654A1449163700B33631 /* eo_mobile_iphoneTests.h */; };
+		38CD654D1449163700B33631 /* eo_mobile_iphoneTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 38CD654C1449163700B33631 /* eo_mobile_iphoneTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		38CD65421449163700B33631 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 38CD650F1449163600B33631 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 38CD65171449163600B33631;
+			remoteInfo = "eo-mobile-iphone";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		38CD65181449163600B33631 /* eo-mobile-iphone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "eo-mobile-iphone.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		38CD651C1449163600B33631 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		38CD651E1449163600B33631 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		38CD65201449163600B33631 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		38CD65241449163600B33631 /* eo-mobile-iphone-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "eo-mobile-iphone-Info.plist"; sourceTree = "<group>"; };
+		38CD65261449163600B33631 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		38CD65281449163600B33631 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		38CD652A1449163600B33631 /* eo-mobile-iphone-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "eo-mobile-iphone-Prefix.pch"; sourceTree = "<group>"; };
+		38CD652B1449163600B33631 /* eo_mobile_iphoneAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = eo_mobile_iphoneAppDelegate.h; sourceTree = "<group>"; };
+		38CD652C1449163600B33631 /* eo_mobile_iphoneAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = eo_mobile_iphoneAppDelegate.m; sourceTree = "<group>"; };
+		38CD652F1449163600B33631 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
+		38CD65311449163600B33631 /* eo_mobile_iphoneViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = eo_mobile_iphoneViewController.h; sourceTree = "<group>"; };
+		38CD65321449163600B33631 /* eo_mobile_iphoneViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = eo_mobile_iphoneViewController.m; sourceTree = "<group>"; };
+		38CD65351449163600B33631 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/eo_mobile_iphoneViewController.xib; sourceTree = "<group>"; };
+		38CD653C1449163600B33631 /* eo-mobile-iphoneTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "eo-mobile-iphoneTests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		38CD653D1449163600B33631 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		38CD65461449163700B33631 /* eo-mobile-iphoneTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "eo-mobile-iphoneTests-Info.plist"; sourceTree = "<group>"; };
+		38CD65481449163700B33631 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		38CD654A1449163700B33631 /* eo_mobile_iphoneTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = eo_mobile_iphoneTests.h; sourceTree = "<group>"; };
+		38CD654C1449163700B33631 /* eo_mobile_iphoneTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = eo_mobile_iphoneTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		38CD65151449163600B33631 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				38CD651D1449163600B33631 /* UIKit.framework in Frameworks */,
+				38CD651F1449163600B33631 /* Foundation.framework in Frameworks */,
+				38CD65211449163600B33631 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		38CD65381449163600B33631 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				38CD653E1449163700B33631 /* SenTestingKit.framework in Frameworks */,
+				38CD653F1449163700B33631 /* UIKit.framework in Frameworks */,
+				38CD65401449163700B33631 /* Foundation.framework in Frameworks */,
+				38CD65411449163700B33631 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		38CD650D1449163600B33631 = {
+			isa = PBXGroup;
+			children = (
+				38CD65221449163600B33631 /* eo-mobile-iphone */,
+				38CD65441449163700B33631 /* eo-mobile-iphoneTests */,
+				38CD651B1449163600B33631 /* Frameworks */,
+				38CD65191449163600B33631 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		38CD65191449163600B33631 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				38CD65181449163600B33631 /* eo-mobile-iphone.app */,
+				38CD653C1449163600B33631 /* eo-mobile-iphoneTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		38CD651B1449163600B33631 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				38CD651C1449163600B33631 /* UIKit.framework */,
+				38CD651E1449163600B33631 /* Foundation.framework */,
+				38CD65201449163600B33631 /* CoreGraphics.framework */,
+				38CD653D1449163600B33631 /* SenTestingKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		38CD65221449163600B33631 /* eo-mobile-iphone */ = {
+			isa = PBXGroup;
+			children = (
+				38CD65581449168900B33631 /* Controller */,
+				38CD65571449168600B33631 /* Model */,
+				38CD65561449167E00B33631 /* View */,
+				38CD652B1449163600B33631 /* eo_mobile_iphoneAppDelegate.h */,
+				38CD652C1449163600B33631 /* eo_mobile_iphoneAppDelegate.m */,
+				38CD65311449163600B33631 /* eo_mobile_iphoneViewController.h */,
+				38CD65321449163600B33631 /* eo_mobile_iphoneViewController.m */,
+				38CD65231449163600B33631 /* Supporting Files */,
+			);
+			path = "eo-mobile-iphone";
+			sourceTree = "<group>";
+		};
+		38CD65231449163600B33631 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				38CD65241449163600B33631 /* eo-mobile-iphone-Info.plist */,
+				38CD65251449163600B33631 /* InfoPlist.strings */,
+				38CD65281449163600B33631 /* main.m */,
+				38CD652A1449163600B33631 /* eo-mobile-iphone-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		38CD65441449163700B33631 /* eo-mobile-iphoneTests */ = {
+			isa = PBXGroup;
+			children = (
+				38CD654A1449163700B33631 /* eo_mobile_iphoneTests.h */,
+				38CD654C1449163700B33631 /* eo_mobile_iphoneTests.m */,
+				38CD65451449163700B33631 /* Supporting Files */,
+			);
+			path = "eo-mobile-iphoneTests";
+			sourceTree = "<group>";
+		};
+		38CD65451449163700B33631 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				38CD65461449163700B33631 /* eo-mobile-iphoneTests-Info.plist */,
+				38CD65471449163700B33631 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		38CD65561449167E00B33631 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				38CD652E1449163600B33631 /* MainWindow.xib */,
+				38CD65341449163600B33631 /* eo_mobile_iphoneViewController.xib */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		38CD65571449168600B33631 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		38CD65581449168900B33631 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		38CD65171449163600B33631 /* eo-mobile-iphone */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 38CD65501449163700B33631 /* Build configuration list for PBXNativeTarget "eo-mobile-iphone" */;
+			buildPhases = (
+				38CD65141449163600B33631 /* Sources */,
+				38CD65151449163600B33631 /* Frameworks */,
+				38CD65161449163600B33631 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "eo-mobile-iphone";
+			productName = "eo-mobile-iphone";
+			productReference = 38CD65181449163600B33631 /* eo-mobile-iphone.app */;
+			productType = "com.apple.product-type.application";
+		};
+		38CD653B1449163600B33631 /* eo-mobile-iphoneTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 38CD65531449163700B33631 /* Build configuration list for PBXNativeTarget "eo-mobile-iphoneTests" */;
+			buildPhases = (
+				38CD65371449163600B33631 /* Sources */,
+				38CD65381449163600B33631 /* Frameworks */,
+				38CD65391449163600B33631 /* Resources */,
+				38CD653A1449163600B33631 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				38CD65431449163700B33631 /* PBXTargetDependency */,
+			);
+			name = "eo-mobile-iphoneTests";
+			productName = "eo-mobile-iphoneTests";
+			productReference = 38CD653C1449163600B33631 /* eo-mobile-iphoneTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		38CD650F1449163600B33631 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 38CD65121449163600B33631 /* Build configuration list for PBXProject "eo-mobile-iphone" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 38CD650D1449163600B33631;
+			productRefGroup = 38CD65191449163600B33631 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				38CD65171449163600B33631 /* eo-mobile-iphone */,
+				38CD653B1449163600B33631 /* eo-mobile-iphoneTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		38CD65161449163600B33631 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				38CD65271449163600B33631 /* InfoPlist.strings in Resources */,
+				38CD65301449163600B33631 /* MainWindow.xib in Resources */,
+				38CD65361449163600B33631 /* eo_mobile_iphoneViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		38CD65391449163600B33631 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				38CD65491449163700B33631 /* InfoPlist.strings in Resources */,
+				38CD654B1449163700B33631 /* eo_mobile_iphoneTests.h in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		38CD653A1449163600B33631 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		38CD65141449163600B33631 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				38CD65291449163600B33631 /* main.m in Sources */,
+				38CD652D1449163600B33631 /* eo_mobile_iphoneAppDelegate.m in Sources */,
+				38CD65331449163600B33631 /* eo_mobile_iphoneViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		38CD65371449163600B33631 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				38CD654D1449163700B33631 /* eo_mobile_iphoneTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		38CD65431449163700B33631 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 38CD65171449163600B33631 /* eo-mobile-iphone */;
+			targetProxy = 38CD65421449163700B33631 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		38CD65251449163600B33631 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				38CD65261449163600B33631 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		38CD652E1449163600B33631 /* MainWindow.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				38CD652F1449163600B33631 /* en */,
+			);
+			name = MainWindow.xib;
+			sourceTree = "<group>";
+		};
+		38CD65341449163600B33631 /* eo_mobile_iphoneViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				38CD65351449163600B33631 /* en */,
+			);
+			name = eo_mobile_iphoneViewController.xib;
+			sourceTree = "<group>";
+		};
+		38CD65471449163700B33631 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				38CD65481449163700B33631 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		38CD654E1449163700B33631 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		38CD654F1449163700B33631 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		38CD65511449163700B33631 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "eo-mobile-iphone/eo-mobile-iphone-Prefix.pch";
+				INFOPLIST_FILE = "eo-mobile-iphone/eo-mobile-iphone-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		38CD65521449163700B33631 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "eo-mobile-iphone/eo-mobile-iphone-Prefix.pch";
+				INFOPLIST_FILE = "eo-mobile-iphone/eo-mobile-iphone-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		38CD65541449163700B33631 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/eo-mobile-iphone.app/eo-mobile-iphone";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "eo-mobile-iphone/eo-mobile-iphone-Prefix.pch";
+				INFOPLIST_FILE = "eo-mobile-iphoneTests/eo-mobile-iphoneTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		38CD65551449163700B33631 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/eo-mobile-iphone.app/eo-mobile-iphone";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "eo-mobile-iphone/eo-mobile-iphone-Prefix.pch";
+				INFOPLIST_FILE = "eo-mobile-iphoneTests/eo-mobile-iphoneTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		38CD65121449163600B33631 /* Build configuration list for PBXProject "eo-mobile-iphone" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				38CD654E1449163700B33631 /* Debug */,
+				38CD654F1449163700B33631 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		38CD65501449163700B33631 /* Build configuration list for PBXNativeTarget "eo-mobile-iphone" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				38CD65511449163700B33631 /* Debug */,
+				38CD65521449163700B33631 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		38CD65531449163700B33631 /* Build configuration list for PBXNativeTarget "eo-mobile-iphoneTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				38CD65541449163700B33631 /* Debug */,
+				38CD65551449163700B33631 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 38CD650F1449163600B33631 /* Project object */;
+}
