@@ -7,20 +7,28 @@
 //
 
 #import "eo_mobile_iphoneAppDelegate.h"
-
-#import "eo_mobile_iphoneViewController.h"
+#import "StoreSearchViewController.h"
+#import "ReachabilityService.h"
+#import <RestKit/RestKit.h>
 
 @implementation eo_mobile_iphoneAppDelegate
 
-@synthesize window = _window;
-@synthesize viewController = _viewController;
+@synthesize window, viewController;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
-     
-    self.window.rootViewController = self.viewController;
-    [self.window makeKeyAndVisible];
+    //Initialize objectManager for all the application with the base url
+    [RKObjectManager objectManagerWithBaseURL:@"http://192.168.1.101:9095/eo-services/api"];
+    
+    //Start reachability observer for all the application
+    [[ReachabilityService sharedService] setup];
+    
+    //Calls the LoginViewController
+    viewController = [[StoreSearchViewController alloc] initWithNibName:@"StoreSearchViewController" bundle:nil];
+    
+    [window setRootViewController:viewController];
+    //[window addSubview:login.view];
+    [window makeKeyAndVisible];
     return YES;
 }
 
@@ -65,8 +73,8 @@
 
 - (void)dealloc
 {
-    [_window release];
-    [_viewController release];
+    [window release];
+    [viewController release];
     [super dealloc];
 }
 

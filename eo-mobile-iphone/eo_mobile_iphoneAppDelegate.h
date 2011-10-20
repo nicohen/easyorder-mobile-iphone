@@ -8,12 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@class eo_mobile_iphoneViewController;
+@class StoreSearchViewController;
 
 @interface eo_mobile_iphoneAppDelegate : NSObject <UIApplicationDelegate>
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 
-@property (nonatomic, retain) IBOutlet eo_mobile_iphoneViewController *viewController;
+@property (nonatomic, retain) IBOutlet StoreSearchViewController *viewController;
 
 @end
