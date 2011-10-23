@@ -10,14 +10,12 @@
 
 @implementation StringUtils
 
-- (id)init
-{
-    self = [super init];
-    if (self) {
-        // Initialization code here.
-    }
-    
-    return self;
++ (NSString*) nilValue:(NSString*)value {
+    return value==nil?@"":value;
+}
+
++ (BOOL) isNil:(NSString*)value {
+    return value==nil;
 }
 
 @end

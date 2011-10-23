@@ -15,4 +15,7 @@
 // GET /stores
 + (void) getStores:(id)sender;
 
+// GET /store/{store_id}
++ (void) getStore:(id)sender:(long)storeId;
+
 @end

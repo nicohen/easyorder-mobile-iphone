@@ -10,14 +10,22 @@
 
 @implementation Store
 
-- (id)init
-{
-    self = [super init];
-    if (self) {
-        // Initialization code here.
-    }
-    
-    return self;
+@synthesize storeId, address, category, city, country, description, email, hours, name, phone, state, web;
+
+- (void)dealloc {
+    [storeId release];
+    [address release];
+    [category release];
+    [city release];
+    [country release];
+    [description release];
+    [email release];
+    [hours release];
+    [name release];
+    [phone release];
+    [state release];
+    [web release];
+    [super dealloc];
 }
 
 @end

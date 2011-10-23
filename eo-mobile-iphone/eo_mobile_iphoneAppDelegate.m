@@ -27,7 +27,6 @@
     viewController = [[StoreSearchViewController alloc] initWithNibName:@"StoreSearchViewController" bundle:nil];
     
     [window setRootViewController:viewController];
-    //[window addSubview:login.view];
     [window makeKeyAndVisible];
     return YES;
 }
