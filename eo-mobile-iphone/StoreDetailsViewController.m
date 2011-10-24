@@ -10,10 +10,11 @@
 #import "StoreService.h"
 #import "ReachabilityService.h"
 #import "StringUtils.h"
+#import <QuartzCore/QuartzCore.h>
 
 @implementation StoreDetailsViewController
 
-@synthesize store, storeId;
+@synthesize store, storeId, scrollView, description, address;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil storeId:(NSInteger)myStoreId
 {
@@ -25,14 +26,6 @@
     return self;
 }
 
-- (void)didReceiveMemoryWarning
-{
-    // Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
-    
-    // Release any cached data, images, etc that aren't in use.
-}
-
 - (void)back:(id)sender{
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -42,9 +35,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    [scrollView setScrollEnabled:YES];
+    [table setScrollEnabled:NO];
+
+    //Login button definition
+    UIBarButtonItem *buttonLogin = [[UIBarButtonItem alloc] initWithTitle:@"Acceder" style:UIBarButtonItemStylePlain target:self action:@selector(login:)];
+    self.navigationItem.rightBarButtonItem = buttonLogin;
+    [buttonLogin release];
+
     UIButton* backButton = [UIButton buttonWithType:101]; // left-pointing shape!
     [backButton addTarget:self action:@selector(back:) forControlEvents:UIControlEventTouchUpInside];
-    [backButton setTitle:@"Back" forState:UIControlStateNormal];
+    [backButton setTitle:@"Atras" forState:UIControlStateNormal];
     
     // create button item -- possible because UIButton subclasses UIView!
     UIBarButtonItem* backItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
@@ -57,17 +58,16 @@
     [StoreService getStore:self:[storeId longValue]];
 }
 
+
+
 #pragma mark - Table view data source
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if(indexPath.row == 4) {
-        return 60;
-    }
     return 40;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 3;
+    return 2;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
@@ -77,9 +77,6 @@
 			title = @"Ubicación";
 			break;
 		case 1:
-			title = @"";
-			break;
-		case 2:
 			title = @"General";
 			break;
 		default:
@@ -89,9 +86,8 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-	if (section == 0) return 4;
-	if (section == 1) return 1;
-	if (section == 2) return 4;
+	if (section == 0) return 3;
+	if (section == 1) return 4;
 	else return 0;
 }
 
@@ -108,24 +104,45 @@
     if (store) {
         UILabel *lbl = nil;
         
-        if (indexPath.row == 0) {
-            cell.textLabel.text = @"Country";
-            lbl = [[UILabel alloc] initWithFrame:CGRectMake(10.0, 0, 110.0, 20.0)];
+        if (indexPath.section == 0 && indexPath.row == 0) {
+            cell.textLabel.text = @"País";
+            lbl = [[UILabel alloc] initWithFrame:CGRectMake(130.0, 10, 150.0, 20.0)];
+            [lbl setFont:[UIFont boldSystemFontOfSize:15]];
             lbl.text = [store country];
             [cell.contentView addSubview:lbl];
             [lbl release];
-        } else if(indexPath.row == 1) {
-            cell.textLabel.text = @"State";
-            lbl = [[UILabel alloc] initWithFrame:CGRectMake(170.0, 0, 110.0, 20.0)];
+        } else if(indexPath.section == 0 && indexPath.row == 1) {
+            cell.textLabel.text = @"Provincia";
+            lbl = [[UILabel alloc] initWithFrame:CGRectMake(130.0, 10, 150.0, 20.0)];
             lbl.text = [store state];
+            [lbl setFont:[UIFont boldSystemFontOfSize:15]];
             [cell.contentView addSubview:lbl];
             [lbl release];
-        } else {
-            cell.textLabel.text = @"City";
-            lbl = [[UILabel alloc] initWithFrame:CGRectMake(170.0, 0, 110.0, 20.0)];
+        } else if(indexPath.section == 0 && indexPath.row == 2) {
+            cell.textLabel.text = @"Ciudad";
+            lbl = [[UILabel alloc] initWithFrame:CGRectMake(130.0, 10, 150.0, 20.0)];
             lbl.text = [store city];
+            [lbl setFont:[UIFont boldSystemFontOfSize:15]];
             [cell.contentView addSubview:lbl];
             [lbl release];
+        } else if(indexPath.section == 1 && indexPath.row == 0) {
+            cell.textLabel.text = @"Horario";
+            lbl = [[UILabel alloc] initWithFrame:CGRectMake(130.0, 10, 150.0, 20.0)];
+            lbl.text = [store hours];
+            [lbl setFont:[UIFont boldSystemFontOfSize:15]];
+            [cell.contentView addSubview:lbl];
+            [lbl release];
+        } else if(indexPath.section == 1 && indexPath.row == 1) {
+            cell.textLabel.text = @"Teléfono";
+            lbl = [[UILabel alloc] initWithFrame:CGRectMake(130.0, 10, 150.0, 20.0)];
+            lbl.text = [store phone];
+            [lbl setFont:[UIFont boldSystemFontOfSize:15]];
+            [cell.contentView addSubview:lbl];
+            [lbl release];
+        } else if(indexPath.section == 1 && indexPath.row == 2) {
+            cell.textLabel.text = [store email];
+        } else if(indexPath.section == 1 && indexPath.row == 3) {
+            cell.textLabel.text = [store web];
         }
     }
     return cell;
@@ -135,6 +152,32 @@
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didLoadObjects:(NSArray*)objects {
     store = [objects objectAtIndex:0];
+    
+    [name setText:store.name];
+    [description setText:store.description];
+    [address setText:store.address];
+    
+    description.layer.borderWidth = 1;
+    description.layer.borderColor = [[UIColor grayColor] CGColor];
+    description.layer.cornerRadius = 8;
+    address.layer.borderWidth = 1;
+    address.layer.borderColor = [[UIColor grayColor] CGColor];
+    address.layer.cornerRadius = 8;
+    
+    CGFloat deltaOrigin = 0.0;
+
+    CGRect descFrame = description.frame;
+    deltaOrigin += description.contentSize.height - description.frame.size.height;
+    descFrame.size.height = description.contentSize.height;
+    description.frame = descFrame;
+
+    CGRect tableFrame = table.frame;
+    tableFrame.origin.y += deltaOrigin;
+    tableFrame.size.height = table.contentSize.height;
+    table.frame = tableFrame;
+    
+    [scrollView setContentSize:(CGSizeMake(320, tableFrame.origin.y+tableFrame.size.height+40))];
+    [scrollView setContentOffset:CGPointMake(0, 0) animated:YES];
     [store retain];
     [table reloadData];
 }
@@ -157,6 +200,7 @@
     [table release];
     [storeId release];
     [store release];
+    [scrollView release];
     [super dealloc];
 }
 

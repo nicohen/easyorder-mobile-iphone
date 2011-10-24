@@ -32,8 +32,6 @@
 		38CD65291449163600B33631 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 38CD65281449163600B33631 /* main.m */; };
 		38CD652D1449163600B33631 /* eo_mobile_iphoneAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 38CD652C1449163600B33631 /* eo_mobile_iphoneAppDelegate.m */; };
 		38CD65301449163600B33631 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38CD652E1449163600B33631 /* MainWindow.xib */; };
-		38CD65331449163600B33631 /* eo_mobile_iphoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38CD65321449163600B33631 /* eo_mobile_iphoneViewController.m */; };
-		38CD65361449163600B33631 /* eo_mobile_iphoneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38CD65341449163600B33631 /* eo_mobile_iphoneViewController.xib */; };
 		38CD653E1449163700B33631 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38CD653D1449163600B33631 /* SenTestingKit.framework */; };
 		38CD653F1449163700B33631 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38CD651C1449163600B33631 /* UIKit.framework */; };
 		38CD65401449163700B33631 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38CD651E1449163600B33631 /* Foundation.framework */; };
@@ -41,6 +39,16 @@
 		38CD65491449163700B33631 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 38CD65471449163700B33631 /* InfoPlist.strings */; };
 		38CD654B1449163700B33631 /* eo_mobile_iphoneTests.h in Resources */ = {isa = PBXBuildFile; fileRef = 38CD654A1449163700B33631 /* eo_mobile_iphoneTests.h */; };
 		38CD654D1449163700B33631 /* eo_mobile_iphoneTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 38CD654C1449163700B33631 /* eo_mobile_iphoneTests.m */; };
+		38DCB38014562B220042F8FE /* ProductListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38DCB37E14562B220042F8FE /* ProductListViewController.m */; };
+		38DCB38114562B220042F8FE /* ProductListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38DCB37F14562B220042F8FE /* ProductListViewController.xib */; };
+		38DCB38614562B5E0042F8FE /* ProductDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38DCB38414562B5E0042F8FE /* ProductDetailsViewController.m */; };
+		38DCB38714562B5E0042F8FE /* ProductDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38DCB38514562B5E0042F8FE /* ProductDetailsViewController.xib */; };
+		38DCB38D14562EB70042F8FE /* SigninViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38DCB38B14562EB70042F8FE /* SigninViewController.m */; };
+		38DCB38E14562EB70042F8FE /* SigninViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38DCB38C14562EB70042F8FE /* SigninViewController.xib */; };
+		38DCB39214562EE30042F8FE /* SignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38DCB39014562EE30042F8FE /* SignupViewController.m */; };
+		38DCB39314562EE30042F8FE /* SignupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38DCB39114562EE30042F8FE /* SignupViewController.xib */; };
+		38DCB39914562F590042F8FE /* OrderDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38DCB39714562F590042F8FE /* OrderDetailsViewController.m */; };
+		38DCB39A14562F590042F8FE /* OrderDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38DCB39814562F590042F8FE /* OrderDetailsViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -168,9 +176,6 @@
 		38CD652B1449163600B33631 /* eo_mobile_iphoneAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = eo_mobile_iphoneAppDelegate.h; sourceTree = "<group>"; };
 		38CD652C1449163600B33631 /* eo_mobile_iphoneAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = eo_mobile_iphoneAppDelegate.m; sourceTree = "<group>"; };
 		38CD652F1449163600B33631 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
-		38CD65311449163600B33631 /* eo_mobile_iphoneViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = eo_mobile_iphoneViewController.h; sourceTree = "<group>"; };
-		38CD65321449163600B33631 /* eo_mobile_iphoneViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = eo_mobile_iphoneViewController.m; sourceTree = "<group>"; };
-		38CD65351449163600B33631 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/eo_mobile_iphoneViewController.xib; sourceTree = "<group>"; };
 		38CD653D1449163600B33631 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		38CD65461449163700B33631 /* eo-mobile-iphoneTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "eo-mobile-iphoneTests-Info.plist"; sourceTree = "<group>"; };
 		38CD65481449163700B33631 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -178,6 +183,21 @@
 		38CD654C1449163700B33631 /* eo_mobile_iphoneTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = eo_mobile_iphoneTests.m; sourceTree = "<group>"; };
 		38DCB33C14536D290042F8FE /* eo-mobile-iphone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "eo-mobile-iphone.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		38DCB33E14536D290042F8FE /* eo-mobile-iphoneTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "eo-mobile-iphoneTests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		38DCB37D14562B220042F8FE /* ProductListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductListViewController.h; sourceTree = "<group>"; };
+		38DCB37E14562B220042F8FE /* ProductListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductListViewController.m; sourceTree = "<group>"; };
+		38DCB37F14562B220042F8FE /* ProductListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProductListViewController.xib; sourceTree = "<group>"; };
+		38DCB38314562B5E0042F8FE /* ProductDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductDetailsViewController.h; sourceTree = "<group>"; };
+		38DCB38414562B5E0042F8FE /* ProductDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductDetailsViewController.m; sourceTree = "<group>"; };
+		38DCB38514562B5E0042F8FE /* ProductDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProductDetailsViewController.xib; sourceTree = "<group>"; };
+		38DCB38A14562EB70042F8FE /* SigninViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SigninViewController.h; sourceTree = "<group>"; };
+		38DCB38B14562EB70042F8FE /* SigninViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SigninViewController.m; sourceTree = "<group>"; };
+		38DCB38C14562EB70042F8FE /* SigninViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SigninViewController.xib; sourceTree = "<group>"; };
+		38DCB38F14562EE30042F8FE /* SignupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignupViewController.h; sourceTree = "<group>"; };
+		38DCB39014562EE30042F8FE /* SignupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignupViewController.m; sourceTree = "<group>"; };
+		38DCB39114562EE30042F8FE /* SignupViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignupViewController.xib; sourceTree = "<group>"; };
+		38DCB39614562F590042F8FE /* OrderDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderDetailsViewController.h; sourceTree = "<group>"; };
+		38DCB39714562F590042F8FE /* OrderDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderDetailsViewController.m; sourceTree = "<group>"; };
+		38DCB39814562F590042F8FE /* OrderDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderDetailsViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -292,8 +312,6 @@
 			children = (
 				38CD652B1449163600B33631 /* eo_mobile_iphoneAppDelegate.h */,
 				38CD652C1449163600B33631 /* eo_mobile_iphoneAppDelegate.m */,
-				38CD65311449163600B33631 /* eo_mobile_iphoneViewController.h */,
-				38CD65321449163600B33631 /* eo_mobile_iphoneViewController.m */,
 			);
 			name = Main;
 			sourceTree = "<group>";
@@ -374,9 +392,11 @@
 		38CD65561449167E00B33631 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				38DCB39414562F400042F8FE /* Order */,
+				38DCB38914562EA40042F8FE /* Sign */,
+				38DCB38214562B2C0042F8FE /* Product */,
 				3816926E1453540700E42A7A /* Store */,
 				38CD652E1449163600B33631 /* MainWindow.xib */,
-				38CD65341449163600B33631 /* eo_mobile_iphoneViewController.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -393,10 +413,70 @@
 		38CD65581449168900B33631 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				38DCB39514562F470042F8FE /* Order */,
+				38DCB38814562E9B0042F8FE /* Sign */,
+				38DCB37C14562ADF0042F8FE /* Product */,
 				38169268145353C800E42A7A /* Store */,
 				38C5ACEB144FD5A600F23CB8 /* Main */,
 			);
 			name = Controller;
+			sourceTree = "<group>";
+		};
+		38DCB37C14562ADF0042F8FE /* Product */ = {
+			isa = PBXGroup;
+			children = (
+				38DCB37D14562B220042F8FE /* ProductListViewController.h */,
+				38DCB37E14562B220042F8FE /* ProductListViewController.m */,
+				38DCB38314562B5E0042F8FE /* ProductDetailsViewController.h */,
+				38DCB38414562B5E0042F8FE /* ProductDetailsViewController.m */,
+			);
+			name = Product;
+			sourceTree = "<group>";
+		};
+		38DCB38214562B2C0042F8FE /* Product */ = {
+			isa = PBXGroup;
+			children = (
+				38DCB37F14562B220042F8FE /* ProductListViewController.xib */,
+				38DCB38514562B5E0042F8FE /* ProductDetailsViewController.xib */,
+			);
+			name = Product;
+			sourceTree = "<group>";
+		};
+		38DCB38814562E9B0042F8FE /* Sign */ = {
+			isa = PBXGroup;
+			children = (
+				38DCB38A14562EB70042F8FE /* SigninViewController.h */,
+				38DCB38B14562EB70042F8FE /* SigninViewController.m */,
+				38DCB38F14562EE30042F8FE /* SignupViewController.h */,
+				38DCB39014562EE30042F8FE /* SignupViewController.m */,
+			);
+			name = Sign;
+			sourceTree = "<group>";
+		};
+		38DCB38914562EA40042F8FE /* Sign */ = {
+			isa = PBXGroup;
+			children = (
+				38DCB38C14562EB70042F8FE /* SigninViewController.xib */,
+				38DCB39114562EE30042F8FE /* SignupViewController.xib */,
+			);
+			name = Sign;
+			sourceTree = "<group>";
+		};
+		38DCB39414562F400042F8FE /* Order */ = {
+			isa = PBXGroup;
+			children = (
+				38DCB39814562F590042F8FE /* OrderDetailsViewController.xib */,
+			);
+			name = Order;
+			sourceTree = "<group>";
+		};
+		38DCB39514562F470042F8FE /* Order */ = {
+			isa = PBXGroup;
+			children = (
+				38DCB39614562F590042F8FE /* OrderDetailsViewController.h */,
+				38DCB39714562F590042F8FE /* OrderDetailsViewController.m */,
+			);
+			name = Order;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -555,9 +635,13 @@
 			files = (
 				38CD65271449163600B33631 /* InfoPlist.strings in Resources */,
 				38CD65301449163600B33631 /* MainWindow.xib in Resources */,
-				38CD65361449163600B33631 /* eo_mobile_iphoneViewController.xib in Resources */,
 				38C5ACF0144FD72300F23CB8 /* StoreSearchViewController.xib in Resources */,
 				3816926D145353E900E42A7A /* StoreDetailsViewController.xib in Resources */,
+				38DCB38114562B220042F8FE /* ProductListViewController.xib in Resources */,
+				38DCB38714562B5E0042F8FE /* ProductDetailsViewController.xib in Resources */,
+				38DCB38E14562EB70042F8FE /* SigninViewController.xib in Resources */,
+				38DCB39314562EE30042F8FE /* SignupViewController.xib in Resources */,
+				38DCB39A14562F590042F8FE /* OrderDetailsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -595,13 +679,17 @@
 			files = (
 				38CD65291449163600B33631 /* main.m in Sources */,
 				38CD652D1449163600B33631 /* eo_mobile_iphoneAppDelegate.m in Sources */,
-				38CD65331449163600B33631 /* eo_mobile_iphoneViewController.m in Sources */,
 				38C5ACE1144FD57B00F23CB8 /* Store.m in Sources */,
 				38C5ACE4144FD58700F23CB8 /* StoreService.m in Sources */,
 				38C5ACE7144FD59200F23CB8 /* ReachabilityService.m in Sources */,
 				38C5ACEA144FD59B00F23CB8 /* StringUtils.m in Sources */,
 				38C5ACEF144FD72300F23CB8 /* StoreSearchViewController.m in Sources */,
 				3816926C145353E900E42A7A /* StoreDetailsViewController.m in Sources */,
+				38DCB38014562B220042F8FE /* ProductListViewController.m in Sources */,
+				38DCB38614562B5E0042F8FE /* ProductDetailsViewController.m in Sources */,
+				38DCB38D14562EB70042F8FE /* SigninViewController.m in Sources */,
+				38DCB39214562EE30042F8FE /* SignupViewController.m in Sources */,
+				38DCB39914562F590042F8FE /* OrderDetailsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -643,14 +731,6 @@
 				38CD652F1449163600B33631 /* en */,
 			);
 			name = MainWindow.xib;
-			sourceTree = "<group>";
-		};
-		38CD65341449163600B33631 /* eo_mobile_iphoneViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				38CD65351449163600B33631 /* en */,
-			);
-			name = eo_mobile_iphoneViewController.xib;
 			sourceTree = "<group>";
 		};
 		38CD65471449163700B33631 /* InfoPlist.strings */ = {

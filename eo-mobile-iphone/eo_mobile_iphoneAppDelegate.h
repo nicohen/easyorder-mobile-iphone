@@ -10,10 +10,10 @@
 
 @class StoreSearchViewController;
 
-@interface eo_mobile_iphoneAppDelegate : NSObject <UIApplicationDelegate>
+@interface eo_mobile_iphoneAppDelegate : NSObject <UIApplicationDelegate> {
+    StoreSearchViewController *viewController;
+}
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
-
-@property (nonatomic, retain) IBOutlet StoreSearchViewController *viewController;
 
 @end

@@ -13,7 +13,7 @@
 
 @implementation eo_mobile_iphoneAppDelegate
 
-@synthesize window, viewController;
+@synthesize window;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -25,9 +25,13 @@
     
     //Calls the LoginViewController
     viewController = [[StoreSearchViewController alloc] initWithNibName:@"StoreSearchViewController" bundle:nil];
-    
-    [window setRootViewController:viewController];
+
+    [viewController setTitle:@"EasyOrder"];
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:viewController];
+
+    [window setRootViewController:navController];
     [window makeKeyAndVisible];
+    [navController release];
     return YES;
 }
 

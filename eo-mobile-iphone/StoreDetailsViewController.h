@@ -15,10 +15,16 @@
     IBOutlet UITableView *table;
     NSNumber *storeId;
     Store* store;
+    IBOutlet UIScrollView *scrollView;
+    IBOutlet UITextView* description;
+    IBOutlet UITextView* address;
 }
 
 @property (nonatomic,assign) NSNumber* storeId;
 @property (nonatomic,retain) Store* store;
+@property (nonatomic,retain) IBOutlet UIScrollView *scrollView;
+@property (nonatomic,retain) IBOutlet UITextView* description;
+@property (nonatomic,retain) IBOutlet UITextView* address;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil storeId:(NSInteger)myStoreId;
 
