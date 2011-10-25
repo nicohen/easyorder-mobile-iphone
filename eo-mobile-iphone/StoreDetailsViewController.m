@@ -11,6 +11,7 @@
 #import "ReachabilityService.h"
 #import "StringUtils.h"
 #import <QuartzCore/QuartzCore.h>
+#import "ProductListViewController.h"
 
 @implementation StoreDetailsViewController
 
@@ -21,7 +22,6 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         storeId = [[NSNumber alloc] initWithInt:myStoreId];
-        NSLog(@"%@", [NSString stringWithFormat:@"S: %@", storeId]);
     }
     return self;
 }
@@ -58,7 +58,16 @@
     [StoreService getStore:self:[storeId longValue]];
 }
 
+- (IBAction)showProducts:(id)sender {
+    ProductListViewController *productListController = [[ProductListViewController alloc] initWithNibName:@"ProductListViewController" bundle:nil];
+    productListController.storeId = store.storeId;
+    productListController.title = [store name];
+    
+    [self.navigationController pushViewController:productListController animated:YES];
+    
+    [productListController release];
 
+}
 
 #pragma mark - Table view data source
 

@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ProductDetailsViewController : UIViewController
+@interface ProductDetailsViewController : UIViewController {
+    NSNumber* productId;
+}
+
+@property (nonatomic,assign) NSNumber* productId;
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil productId:(NSInteger)myProductId;
 
 @end

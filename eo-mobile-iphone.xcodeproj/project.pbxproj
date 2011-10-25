@@ -49,6 +49,11 @@
 		38DCB39314562EE30042F8FE /* SignupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38DCB39114562EE30042F8FE /* SignupViewController.xib */; };
 		38DCB39914562F590042F8FE /* OrderDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38DCB39714562F590042F8FE /* OrderDetailsViewController.m */; };
 		38DCB39A14562F590042F8FE /* OrderDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38DCB39814562F590042F8FE /* OrderDetailsViewController.xib */; };
+		38DCB39E145630E50042F8FE /* CategoryListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38DCB39C145630E50042F8FE /* CategoryListViewController.m */; };
+		38DCB39F145630E50042F8FE /* CategoryListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38DCB39D145630E50042F8FE /* CategoryListViewController.xib */; };
+		38DCB3A1145638750042F8FE /* ProductListTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38DCB3A0145638750042F8FE /* ProductListTableCell.xib */; };
+		38DCB3A414563C110042F8FE /* ProductService.m in Sources */ = {isa = PBXBuildFile; fileRef = 38DCB3A314563C110042F8FE /* ProductService.m */; };
+		38DCB3A7145647E70042F8FE /* Product.m in Sources */ = {isa = PBXBuildFile; fileRef = 38DCB3A6145647E70042F8FE /* Product.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -198,6 +203,14 @@
 		38DCB39614562F590042F8FE /* OrderDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderDetailsViewController.h; sourceTree = "<group>"; };
 		38DCB39714562F590042F8FE /* OrderDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderDetailsViewController.m; sourceTree = "<group>"; };
 		38DCB39814562F590042F8FE /* OrderDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderDetailsViewController.xib; sourceTree = "<group>"; };
+		38DCB39B145630E50042F8FE /* CategoryListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryListViewController.h; sourceTree = "<group>"; };
+		38DCB39C145630E50042F8FE /* CategoryListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryListViewController.m; sourceTree = "<group>"; };
+		38DCB39D145630E50042F8FE /* CategoryListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CategoryListViewController.xib; sourceTree = "<group>"; };
+		38DCB3A0145638750042F8FE /* ProductListTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProductListTableCell.xib; sourceTree = "<group>"; };
+		38DCB3A214563C110042F8FE /* ProductService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductService.h; sourceTree = "<group>"; };
+		38DCB3A314563C110042F8FE /* ProductService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductService.m; sourceTree = "<group>"; };
+		38DCB3A5145647E70042F8FE /* Product.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Product.h; sourceTree = "<group>"; };
+		38DCB3A6145647E70042F8FE /* Product.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Product.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -280,6 +293,8 @@
 				38C5ACE3144FD58700F23CB8 /* StoreService.m */,
 				38C5ACE5144FD59200F23CB8 /* ReachabilityService.h */,
 				38C5ACE6144FD59200F23CB8 /* ReachabilityService.m */,
+				38DCB3A214563C110042F8FE /* ProductService.h */,
+				38DCB3A314563C110042F8FE /* ProductService.m */,
 			);
 			name = Service;
 			sourceTree = "<group>";
@@ -351,9 +366,9 @@
 				38C5ACDD144FD55100F23CB8 /* Resources */,
 				38C5ACDC144FD54D00F23CB8 /* Lib */,
 				38C5ACDB144FD54600F23CB8 /* Service */,
+				38CD65571449168600B33631 /* Model */,
 				38CD65561449167E00B33631 /* View */,
 				38CD65581449168900B33631 /* Controller */,
-				38CD65571449168600B33631 /* Model */,
 				38CD65231449163600B33631 /* Supporting Files */,
 			);
 			path = "eo-mobile-iphone";
@@ -406,6 +421,8 @@
 			children = (
 				38C5ACDF144FD57B00F23CB8 /* Store.h */,
 				38C5ACE0144FD57B00F23CB8 /* Store.m */,
+				38DCB3A5145647E70042F8FE /* Product.h */,
+				38DCB3A6145647E70042F8FE /* Product.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -429,6 +446,8 @@
 				38DCB37E14562B220042F8FE /* ProductListViewController.m */,
 				38DCB38314562B5E0042F8FE /* ProductDetailsViewController.h */,
 				38DCB38414562B5E0042F8FE /* ProductDetailsViewController.m */,
+				38DCB39B145630E50042F8FE /* CategoryListViewController.h */,
+				38DCB39C145630E50042F8FE /* CategoryListViewController.m */,
 			);
 			name = Product;
 			sourceTree = "<group>";
@@ -437,7 +456,9 @@
 			isa = PBXGroup;
 			children = (
 				38DCB37F14562B220042F8FE /* ProductListViewController.xib */,
+				38DCB3A0145638750042F8FE /* ProductListTableCell.xib */,
 				38DCB38514562B5E0042F8FE /* ProductDetailsViewController.xib */,
+				38DCB39D145630E50042F8FE /* CategoryListViewController.xib */,
 			);
 			name = Product;
 			sourceTree = "<group>";
@@ -642,6 +663,8 @@
 				38DCB38E14562EB70042F8FE /* SigninViewController.xib in Resources */,
 				38DCB39314562EE30042F8FE /* SignupViewController.xib in Resources */,
 				38DCB39A14562F590042F8FE /* OrderDetailsViewController.xib in Resources */,
+				38DCB39F145630E50042F8FE /* CategoryListViewController.xib in Resources */,
+				38DCB3A1145638750042F8FE /* ProductListTableCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -690,6 +713,9 @@
 				38DCB38D14562EB70042F8FE /* SigninViewController.m in Sources */,
 				38DCB39214562EE30042F8FE /* SignupViewController.m in Sources */,
 				38DCB39914562F590042F8FE /* OrderDetailsViewController.m in Sources */,
+				38DCB39E145630E50042F8FE /* CategoryListViewController.m in Sources */,
+				38DCB3A414563C110042F8FE /* ProductService.m in Sources */,
+				38DCB3A7145647E70042F8FE /* Product.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

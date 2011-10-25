@@ -8,6 +8,8 @@
 
 #import "StoreService.h"
 #import "Store.h"
+#import <RestKit/RestKit.h>
+#import <RestKit/CoreData/CoreData.h>
 
 @implementation StoreService
 
