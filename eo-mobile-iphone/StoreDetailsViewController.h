@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Store.h"
 
-@interface StoreDetailsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource> {
+@interface StoreDetailsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate> {
     IBOutlet UIImageView *image;
     IBOutlet UILabel* name;
     IBOutlet UITableView *table;

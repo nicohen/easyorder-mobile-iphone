@@ -12,6 +12,8 @@
 #import "StringUtils.h"
 #import <QuartzCore/QuartzCore.h>
 #import "ProductListViewController.h"
+#import "SigninViewController.h"
+#import "SignupViewController.h"
 
 @implementation StoreDetailsViewController
 
@@ -28,6 +30,30 @@
 
 - (void)back:(id)sender{
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 0) {
+        SigninViewController *signinController = [[SigninViewController alloc] initWithNibName:@"SigninViewController" bundle:nil];
+        signinController.title = @"Ingresar";
+        signinController.storeId = [storeId retain];
+        [self.navigationController pushViewController:signinController animated:YES];
+        [signinController release];    
+    } else if (buttonIndex == 1) {
+        SignupViewController *signupController = [[SignupViewController alloc] initWithNibName:@"SignupViewController" bundle:nil];
+        signupController.title = @"Regístrate";
+        signupController.storeId = storeId;
+        [self.navigationController pushViewController:signupController animated:YES];
+        [signupController release];    
+    } 
+}
+
+- (void)login:(id)sender{
+    UIActionSheet *popupQuery = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancelar" destructiveButtonTitle:nil otherButtonTitles:@"Ingresar", @"Regístrate", nil];
+    
+    popupQuery.actionSheetStyle = UIActionSheetStyleBlackOpaque;
+    [popupQuery showInView:self.view];
+    [popupQuery release];
 }
 
 #pragma mark - View lifecycle

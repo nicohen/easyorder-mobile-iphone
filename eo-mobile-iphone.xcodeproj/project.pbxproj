@@ -54,6 +54,7 @@
 		38DCB3A1145638750042F8FE /* ProductListTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38DCB3A0145638750042F8FE /* ProductListTableCell.xib */; };
 		38DCB3A414563C110042F8FE /* ProductService.m in Sources */ = {isa = PBXBuildFile; fileRef = 38DCB3A314563C110042F8FE /* ProductService.m */; };
 		38DCB3A7145647E70042F8FE /* Product.m in Sources */ = {isa = PBXBuildFile; fileRef = 38DCB3A6145647E70042F8FE /* Product.m */; };
+		38DCB3AF1457AC330042F8FE /* LoginService.m in Sources */ = {isa = PBXBuildFile; fileRef = 38DCB3AE1457AC310042F8FE /* LoginService.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -211,6 +212,8 @@
 		38DCB3A314563C110042F8FE /* ProductService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductService.m; sourceTree = "<group>"; };
 		38DCB3A5145647E70042F8FE /* Product.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Product.h; sourceTree = "<group>"; };
 		38DCB3A6145647E70042F8FE /* Product.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Product.m; sourceTree = "<group>"; };
+		38DCB3AD1457AC310042F8FE /* LoginService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginService.h; sourceTree = "<group>"; };
+		38DCB3AE1457AC310042F8FE /* LoginService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginService.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -295,6 +298,8 @@
 				38C5ACE6144FD59200F23CB8 /* ReachabilityService.m */,
 				38DCB3A214563C110042F8FE /* ProductService.h */,
 				38DCB3A314563C110042F8FE /* ProductService.m */,
+				38DCB3AD1457AC310042F8FE /* LoginService.h */,
+				38DCB3AE1457AC310042F8FE /* LoginService.m */,
 			);
 			name = Service;
 			sourceTree = "<group>";
@@ -309,6 +314,7 @@
 		38C5ACDD144FD55100F23CB8 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				38DCB3A8145784060042F8FE /* Icons */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -498,6 +504,13 @@
 				38DCB39714562F590042F8FE /* OrderDetailsViewController.m */,
 			);
 			name = Order;
+			sourceTree = "<group>";
+		};
+		38DCB3A8145784060042F8FE /* Icons */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Icons;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -716,6 +729,7 @@
 				38DCB39E145630E50042F8FE /* CategoryListViewController.m in Sources */,
 				38DCB3A414563C110042F8FE /* ProductService.m in Sources */,
 				38DCB3A7145647E70042F8FE /* Product.m in Sources */,
+				38DCB3AF1457AC330042F8FE /* LoginService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

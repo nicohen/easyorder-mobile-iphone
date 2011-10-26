@@ -8,6 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SignupViewController : UIViewController
+@interface SignupViewController : UIViewController <UIActionSheetDelegate, UITextViewDelegate> {
+    NSDate *datePicked;
+    IBOutlet UITextField* name;
+    IBOutlet UITextField* surname;
+    IBOutlet UITextField* email;
+    IBOutlet UITextField* password;
+    IBOutlet UITextField* dateField;
+    IBOutlet UISegmentedControl* gender;
+    NSNumber* storeId;
+}
+
+@property (nonatomic,retain) NSNumber* storeId;
 
 @end

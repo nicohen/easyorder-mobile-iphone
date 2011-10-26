@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SigninViewController : UIViewController
+@interface SigninViewController : UIViewController {
+    IBOutlet UITextField* email;
+    IBOutlet UITextField* password;
+    IBOutlet UITextField* code;
+    NSNumber* storeId;
+}
+
+@property (nonatomic,retain) NSNumber* storeId;
 
 @end

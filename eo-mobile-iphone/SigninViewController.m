@@ -7,8 +7,13 @@
 //
 
 #import "SigninViewController.h"
+#import "LoginService.h"
+#import "ReachabilityService.h"
+#import "ProductListViewController.h"
 
 @implementation SigninViewController
+
+@synthesize storeId;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -19,12 +24,8 @@
     return self;
 }
 
-- (void)didReceiveMemoryWarning
-{
-    // Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
-    
-    // Release any cached data, images, etc that aren't in use.
+- (IBAction)login:(id)sender {
+    [LoginService signin:self:email.text:password.text:code.text];
 }
 
 #pragma mark - View lifecycle
@@ -32,20 +33,36 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+
+    //Signin button definition
+    UIBarButtonItem *buttonLogin = [[UIBarButtonItem alloc] initWithTitle:@"Aceptar" style:UIBarButtonItemStylePlain target:self action:@selector(login:)];
+    self.navigationItem.rightBarButtonItem = buttonLogin;
+    [buttonLogin release];
 }
 
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+#pragma mark - Rest service
+
+- (void)request:(RKRequest*)request didLoadResponse:(RKResponse*)response {  
+    if ([request isGET]) {  
+        if ([response isOK]) {  
+            ProductListViewController *productListController = [[ProductListViewController alloc] initWithNibName:@"ProductListViewController" bundle:nil];
+            productListController.storeId = storeId;
+            
+            [self.navigationController pushViewController:productListController animated:YES];
+            [productListController release];
+        }  
+    }
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+- (void)request:(RKRequest *)request didFailLoadWithError:(NSError *)error {
+    if([[ReachabilityService sharedService] isNetworkServiceAvailable]) {
+        [password setText:@""];
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Error en datos ingresados" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+        [alert release];
+    } else {
+        [[ReachabilityService sharedService] notifyNetworkUnreachable];
+    }
 }
 
 @end
