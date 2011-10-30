@@ -28,7 +28,7 @@
     [productMapping mapKeyPath:@"id" toAttribute:@"productId"];
     [[RKObjectManager sharedManager].mappingProvider setMapping:productMapping forKeyPath:@"product"];
     
-    [[RKObjectManager sharedManager] loadObjectsAtResourcePath:[NSString stringWithFormat:@"/stores/%d/products/%d", storeId, productId] delegate:sender];
+    [[RKObjectManager sharedManager] loadObjectsAtResourcePath:[NSString stringWithFormat:@"products/%d", productId] delegate:sender];
 }
 
 @end

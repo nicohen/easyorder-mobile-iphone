@@ -26,26 +26,33 @@
     return self;
 }
 
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    //Sets the table hidden and shows the animator
+    [table setHidden:YES];
+
+    //Start animating the spinner with the network activity
+    [activityIndicator startAnimating];
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+
+    //Looses textbox focus and hides the keyboard
+    [searchBar resignFirstResponder];
+
+    //Calls the service to retrieve the stands list
+    [StoreService getStoreByName:self:[searchBar text]];
+}
+
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 
+    [search becomeFirstResponder];
+    
     activityIndicator = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
 	activityIndicator.frame = CGRectMake(0.0, 0.0, 40.0, 40.0);
 	activityIndicator.center = self.view.center;
 	[self.view addSubview:activityIndicator];
-    
-    //Sets the table hidden and shows the animator
-    [table setHidden:YES];
-    
-    //Start animating the spinner with the network activity
-    [activityIndicator startAnimating];
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-    
-    //Calls the service to retrieve the stands list
-    [StoreService getStores:self];
 }
 
 - (void)viewDidUnload

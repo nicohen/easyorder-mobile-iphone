@@ -7,29 +7,46 @@
 //
 
 #import "LoginService.h"
+#import <RestKit/RestKit.h>
+#import <RestKit/CoreData/CoreData.h>
+#import "User.h"
 
 @implementation LoginService
 
 + (void) signup:(id)sender:(NSString*)name:(NSString*)surname:(NSString*)email:(NSString*)password:(NSString*)gender:(NSNumber*)birthdate {
-/*
-    RKObjectMapping* signMapping = [RKObjectMapping mappingForClass:[Store class]];
-    [signMapping mapAttributes:@"name", @"surname", @"email", @"password", @"gender", @"birthdate", nil];
-
-    [projectMapping mapKeyPath:@"id" toAttribute:@"projId"];
+    User* user = [[User alloc] init];
+    user.name = name; 
+    user.surname = surname; 
+    user.email = email; 
+    user.password = password;
+    user.gender = gender;
+    user.birthdate = birthdate;
     
-    [[RKObjectManager sharedManager].mappingProvider setMapping:projectMapping forKeyPath:@""]; 
-    [[RKObjectManager sharedManager].mappingProvider setSerializationMapping:[projectMapping inverseMapping] forClass:[Project class]];
+    RKObjectMapping* userMapping = [RKObjectMapping mappingForClass:[User class]];
+    [userMapping mapAttributes:@"name", @"surname", @"email", @"password", @"gender", @"birthdate", nil];
+    [userMapping mapKeyPath:@"access_token" toAttribute:@"accessToken"];
     
-    [RKObjectManager sharedManager].serializationMIMEType = RKMIMETypeJSON;
+    [[RKObjectManager sharedManager].mappingProvider setMapping:userMapping forKeyPath:@"user"]; 
+    [[RKObjectManager sharedManager].mappingProvider setSerializationMapping:[userMapping inverseMapping] forClass:[User class]]; 
+    [[RKObjectManager sharedManager] setSerializationMIMEType:RKMIMETypeJSON];
     
-    [[RKObjectManager sharedManager].router routeClass:[Project class] toResourcePath:@"/todos/create"];    
-    
-    [[RKObjectManager sharedManager] postObject:project delegate:sender];
-*/
+    [[RKObjectManager sharedManager] postObject:user delegate:sender];
 }
 
 + (void) signin:(id)sender:(NSString*)email:(NSString*)password:(NSString*)code {
+    User* user = [[User alloc] init];
+    user.email = email; 
+    user.password = password;
+
+    RKObjectMapping* userMapping = [RKObjectMapping mappingForClass:[User class]];
+    [userMapping mapAttributes:@"name", @"surname", @"email", @"password", @"gender", @"birthdate", nil];
+    [userMapping mapKeyPath:@"access_token" toAttribute:@"accessToken"];
     
+    [[RKObjectManager sharedManager].mappingProvider setMapping:userMapping forKeyPath:@"user"]; 
+    [[RKObjectManager sharedManager].mappingProvider setSerializationMapping:[userMapping inverseMapping] forClass:[User class]]; 
+    [[RKObjectManager sharedManager] setSerializationMIMEType:RKMIMETypeJSON];
+    
+    [[RKObjectManager sharedManager] putObject:user delegate:sender];
 }
 
 @end

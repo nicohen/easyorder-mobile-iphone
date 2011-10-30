@@ -10,6 +10,8 @@
 #import "LoginService.h"
 #import "ReachabilityService.h"
 #import "ProductListViewController.h"
+#import "User.h"
+#import "StringUtils.h"
 
 @implementation SigninViewController
 
@@ -25,6 +27,13 @@
 }
 
 - (IBAction)login:(id)sender {
+    if([StringUtils isNil:email.text] || [StringUtils isNil:password.text]) {
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Los campos deben contener valores" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+        [alert release];
+        return;
+    }
+
     [LoginService signin:self:email.text:password.text:code.text];
 }
 
@@ -38,23 +47,26 @@
     UIBarButtonItem *buttonLogin = [[UIBarButtonItem alloc] initWithTitle:@"Aceptar" style:UIBarButtonItemStylePlain target:self action:@selector(login:)];
     self.navigationItem.rightBarButtonItem = buttonLogin;
     [buttonLogin release];
+    
+    [email becomeFirstResponder];
 }
 
 #pragma mark - Rest service
 
-- (void)request:(RKRequest*)request didLoadResponse:(RKResponse*)response {  
-    if ([request isGET]) {  
-        if ([response isOK]) {  
-            ProductListViewController *productListController = [[ProductListViewController alloc] initWithNibName:@"ProductListViewController" bundle:nil];
-            productListController.storeId = storeId;
-            
-            [self.navigationController pushViewController:productListController animated:YES];
-            [productListController release];
-        }  
-    }
+- (void)objectLoader:(RKObjectLoader*)objectLoader didLoadObject:(id)object {
+    User* user = object;
+    
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    [prefs setObject:user.accessToken forKey:@"access_token"];
+    
+    ProductListViewController *productListController = [[ProductListViewController alloc] initWithNibName:@"ProductListViewController" bundle:nil];
+    productListController.storeId = storeId;
+    
+    [self.navigationController pushViewController:productListController animated:YES];
+    [productListController release];
 }
 
-- (void)request:(RKRequest *)request didFailLoadWithError:(NSError *)error {
+- (void)objectLoader:(RKObjectLoader*)objectLoader didFailWithError:(NSError*)error {
     if([[ReachabilityService sharedService] isNetworkServiceAvailable]) {
         [password setText:@""];
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Error en datos ingresados" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];

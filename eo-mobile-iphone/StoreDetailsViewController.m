@@ -142,7 +142,7 @@
         if (indexPath.section == 0 && indexPath.row == 0) {
             cell.textLabel.text = @"País";
             lbl = [[UILabel alloc] initWithFrame:CGRectMake(130.0, 10, 150.0, 20.0)];
-            [lbl setFont:[UIFont boldSystemFontOfSize:15]];
+            [lbl setFont:[UIFont boldSystemFontOfSize:14]];
             lbl.text = [store country];
             [cell.contentView addSubview:lbl];
             [lbl release];
@@ -150,34 +150,36 @@
             cell.textLabel.text = @"Provincia";
             lbl = [[UILabel alloc] initWithFrame:CGRectMake(130.0, 10, 150.0, 20.0)];
             lbl.text = [store state];
-            [lbl setFont:[UIFont boldSystemFontOfSize:15]];
+            [lbl setFont:[UIFont boldSystemFontOfSize:14]];
             [cell.contentView addSubview:lbl];
             [lbl release];
         } else if(indexPath.section == 0 && indexPath.row == 2) {
             cell.textLabel.text = @"Ciudad";
             lbl = [[UILabel alloc] initWithFrame:CGRectMake(130.0, 10, 150.0, 20.0)];
             lbl.text = [store city];
-            [lbl setFont:[UIFont boldSystemFontOfSize:15]];
+            [lbl setFont:[UIFont boldSystemFontOfSize:14]];
             [cell.contentView addSubview:lbl];
             [lbl release];
         } else if(indexPath.section == 1 && indexPath.row == 0) {
             cell.textLabel.text = @"Horario";
             lbl = [[UILabel alloc] initWithFrame:CGRectMake(130.0, 10, 150.0, 20.0)];
             lbl.text = [store hours];
-            [lbl setFont:[UIFont boldSystemFontOfSize:15]];
+            [lbl setFont:[UIFont boldSystemFontOfSize:14]];
             [cell.contentView addSubview:lbl];
             [lbl release];
         } else if(indexPath.section == 1 && indexPath.row == 1) {
             cell.textLabel.text = @"Teléfono";
             lbl = [[UILabel alloc] initWithFrame:CGRectMake(130.0, 10, 150.0, 20.0)];
             lbl.text = [store phone];
-            [lbl setFont:[UIFont boldSystemFontOfSize:15]];
+            [lbl setFont:[UIFont boldSystemFontOfSize:14]];
             [cell.contentView addSubview:lbl];
             [lbl release];
         } else if(indexPath.section == 1 && indexPath.row == 2) {
             cell.textLabel.text = [store email];
+            [cell.textLabel setTextAlignment:UITextAlignmentCenter];
         } else if(indexPath.section == 1 && indexPath.row == 3) {
             cell.textLabel.text = [store web];
+            [cell.textLabel setTextAlignment:UITextAlignmentCenter];
         }
     }
     return cell;

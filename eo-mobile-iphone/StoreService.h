@@ -16,4 +16,7 @@
 // GET /store/{store_id}
 + (void) getStore:(id)sender:(long)storeId;
 
+// GET /store/{store_name}
++ (void) getStoreByName:(id)sender:(NSString*)storeName;
+
 @end

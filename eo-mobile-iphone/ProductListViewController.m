@@ -11,6 +11,7 @@
 #import "ProductService.h"
 #import "Product.h"
 #import "ReachabilityService.h"
+#import "ImageUtils.h"
 
 #define IMAGE_TAG 1
 #define TITLELABEL_TAG 2
@@ -92,17 +93,21 @@
     //Get the row for the Bate
     Product *product = [productListArray objectAtIndex:indexPath.row];
     
-    /*
+    bool imageError = NO;
     //Lazy load for the image
-    if(!product.image) {
-        if (table.dragging == NO && table.decelerating == NO) {
-            [self startImageDownload:bate forIndexPath:indexPath];
-        }
-        [(UIImageView *)[cell viewWithTag:IMAGE_TAG] setImage:[UIImage imageNamed:[ImageUtils logoMini]]];
+    if(!product.imagePath) {
+        [(UIButton *)[cell viewWithTag:IMAGE_TAG] setImage:[UIImage imageNamed:[ImageUtils noImageThumb]] forState:UIControlStateNormal];
     } else {
-        [(UIImageView *)[cell viewWithTag:IMAGE_TAG] setImage:bate.image];
+        NSString *url = [NSString stringWithFormat:@"%@", [product imagePath]];
+        NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
+        if (imageData==nil) {
+            imageError = YES;
+        } else {
+            UIImage* myImage = [UIImage imageWithData:imageData];
+            [(UIButton *)[cell viewWithTag:IMAGE_TAG] setImage:[ImageUtils imageByScalingAndCroppingForSize:myImage:CGSizeMake(50,50)] forState:UIControlStateNormal];
+        }
+
     }
-    */
     
     //Set the labels
     [(UILabel *)[cell viewWithTag:TITLELABEL_TAG] setText:product.name];
@@ -126,7 +131,7 @@
     
     UITableViewCell *cell = [table cellForRowAtIndexPath:indexPath];
     
-    ProductDetailsViewController *detailController = [[ProductDetailsViewController alloc] initWithNibName:@"ProductDetailsViewController" bundle:nil productId:cell.tag];
+    ProductDetailsViewController *detailController = [[ProductDetailsViewController alloc] initWithNibName:@"ProductDetailsViewController" bundle:nil storeId:[storeId intValue] productId:cell.tag];
     
     detailController.title = [[productListArray objectAtIndex:indexPath.row] name];
     

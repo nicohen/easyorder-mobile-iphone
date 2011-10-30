@@ -31,4 +31,13 @@
     [[RKObjectManager sharedManager] loadObjectsAtResourcePath:[NSString stringWithFormat:@"/stores/%d", storeId] delegate:sender];
 }
 
++ (void) getStoreByName:(id)sender:(NSString*)storeName {
+    RKObjectMapping* storeMapping = [RKObjectMapping mappingForClass:[Store class]];
+    [storeMapping mapAttributes:@"address", @"category", @"city", @"country", @"description", @"email", @"hours", @"name", @"phone", @"state", @"web", nil];
+    [storeMapping mapKeyPath:@"id" toAttribute:@"storeId"];
+    [[RKObjectManager sharedManager].mappingProvider setMapping:storeMapping forKeyPath:@"store"];
+    
+    [[RKObjectManager sharedManager] loadObjectsAtResourcePath:[NSString stringWithFormat:@"/stores/%@", storeName] delegate:sender];
+}
+
 @end

@@ -8,11 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface StoreSearchViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate> {
+@interface StoreSearchViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate, UISearchBarDelegate> {
     NSMutableArray* storeArray;
     UITableViewCell* storeCell;
     IBOutlet UIActivityIndicatorView *activityIndicator;
     IBOutlet UITableView *table;
+    IBOutlet UISearchBar* search;
 }
 
 @property (nonatomic,retain) NSMutableArray *storeArray;

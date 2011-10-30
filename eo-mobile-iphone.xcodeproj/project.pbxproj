@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		3816926C145353E900E42A7A /* StoreDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3816926A145353E900E42A7A /* StoreDetailsViewController.m */; };
 		3816926D145353E900E42A7A /* StoreDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3816926B145353E900E42A7A /* StoreDetailsViewController.xib */; };
+		383824A1145C5B1500C459E6 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 383824A0145C5B1500C459E6 /* User.m */; };
+		383824BC145CB89400C459E6 /* no_image.png in Resources */ = {isa = PBXBuildFile; fileRef = 383824BB145CB89400C459E6 /* no_image.png */; };
+		383824BF145CB9AE00C459E6 /* ImageUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 383824BE145CB9AE00C459E6 /* ImageUtils.m */; };
 		38C5ACCC144FD4E600F23CB8 /* libRestKitCoreData.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38C5ACC5144FD4C800F23CB8 /* libRestKitCoreData.a */; };
 		38C5ACCD144FD4E600F23CB8 /* libRestKitJSONParserJSONKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38C5ACC1144FD4C800F23CB8 /* libRestKitJSONParserJSONKit.a */; };
 		38C5ACCE144FD4E600F23CB8 /* libRestKitNetwork.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38C5ACB5144FD4C800F23CB8 /* libRestKitNetwork.a */; };
@@ -155,6 +158,11 @@
 		38169269145353E900E42A7A /* StoreDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreDetailsViewController.h; sourceTree = "<group>"; };
 		3816926A145353E900E42A7A /* StoreDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreDetailsViewController.m; sourceTree = "<group>"; };
 		3816926B145353E900E42A7A /* StoreDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StoreDetailsViewController.xib; sourceTree = "<group>"; };
+		3838249F145C5B1500C459E6 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		383824A0145C5B1500C459E6 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		383824BB145CB89400C459E6 /* no_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = no_image.png; path = Images/no_image.png; sourceTree = "<group>"; };
+		383824BD145CB9AE00C459E6 /* ImageUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageUtils.h; sourceTree = "<group>"; };
+		383824BE145CB9AE00C459E6 /* ImageUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageUtils.m; sourceTree = "<group>"; };
 		38C5ACA0144FD4C800F23CB8 /* RestKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RestKit.xcodeproj; path = RestKit/RestKit.xcodeproj; sourceTree = "<group>"; };
 		38C5ACD1144FD4E600F23CB8 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		38C5ACD2144FD4E600F23CB8 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -324,6 +332,8 @@
 			children = (
 				38C5ACE8144FD59B00F23CB8 /* StringUtils.h */,
 				38C5ACE9144FD59B00F23CB8 /* StringUtils.m */,
+				383824BD145CB9AE00C459E6 /* ImageUtils.h */,
+				383824BE145CB9AE00C459E6 /* ImageUtils.m */,
 			);
 			name = Util;
 			sourceTree = "<group>";
@@ -429,6 +439,8 @@
 				38C5ACE0144FD57B00F23CB8 /* Store.m */,
 				38DCB3A5145647E70042F8FE /* Product.h */,
 				38DCB3A6145647E70042F8FE /* Product.m */,
+				3838249F145C5B1500C459E6 /* User.h */,
+				383824A0145C5B1500C459E6 /* User.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -509,6 +521,7 @@
 		38DCB3A8145784060042F8FE /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				383824BB145CB89400C459E6 /* no_image.png */,
 			);
 			name = Icons;
 			sourceTree = "<group>";
@@ -678,6 +691,7 @@
 				38DCB39A14562F590042F8FE /* OrderDetailsViewController.xib in Resources */,
 				38DCB39F145630E50042F8FE /* CategoryListViewController.xib in Resources */,
 				38DCB3A1145638750042F8FE /* ProductListTableCell.xib in Resources */,
+				383824BC145CB89400C459E6 /* no_image.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -730,6 +744,8 @@
 				38DCB3A414563C110042F8FE /* ProductService.m in Sources */,
 				38DCB3A7145647E70042F8FE /* Product.m in Sources */,
 				38DCB3AF1457AC330042F8FE /* LoginService.m in Sources */,
+				383824A1145C5B1500C459E6 /* User.m in Sources */,
+				383824BF145CB9AE00C459E6 /* ImageUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
