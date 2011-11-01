@@ -12,6 +12,8 @@
 		383824A1145C5B1500C459E6 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 383824A0145C5B1500C459E6 /* User.m */; };
 		383824BC145CB89400C459E6 /* no_image.png in Resources */ = {isa = PBXBuildFile; fileRef = 383824BB145CB89400C459E6 /* no_image.png */; };
 		383824BF145CB9AE00C459E6 /* ImageUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 383824BE145CB9AE00C459E6 /* ImageUtils.m */; };
+		383824EA145F385C00C459E6 /* OrderProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 383824E8145F385C00C459E6 /* OrderProductViewController.m */; };
+		383824EB145F385C00C459E6 /* OrderProductViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 383824E9145F385C00C459E6 /* OrderProductViewController.xib */; };
 		38C5ACCC144FD4E600F23CB8 /* libRestKitCoreData.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38C5ACC5144FD4C800F23CB8 /* libRestKitCoreData.a */; };
 		38C5ACCD144FD4E600F23CB8 /* libRestKitJSONParserJSONKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38C5ACC1144FD4C800F23CB8 /* libRestKitJSONParserJSONKit.a */; };
 		38C5ACCE144FD4E600F23CB8 /* libRestKitNetwork.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38C5ACB5144FD4C800F23CB8 /* libRestKitNetwork.a */; };
@@ -163,6 +165,9 @@
 		383824BB145CB89400C459E6 /* no_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = no_image.png; path = Images/no_image.png; sourceTree = "<group>"; };
 		383824BD145CB9AE00C459E6 /* ImageUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageUtils.h; sourceTree = "<group>"; };
 		383824BE145CB9AE00C459E6 /* ImageUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageUtils.m; sourceTree = "<group>"; };
+		383824E7145F385C00C459E6 /* OrderProductViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderProductViewController.h; sourceTree = "<group>"; };
+		383824E8145F385C00C459E6 /* OrderProductViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderProductViewController.m; sourceTree = "<group>"; };
+		383824E9145F385C00C459E6 /* OrderProductViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderProductViewController.xib; sourceTree = "<group>"; };
 		38C5ACA0144FD4C800F23CB8 /* RestKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RestKit.xcodeproj; path = RestKit/RestKit.xcodeproj; sourceTree = "<group>"; };
 		38C5ACD1144FD4E600F23CB8 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		38C5ACD2144FD4E600F23CB8 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -505,6 +510,7 @@
 			isa = PBXGroup;
 			children = (
 				38DCB39814562F590042F8FE /* OrderDetailsViewController.xib */,
+				383824E9145F385C00C459E6 /* OrderProductViewController.xib */,
 			);
 			name = Order;
 			sourceTree = "<group>";
@@ -514,6 +520,8 @@
 			children = (
 				38DCB39614562F590042F8FE /* OrderDetailsViewController.h */,
 				38DCB39714562F590042F8FE /* OrderDetailsViewController.m */,
+				383824E7145F385C00C459E6 /* OrderProductViewController.h */,
+				383824E8145F385C00C459E6 /* OrderProductViewController.m */,
 			);
 			name = Order;
 			sourceTree = "<group>";
@@ -692,6 +700,7 @@
 				38DCB39F145630E50042F8FE /* CategoryListViewController.xib in Resources */,
 				38DCB3A1145638750042F8FE /* ProductListTableCell.xib in Resources */,
 				383824BC145CB89400C459E6 /* no_image.png in Resources */,
+				383824EB145F385C00C459E6 /* OrderProductViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -746,6 +755,7 @@
 				38DCB3AF1457AC330042F8FE /* LoginService.m in Sources */,
 				383824A1145C5B1500C459E6 /* User.m in Sources */,
 				383824BF145CB9AE00C459E6 /* ImageUtils.m in Sources */,
+				383824EA145F385C00C459E6 /* OrderProductViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

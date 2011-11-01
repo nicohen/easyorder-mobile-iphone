@@ -21,6 +21,7 @@
     NSString* phone;
     NSString* state;
     NSString* web;
+    NSString* imagePath;
 }
 
 @property (nonatomic,retain) NSNumber* storeId;
@@ -35,5 +36,6 @@
 @property (nonatomic,retain) NSString* phone;
 @property (nonatomic,retain) NSString* state;
 @property (nonatomic,retain) NSString* web;
+@property (nonatomic,retain) NSString* imagePath;
 
 @end

@@ -14,6 +14,7 @@
 #import "ProductListViewController.h"
 #import "SigninViewController.h"
 #import "SignupViewController.h"
+#import "ImageUtils.h"
 
 @implementation StoreDetailsViewController
 
@@ -35,13 +36,13 @@
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (buttonIndex == 0) {
         SigninViewController *signinController = [[SigninViewController alloc] initWithNibName:@"SigninViewController" bundle:nil];
-        signinController.title = @"Ingresar";
+        signinController.title = @"Usuario existente";
         signinController.storeId = [storeId retain];
         [self.navigationController pushViewController:signinController animated:YES];
         [signinController release];    
     } else if (buttonIndex == 1) {
         SignupViewController *signupController = [[SignupViewController alloc] initWithNibName:@"SignupViewController" bundle:nil];
-        signupController.title = @"Regístrate";
+        signupController.title = @"Nuevo usuario";
         signupController.storeId = storeId;
         [self.navigationController pushViewController:signupController animated:YES];
         [signupController release];    
@@ -49,7 +50,7 @@
 }
 
 - (void)login:(id)sender{
-    UIActionSheet *popupQuery = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancelar" destructiveButtonTitle:nil otherButtonTitles:@"Ingresar", @"Regístrate", nil];
+    UIActionSheet *popupQuery = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancelar" destructiveButtonTitle:nil otherButtonTitles:@"Usuario existente", @"Nuevo usuario", nil];
     
     popupQuery.actionSheetStyle = UIActionSheetStyleBlackOpaque;
     [popupQuery showInView:self.view];
@@ -65,7 +66,7 @@
     [table setScrollEnabled:NO];
 
     //Login button definition
-    UIBarButtonItem *buttonLogin = [[UIBarButtonItem alloc] initWithTitle:@"Acceder" style:UIBarButtonItemStylePlain target:self action:@selector(login:)];
+    UIBarButtonItem *buttonLogin = [[UIBarButtonItem alloc] initWithTitle:@"Ingresar" style:UIBarButtonItemStylePlain target:self action:@selector(login:)];
     self.navigationItem.rightBarButtonItem = buttonLogin;
     [buttonLogin release];
 
@@ -212,6 +213,25 @@
     tableFrame.origin.y += deltaOrigin;
     tableFrame.size.height = table.contentSize.height;
     table.frame = tableFrame;
+    
+    bool imageError = NO;
+    UIImage* myImage = nil;
+    if([store imagePath]!=nil) {
+        NSString *url = [NSString stringWithFormat:@"%@", [store imagePath]];
+        NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
+        if (imageData==nil) {
+            imageError = YES;
+        } else {
+            myImage = [UIImage imageWithData:imageData];
+            [image setImage:[ImageUtils imageByScalingAndCroppingForSize:myImage:CGSizeMake(60,60)]];
+        }
+    }
+    
+    if([store imagePath]==nil || imageError) {
+        myImage = [UIImage imageNamed:[ImageUtils noImageThumb]];
+        [image setImage:[ImageUtils imageByScalingAndCroppingForSize:myImage:CGSizeMake(60,60)]];
+    }
+
     
     [scrollView setContentSize:(CGSizeMake(320, tableFrame.origin.y+tableFrame.size.height+40))];
     [scrollView setContentOffset:CGPointMake(0, 0) animated:YES];

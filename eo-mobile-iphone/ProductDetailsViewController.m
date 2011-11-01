@@ -11,6 +11,7 @@
 #import "Product.h"
 #import "ReachabilityService.h"
 #import <QuartzCore/QuartzCore.h>
+#import "OrderProductViewController.h"
 
 @implementation ProductDetailsViewController
 
@@ -28,6 +29,15 @@
 
 - (void)back:(id)sender{
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (IBAction)orderProduct:(id)sender {
+    //Calls OrderProductViewController
+    OrderProductViewController *targetController = [[OrderProductViewController alloc] initWithNibName:@"OrderProductViewController" bundle:nil];
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:targetController];
+    [targetController release];
+    [self presentModalViewController:navController animated:YES];
+    [navController release];
 }
 
 #pragma mark - View lifecycle
@@ -63,6 +73,10 @@
 #pragma mark - Rest service
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didLoadObject:(id)object {
+    //Stops the spinner and the network activity
+    [activityIndicator stopAnimating];
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+
     Product* product = object;
     
     [productTitle setText:product.name];
@@ -80,7 +94,7 @@
     description.frame = descFrame;
     
     [scrollView setContentSize:(CGSizeMake(320, descFrame.origin.y+descFrame.size.height+40))];
-    [scrollView setContentOffset:CGPointMake(0, 0) animated:YES];
+    [scrollView setContentOffset:CGPointMake(0, 0) animated:YES];    
 }
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didFailWithError:(NSError*)error {

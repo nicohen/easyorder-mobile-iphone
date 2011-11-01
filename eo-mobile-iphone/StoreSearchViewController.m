@@ -116,7 +116,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     UITableViewCell *cell = [table cellForRowAtIndexPath:indexPath];
-    
+
     StoreDetailsViewController *detailController = [[StoreDetailsViewController alloc] initWithNibName:@"StoreDetailsViewController" bundle:nil storeId:cell.tag];
     
     Store *myStore = [storeArray objectAtIndex:indexPath.row];

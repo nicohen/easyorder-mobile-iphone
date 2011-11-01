@@ -10,7 +10,7 @@
 
 @implementation Store
 
-@synthesize storeId, address, category, city, country, description, email, hours, name, phone, state, web;
+@synthesize storeId, address, category, city, country, description, email, hours, name, phone, state, web, imagePath;
 
 - (void)dealloc {
     [storeId release];
@@ -25,6 +25,7 @@
     [phone release];
     [state release];
     [web release];
+    [imagePath release];
     [super dealloc];
 }
 

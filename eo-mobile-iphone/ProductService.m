@@ -15,7 +15,7 @@
 
 + (void) getStoreProducts:(id)sender:(long)storeId {
     RKObjectMapping* productMapping = [RKObjectMapping mappingForClass:[Product class]];
-    [productMapping mapAttributes:@"category", @"name", @"price", @"store_id", nil];
+    [productMapping mapAttributes:@"category", @"name", @"descr", @"price", @"store_id", nil];
     [productMapping mapKeyPath:@"id" toAttribute:@"productId"];
     [[RKObjectManager sharedManager].mappingProvider setMapping:productMapping forKeyPath:@"product"];
     
@@ -24,7 +24,7 @@
 
 + (void) getStoreProduct:(id)sender:(long)storeId:(long)productId {
     RKObjectMapping* productMapping = [RKObjectMapping mappingForClass:[Product class]];
-    [productMapping mapAttributes:@"category", @"name", @"price", @"store_id", nil];
+    [productMapping mapAttributes:@"category", @"name", @"descr", @"price", @"store_id", nil];
     [productMapping mapKeyPath:@"id" toAttribute:@"productId"];
     [[RKObjectManager sharedManager].mappingProvider setMapping:productMapping forKeyPath:@"product"];
     
