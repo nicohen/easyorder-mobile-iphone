@@ -11,7 +11,6 @@
 @interface SigninViewController : UIViewController {
     IBOutlet UITextField* email;
     IBOutlet UITextField* password;
-    IBOutlet UITextField* code;
     NSNumber* storeId;
 }
 

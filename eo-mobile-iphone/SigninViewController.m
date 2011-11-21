@@ -34,7 +34,7 @@
         return;
     }
 
-    [LoginService signin:self:email.text:password.text:code.text];
+    [LoginService signin:self:email.text:password.text];
 }
 
 #pragma mark - View lifecycle
@@ -42,6 +42,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Textures 78.jpg"]];
 
     //Signin button definition
     UIBarButtonItem *buttonLogin = [[UIBarButtonItem alloc] initWithTitle:@"Aceptar" style:UIBarButtonItemStylePlain target:self action:@selector(login:)];

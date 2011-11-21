@@ -7,14 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Order.h"
 
 @interface OrderProductViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource, UIActionSheetDelegate> {
     NSInteger productQty;
     NSString* descr;
     IBOutlet UITextField* productQtyField;
+    NSNumber* productId;
+    Order* order;
 }
 
 @property (nonatomic,retain) NSString* descr;
+@property (nonatomic,retain) Order* order;
+@property (nonatomic,retain) NSNumber* productId;
 @property (nonatomic, retain) UIPickerView *myPickerView;
 
 @end

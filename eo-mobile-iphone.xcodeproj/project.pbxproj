@@ -14,6 +14,15 @@
 		383824BF145CB9AE00C459E6 /* ImageUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 383824BE145CB9AE00C459E6 /* ImageUtils.m */; };
 		383824EA145F385C00C459E6 /* OrderProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 383824E8145F385C00C459E6 /* OrderProductViewController.m */; };
 		383824EB145F385C00C459E6 /* OrderProductViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 383824E9145F385C00C459E6 /* OrderProductViewController.xib */; };
+		383824F21460E59000C459E6 /* OrderService.m in Sources */ = {isa = PBXBuildFile; fileRef = 383824F11460E59000C459E6 /* OrderService.m */; };
+		383824F51460E68D00C459E6 /* Order.m in Sources */ = {isa = PBXBuildFile; fileRef = 383824F41460E68D00C459E6 /* Order.m */; };
+		383824F71462D8C500C459E6 /* OrderDetailsTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 383824F61462D8C400C459E6 /* OrderDetailsTableCell.xib */; };
+		383824FA1462EDFE00C459E6 /* OrderProduct.m in Sources */ = {isa = PBXBuildFile; fileRef = 383824F91462EDFE00C459E6 /* OrderProduct.m */; };
+		3864BCB31479C7E100F5AA62 /* StoreAccessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3864BCB11479C7E100F5AA62 /* StoreAccessViewController.m */; };
+		3864BCB41479C7E100F5AA62 /* StoreAccessViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3864BCB21479C7E100F5AA62 /* StoreAccessViewController.xib */; };
+		3864BCB81479CDD500F5AA62 /* Food 48.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3864BCB61479CDD500F5AA62 /* Food 48.jpg */; };
+		3864BCB91479CDD500F5AA62 /* Textures 78.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3864BCB71479CDD500F5AA62 /* Textures 78.jpg */; };
+		3864BCBB1479EEB500F5AA62 /* padlock.png in Resources */ = {isa = PBXBuildFile; fileRef = 3864BCBA1479EEB500F5AA62 /* padlock.png */; };
 		38C5ACCC144FD4E600F23CB8 /* libRestKitCoreData.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38C5ACC5144FD4C800F23CB8 /* libRestKitCoreData.a */; };
 		38C5ACCD144FD4E600F23CB8 /* libRestKitJSONParserJSONKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38C5ACC1144FD4C800F23CB8 /* libRestKitJSONParserJSONKit.a */; };
 		38C5ACCE144FD4E600F23CB8 /* libRestKitNetwork.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38C5ACB5144FD4C800F23CB8 /* libRestKitNetwork.a */; };
@@ -168,6 +177,19 @@
 		383824E7145F385C00C459E6 /* OrderProductViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderProductViewController.h; sourceTree = "<group>"; };
 		383824E8145F385C00C459E6 /* OrderProductViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderProductViewController.m; sourceTree = "<group>"; };
 		383824E9145F385C00C459E6 /* OrderProductViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderProductViewController.xib; sourceTree = "<group>"; };
+		383824F01460E59000C459E6 /* OrderService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderService.h; sourceTree = "<group>"; };
+		383824F11460E59000C459E6 /* OrderService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderService.m; sourceTree = "<group>"; };
+		383824F31460E68D00C459E6 /* Order.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Order.h; sourceTree = "<group>"; };
+		383824F41460E68D00C459E6 /* Order.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Order.m; sourceTree = "<group>"; };
+		383824F61462D8C400C459E6 /* OrderDetailsTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderDetailsTableCell.xib; sourceTree = "<group>"; };
+		383824F81462EDFC00C459E6 /* OrderProduct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderProduct.h; sourceTree = "<group>"; };
+		383824F91462EDFE00C459E6 /* OrderProduct.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderProduct.m; sourceTree = "<group>"; };
+		3864BCB01479C7E100F5AA62 /* StoreAccessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreAccessViewController.h; sourceTree = "<group>"; };
+		3864BCB11479C7E100F5AA62 /* StoreAccessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreAccessViewController.m; sourceTree = "<group>"; };
+		3864BCB21479C7E100F5AA62 /* StoreAccessViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StoreAccessViewController.xib; sourceTree = "<group>"; };
+		3864BCB61479CDD500F5AA62 /* Food 48.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "Food 48.jpg"; path = "Images/Food 48.jpg"; sourceTree = "<group>"; };
+		3864BCB71479CDD500F5AA62 /* Textures 78.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "Textures 78.jpg"; path = "Images/Textures 78.jpg"; sourceTree = "<group>"; };
+		3864BCBA1479EEB500F5AA62 /* padlock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = padlock.png; path = Images/padlock.png; sourceTree = "<group>"; };
 		38C5ACA0144FD4C800F23CB8 /* RestKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RestKit.xcodeproj; path = RestKit/RestKit.xcodeproj; sourceTree = "<group>"; };
 		38C5ACD1144FD4E600F23CB8 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		38C5ACD2144FD4E600F23CB8 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -284,6 +306,15 @@
 			name = Store;
 			sourceTree = "<group>";
 		};
+		3864BCB51479CD9900F5AA62 /* Wallpapers */ = {
+			isa = PBXGroup;
+			children = (
+				3864BCB61479CDD500F5AA62 /* Food 48.jpg */,
+				3864BCB71479CDD500F5AA62 /* Textures 78.jpg */,
+			);
+			name = Wallpapers;
+			sourceTree = "<group>";
+		};
 		38C5ACA1144FD4C800F23CB8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -313,6 +344,8 @@
 				38DCB3A314563C110042F8FE /* ProductService.m */,
 				38DCB3AD1457AC310042F8FE /* LoginService.h */,
 				38DCB3AE1457AC310042F8FE /* LoginService.m */,
+				383824F01460E59000C459E6 /* OrderService.h */,
+				383824F11460E59000C459E6 /* OrderService.m */,
 			);
 			name = Service;
 			sourceTree = "<group>";
@@ -327,6 +360,7 @@
 		38C5ACDD144FD55100F23CB8 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				3864BCB51479CD9900F5AA62 /* Wallpapers */,
 				38DCB3A8145784060042F8FE /* Icons */,
 			);
 			name = Resources;
@@ -446,6 +480,10 @@
 				38DCB3A6145647E70042F8FE /* Product.m */,
 				3838249F145C5B1500C459E6 /* User.h */,
 				383824A0145C5B1500C459E6 /* User.m */,
+				383824F31460E68D00C459E6 /* Order.h */,
+				383824F41460E68D00C459E6 /* Order.m */,
+				383824F81462EDFC00C459E6 /* OrderProduct.h */,
+				383824F91462EDFE00C459E6 /* OrderProduct.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -493,6 +531,8 @@
 				38DCB38B14562EB70042F8FE /* SigninViewController.m */,
 				38DCB38F14562EE30042F8FE /* SignupViewController.h */,
 				38DCB39014562EE30042F8FE /* SignupViewController.m */,
+				3864BCB01479C7E100F5AA62 /* StoreAccessViewController.h */,
+				3864BCB11479C7E100F5AA62 /* StoreAccessViewController.m */,
 			);
 			name = Sign;
 			sourceTree = "<group>";
@@ -502,6 +542,7 @@
 			children = (
 				38DCB38C14562EB70042F8FE /* SigninViewController.xib */,
 				38DCB39114562EE30042F8FE /* SignupViewController.xib */,
+				3864BCB21479C7E100F5AA62 /* StoreAccessViewController.xib */,
 			);
 			name = Sign;
 			sourceTree = "<group>";
@@ -511,6 +552,7 @@
 			children = (
 				38DCB39814562F590042F8FE /* OrderDetailsViewController.xib */,
 				383824E9145F385C00C459E6 /* OrderProductViewController.xib */,
+				383824F61462D8C400C459E6 /* OrderDetailsTableCell.xib */,
 			);
 			name = Order;
 			sourceTree = "<group>";
@@ -529,6 +571,7 @@
 		38DCB3A8145784060042F8FE /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				3864BCBA1479EEB500F5AA62 /* padlock.png */,
 				383824BB145CB89400C459E6 /* no_image.png */,
 			);
 			name = Icons;
@@ -701,6 +744,11 @@
 				38DCB3A1145638750042F8FE /* ProductListTableCell.xib in Resources */,
 				383824BC145CB89400C459E6 /* no_image.png in Resources */,
 				383824EB145F385C00C459E6 /* OrderProductViewController.xib in Resources */,
+				383824F71462D8C500C459E6 /* OrderDetailsTableCell.xib in Resources */,
+				3864BCB41479C7E100F5AA62 /* StoreAccessViewController.xib in Resources */,
+				3864BCB81479CDD500F5AA62 /* Food 48.jpg in Resources */,
+				3864BCB91479CDD500F5AA62 /* Textures 78.jpg in Resources */,
+				3864BCBB1479EEB500F5AA62 /* padlock.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -756,6 +804,10 @@
 				383824A1145C5B1500C459E6 /* User.m in Sources */,
 				383824BF145CB9AE00C459E6 /* ImageUtils.m in Sources */,
 				383824EA145F385C00C459E6 /* OrderProductViewController.m in Sources */,
+				383824F21460E59000C459E6 /* OrderService.m in Sources */,
+				383824F51460E68D00C459E6 /* Order.m in Sources */,
+				383824FA1462EDFE00C459E6 /* OrderProduct.m in Sources */,
+				3864BCB31479C7E100F5AA62 /* StoreAccessViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

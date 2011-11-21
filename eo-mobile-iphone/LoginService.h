@@ -14,6 +14,6 @@
 + (void) signup:(id)sender:(NSString*)name:(NSString*)surname:(NSString*)email:(NSString*)password:(NSString*)gender:(NSNumber*)birthdate;
 
 // PUT /users/signin
-+ (void) signin:(id)sender:(NSString*)email:(NSString*)password:(NSString*)code;
++ (void) signin:(id)sender:(NSString*)email:(NSString*)password;
 
 @end

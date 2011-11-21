@@ -15,6 +15,7 @@
     NSString* descr;
     NSNumber* price;
     NSString* imagePath;
+    NSString* status;
     NSNumber* store_id;
 }
 
@@ -24,6 +25,7 @@
 @property (nonatomic,retain) NSString* name;
 @property (nonatomic,retain) NSNumber* price;
 @property (nonatomic,retain) NSString* imagePath;
+@property (nonatomic,retain) NSString* status;
 @property (nonatomic,retain) NSNumber* store_id;
 
 @end

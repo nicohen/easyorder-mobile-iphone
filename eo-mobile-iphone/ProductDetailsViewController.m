@@ -46,6 +46,8 @@
 {
     [super viewDidLoad];
 
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Textures 78.jpg"]];
+
     //Initialize and starts the activity indicator
     activityIndicator = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
 	activityIndicator.frame = CGRectMake(0.0, 0.0, 40.0, 40.0);
@@ -57,7 +59,7 @@
     
     UIButton* backButton = [UIButton buttonWithType:101]; // left-pointing shape!
     [backButton addTarget:self action:@selector(back:) forControlEvents:UIControlEventTouchUpInside];
-    [backButton setTitle:@"Back" forState:UIControlStateNormal];
+    [backButton setTitle:@"Atras" forState:UIControlStateNormal];
     
     // create button item -- possible because UIButton subclasses UIView!
     UIBarButtonItem* backItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];

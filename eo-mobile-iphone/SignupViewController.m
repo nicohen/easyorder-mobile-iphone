@@ -65,6 +65,8 @@
 {
     [super viewDidLoad];
 
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Textures 78.jpg"]];
+
     //Signin button definition
     UIBarButtonItem *buttonSignin = [[UIBarButtonItem alloc] initWithTitle:@"Aceptar" style:UIBarButtonItemStylePlain target:self action:@selector(signup:)];
     self.navigationItem.rightBarButtonItem = buttonSignin;

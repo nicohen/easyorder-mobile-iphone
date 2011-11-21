@@ -8,6 +8,7 @@
 
 #import "ProductListViewController.h"
 #import "ProductDetailsViewController.h"
+#import "OrderDetailsViewController.h"
 #import "ProductService.h"
 #import "Product.h"
 #import "ReachabilityService.h"
@@ -35,6 +36,14 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+- (void)viewOrder:(id)sender {
+    OrderDetailsViewController *viewOrder = [[OrderDetailsViewController alloc] initWithNibName:@"OrderDetailsViewController" bundle:nil];
+    viewOrder.orderId = [NSNumber numberWithInt:1];
+    viewOrder.title = @"Pedido";
+    [self.navigationController pushViewController:viewOrder animated:YES];
+    [viewOrder release];
+}
+
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
@@ -48,7 +57,7 @@
     
     UIButton* backButton = [UIButton buttonWithType:101]; // left-pointing shape!
     [backButton addTarget:self action:@selector(back:) forControlEvents:UIControlEventTouchUpInside];
-    [backButton setTitle:@"Back" forState:UIControlStateNormal];
+    [backButton setTitle:@"Atras" forState:UIControlStateNormal];
     
     // create button item -- possible because UIButton subclasses UIView!
     UIBarButtonItem* backItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
@@ -58,6 +67,11 @@
     self.navigationItem.leftBarButtonItem = backItem;
     [backItem release];
 
+    //Order button definition
+    UIBarButtonItem *buttonOrder = [[UIBarButtonItem alloc] initWithTitle:@"Ver pedido" style:UIBarButtonItemStyleBordered target:self action:@selector(viewOrder:)];
+    self.navigationItem.rightBarButtonItem = buttonOrder;
+    [buttonOrder release];
+    
     //Sets the table hidden and shows the animator
     [table setHidden:YES];
     

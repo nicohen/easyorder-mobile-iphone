@@ -7,10 +7,12 @@
 //
 
 #import "OrderProductViewController.h"
+#import "ReachabilityService.h"
+#import "OrderService.h"
 
 @implementation OrderProductViewController
 
-@synthesize descr, myPickerView;
+@synthesize descr, myPickerView, order, productId;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -102,11 +104,38 @@
     [self dismissModalViewControllerAnimated:YES];
 }
 
+- (IBAction)placeOrder:(id)sender {
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+
+    [OrderService orderProduct:sender accessToken:[prefs objectForKey:@"access_token"] productId:[productId longValue] orderId:[order.orderId longValue] accessCode:@"" quantity:productQty comment:@""];
+
+    [self dismissModalViewControllerAnimated:YES];
+}
+
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Textures 78.jpg"]];
+
+}
+
+#pragma mark - Rest service
+
+- (void)objectLoader:(RKObjectLoader*)objectLoader didLoadObject:(id)object {
+    [self dismissModalViewControllerAnimated:YES];
+}
+
+- (void)objectLoader:(RKObjectLoader*)objectLoader didFailWithError:(NSError*)error {
+    if([[ReachabilityService sharedService] isNetworkServiceAvailable]) {
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Error en pedido" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+        [alert release];
+    } else {
+        [[ReachabilityService sharedService] notifyNetworkUnreachable];
+    }
 }
 
 @end

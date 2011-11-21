@@ -33,7 +33,7 @@
     [[RKObjectManager sharedManager] postObject:user delegate:sender];
 }
 
-+ (void) signin:(id)sender:(NSString*)email:(NSString*)password:(NSString*)code {
++ (void) signin:(id)sender:(NSString*)email:(NSString*)password {
     User* user = [[User alloc] init];
     user.email = email; 
     user.password = password;

@@ -10,7 +10,7 @@
 
 @implementation Product
 
-@synthesize productId, category, name, price, imagePath, store_id, descr;
+@synthesize productId, category, name, price, imagePath, store_id, descr, status;
 
 - (void)dealloc {
     [productId release];
@@ -19,6 +19,7 @@
     [descr release];
     [price release];
     [imagePath release];
+    [status release];
     [store_id release];
     [super dealloc];
 }

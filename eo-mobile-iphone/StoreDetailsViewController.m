@@ -10,11 +10,11 @@
 #import "StoreService.h"
 #import "ReachabilityService.h"
 #import "StringUtils.h"
-#import <QuartzCore/QuartzCore.h>
 #import "ProductListViewController.h"
 #import "SigninViewController.h"
 #import "SignupViewController.h"
 #import "ImageUtils.h"
+#import "StoreAccessViewController.h"
 
 @implementation StoreDetailsViewController
 
@@ -62,6 +62,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Textures 78.jpg"]];
+    
+    table.backgroundColor = [UIColor clearColor];
+    
     [scrollView setScrollEnabled:YES];
     [table setScrollEnabled:NO];
 
@@ -93,7 +97,18 @@
     [self.navigationController pushViewController:productListController animated:YES];
     
     [productListController release];
+    
+}
 
+- (IBAction)accessToOrder:(id)sender {
+    StoreAccessViewController *accessController = [[StoreAccessViewController alloc] initWithNibName:@"StoreAccessViewController" bundle:nil];
+    accessController.storeId = store.storeId;
+    accessController.title = @"Acceder";
+    
+    [self.navigationController pushViewController:accessController animated:YES];
+    
+    [accessController release];
+    
 }
 
 #pragma mark - Table view data source
@@ -104,21 +119,6 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 2;
-}
-
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-	NSString *title = nil;
-	switch (section) {
-		case 0:
-			title = @"Ubicación";
-			break;
-		case 1:
-			title = @"General";
-			break;
-		default:
-			break;
-	}
-	return title;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -194,13 +194,6 @@
     [name setText:store.name];
     [description setText:store.description];
     [address setText:store.address];
-    
-    description.layer.borderWidth = 1;
-    description.layer.borderColor = [[UIColor grayColor] CGColor];
-    description.layer.cornerRadius = 8;
-    address.layer.borderWidth = 1;
-    address.layer.borderColor = [[UIColor grayColor] CGColor];
-    address.layer.cornerRadius = 8;
     
     CGFloat deltaOrigin = 0.0;
 

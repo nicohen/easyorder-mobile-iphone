@@ -19,7 +19,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     //Initialize objectManager for all the application with the base url
-    [RKObjectManager objectManagerWithBaseURL:@"http://192.168.1.101:9095/eo-services/api"];
+    [RKObjectManager objectManagerWithBaseURL:@"http://127.0.0.1:9095/eo-services/api"];
     [User initUser];
     
     //Start reachability observer for all the application

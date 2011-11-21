@@ -122,7 +122,7 @@
 								<string key="IBUIText"/>
 								<object class="NSColor" key="IBUITextColor">
 									<int key="NSColorSpace">1</int>
-									<bytes key="NSRGB">MCAwIDAAA</bytes>
+									<bytes key="NSRGB">MSAwLjUgMAA</bytes>
 								</object>
 								<nil key="IBUIHighlightedColor"/>
 								<int key="IBUIBaselineAdjustment">1</int>
@@ -173,7 +173,6 @@
 								<string key="NSFrame">{{20, 471}, {280, 139}}</string>
 								<reference key="NSSuperview" ref="888362029"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:418</string>
 								<reference key="IBUIBackgroundColor" ref="551149388"/>
 								<bool key="IBUIClipsSubviews">YES</bool>
