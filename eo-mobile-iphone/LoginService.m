@@ -10,6 +10,7 @@
 #import <RestKit/RestKit.h>
 #import <RestKit/CoreData/CoreData.h>
 #import "User.h"
+#import "Order.h"
 
 @implementation LoginService
 
@@ -47,6 +48,18 @@
     [[RKObjectManager sharedManager] setSerializationMIMEType:RKMIMETypeJSON];
     
     [[RKObjectManager sharedManager] putObject:user delegate:sender];
+}
+
++ (void) access:(id)sender:(long)storeId:(NSString*)accessCode {
+    RKObjectMapping* orderMapping = [RKObjectMapping mappingForClass:[Order class]];
+    [orderMapping mapAttributes:@"status", @"price", nil];
+    [orderMapping mapKeyPath:@"id" toAttribute:@"orderId"];
+    [orderMapping mapKeyPath:@"store_id" toAttribute:@"storeId"];
+    [orderMapping mapKeyPath:@"table_id" toAttribute:@"tableId"];
+    [orderMapping mapKeyPath:@"access_code" toAttribute:@"accessCode"];
+    [[RKObjectManager sharedManager].mappingProvider setMapping:orderMapping forKeyPath:@"order"];
+
+    [[RKObjectManager sharedManager] loadObjectsAtResourcePath:[NSString stringWithFormat:@"/stores/%d/access/%@", storeId, accessCode] delegate:sender];
 }
 
 @end

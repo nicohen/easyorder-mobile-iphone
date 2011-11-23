@@ -8,12 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol SigninDelegate
+- (void)didSignin;
+@end
+
 @interface SigninViewController : UIViewController {
+    id <SigninDelegate> delegate;
     IBOutlet UITextField* email;
     IBOutlet UITextField* password;
     NSNumber* storeId;
 }
 
+@property (assign) id <SigninDelegate> delegate;
 @property (nonatomic,retain) NSNumber* storeId;
 
 @end

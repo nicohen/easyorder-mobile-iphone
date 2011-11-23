@@ -16,4 +16,7 @@
 // PUT /users/signin
 + (void) signin:(id)sender:(NSString*)email:(NSString*)password;
 
+// POST /orders/access/(access_code)
++ (void) access:(id)sender:(long)storeId:(NSString*)accessCode;
+
 @end

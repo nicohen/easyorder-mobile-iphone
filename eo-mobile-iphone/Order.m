@@ -7,28 +7,18 @@
 //
 
 #import "Order.h"
-#import <RestKit/RestKit.h>
-#import <RestKit/CoreData/CoreData.h>
 
 @implementation Order
     
-@synthesize orderId, productId, accessToken, accessCode, status, quantity, price, comment;
+@synthesize orderId, storeId, tableId, status, accessCode, price;
 
 - (void)dealloc {
     [orderId release];
-    [productId release];
-    [accessToken release];
-    [accessCode release];
+    [storeId release];
+    [tableId release];
     [status release];
-    [quantity release];
-    [comment release];
+    [accessCode release];
     [super dealloc];
-}
-
-+ (void) initOrder {
-    // Grab the reference to the router from the manager
-    RKObjectRouter *router = [RKObjectManager sharedManager].router;
-    [router routeClass:[Order class] toResourcePath:@"/products/(productId)/order" forMethod:RKRequestMethodPOST];
 }
 
 @end

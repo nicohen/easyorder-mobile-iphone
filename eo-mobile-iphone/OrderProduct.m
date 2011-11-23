@@ -7,6 +7,8 @@
 //
 
 #import "OrderProduct.h"
+#import <RestKit/RestKit.h>
+#import <RestKit/CoreData/CoreData.h>
 
 @implementation OrderProduct
 
@@ -22,6 +24,12 @@
     [price release];
     [comment release];
     [super dealloc];
+}
+
++ (void) initOrder {
+    // Grab the reference to the router from the manager
+    RKObjectRouter *router = [RKObjectManager sharedManager].router;
+    [router routeClass:[OrderProduct class] toResourcePath:@"/products/(productId)/order" forMethod:RKRequestMethodPOST];
 }
 
 @end

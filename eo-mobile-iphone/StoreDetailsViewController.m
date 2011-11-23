@@ -29,6 +29,13 @@
     return self;
 }
 
+- (void)didSignin {
+    //Logout button definition
+    UIBarButtonItem *buttonLogout = [[UIBarButtonItem alloc] initWithTitle:@"Cerrar sesión" style:UIBarButtonItemStylePlain target:self action:@selector(logout:)];
+    self.navigationItem.rightBarButtonItem = buttonLogout;
+    [buttonLogout release];
+}
+
 - (void)back:(id)sender{
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -36,10 +43,18 @@
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (buttonIndex == 0) {
         SigninViewController *signinController = [[SigninViewController alloc] initWithNibName:@"SigninViewController" bundle:nil];
-        signinController.title = @"Usuario existente";
+        
+        signinController.delegate = self;
+        [signinController setModalTransitionStyle:UIModalTransitionStyleCoverVertical];
+        UINavigationController *navigationController = [[UINavigationController alloc]
+                                                        initWithRootViewController:signinController];
+        [self presentModalViewController:navigationController animated:YES];
+        
         signinController.storeId = [storeId retain];
-        [self.navigationController pushViewController:signinController animated:YES];
-        [signinController release];    
+        signinController.title = @"Usuario existente";
+        [navigationController release];
+        [signinController release];
+
     } else if (buttonIndex == 1) {
         SignupViewController *signupController = [[SignupViewController alloc] initWithNibName:@"SignupViewController" bundle:nil];
         signupController.title = @"Nuevo usuario";
@@ -57,6 +72,18 @@
     [popupQuery release];
 }
 
+- (void)logout:(id)sender{
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    [prefs setObject:@"" forKey:@"access_token"];
+    [prefs setInteger:0 forKey:@"order_id"];
+    [prefs setInteger:0 forKey:@"store_id"];
+    
+    //Login button definition
+    UIBarButtonItem *buttonLogin = [[UIBarButtonItem alloc] initWithTitle:@"Iniciar sesión" style:UIBarButtonItemStylePlain target:self action:@selector(login:)];
+    self.navigationItem.rightBarButtonItem = buttonLogin;
+    [buttonLogin release];
+}
+
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad {
@@ -69,10 +96,18 @@
     [scrollView setScrollEnabled:YES];
     [table setScrollEnabled:NO];
 
-    //Login button definition
-    UIBarButtonItem *buttonLogin = [[UIBarButtonItem alloc] initWithTitle:@"Ingresar" style:UIBarButtonItemStylePlain target:self action:@selector(login:)];
-    self.navigationItem.rightBarButtonItem = buttonLogin;
-    [buttonLogin release];
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    if(![[StringUtils nilValue:[prefs objectForKey:@"access_token"]] isEqualToString:@""]) {
+        //Login button definition
+        UIBarButtonItem *buttonLogin = [[UIBarButtonItem alloc] initWithTitle:@"Iniciar sesión" style:UIBarButtonItemStylePlain target:self action:@selector(login:)];
+        self.navigationItem.rightBarButtonItem = buttonLogin;
+        [buttonLogin release];
+    } else {
+        //Logout button definition
+        UIBarButtonItem *buttonLogout = [[UIBarButtonItem alloc] initWithTitle:@"Cerrar sesión" style:UIBarButtonItemStylePlain target:self action:@selector(logout:)];
+        self.navigationItem.rightBarButtonItem = buttonLogout;
+        [buttonLogout release];
+    }
 
     UIButton* backButton = [UIButton buttonWithType:101]; // left-pointing shape!
     [backButton addTarget:self action:@selector(back:) forControlEvents:UIControlEventTouchUpInside];
@@ -101,13 +136,30 @@
 }
 
 - (IBAction)accessToOrder:(id)sender {
-    StoreAccessViewController *accessController = [[StoreAccessViewController alloc] initWithNibName:@"StoreAccessViewController" bundle:nil];
-    accessController.storeId = store.storeId;
-    accessController.title = @"Acceder";
-    
-    [self.navigationController pushViewController:accessController animated:YES];
-    
-    [accessController release];
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    if(![[StringUtils nilValue:[prefs objectForKey:@"access_token"]] isEqualToString:@""]) {
+
+        if([prefs integerForKey:@"order_id"] == 0 || ([prefs integerForKey:@"order_id"] > 0 && [prefs integerForKey:@"store_id"] != [storeId integerValue])) {
+            StoreAccessViewController *accessController = [[StoreAccessViewController alloc] initWithNibName:@"StoreAccessViewController" bundle:nil];
+            accessController.storeId = store.storeId;
+            accessController.title = @"Acceder";
+        
+            [self.navigationController pushViewController:accessController animated:YES];
+        
+            [accessController release];
+        } else {
+            ProductListViewController *productListController = [[ProductListViewController alloc] initWithNibName:@"ProductListViewController" bundle:nil];
+            productListController.storeId = storeId;
+            productListController.title = store.name;
+            
+            [self.navigationController pushViewController:productListController animated:YES];
+            
+            [productListController release];
+        }
+    } else {
+        UIAlertView* alert = [[[UIAlertView alloc] initWithTitle:@"Acceso denegado" message:@"Para realizar un pedido, debes iniciar sesión" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+        [alert show];
+    }
     
 }
 

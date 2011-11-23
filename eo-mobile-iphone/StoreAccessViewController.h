@@ -11,8 +11,11 @@
 @interface StoreAccessViewController : UIViewController {
     IBOutlet UITextField* code;
     NSNumber* storeId;
+    IBOutlet UIScrollView* scrollView;
 }
 
 @property (nonatomic,assign) NSNumber* storeId;
+
+- (void)scrollViewToCenterOfScreen:(UIView *)theView;
 
 @end

@@ -35,7 +35,9 @@
 }
 
 + (void) orderProduct:(id)sender accessToken:(NSString*)accessToken productId:(long)productId orderId:(long)orderId accessCode:(NSString*)accessCode quantity:(int)quantity comment:(NSString*)comment {
-    Order* order = [[Order alloc] init];
+
+    /*
+    OrderProduct* order = [[OrderProduct alloc] init];
     order.accessToken = accessToken;
     order.productId = [NSNumber numberWithLong:productId]; 
     order.orderId = [NSNumber numberWithLong:orderId]; 
@@ -55,6 +57,7 @@
     [[RKObjectManager sharedManager] setSerializationMIMEType:RKMIMETypeJSON];
     
     [[RKObjectManager sharedManager] postObject:order delegate:sender];
+     */
 }
 
 @end

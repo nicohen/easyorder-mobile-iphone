@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "Store.h"
+#import "SigninViewController.h"
 
-@interface StoreDetailsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate> {
+@interface StoreDetailsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate, SigninDelegate> {
     IBOutlet UIImageView *image;
     IBOutlet UILabel* name;
     IBOutlet UITableView *table;

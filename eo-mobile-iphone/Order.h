@@ -10,22 +10,18 @@
 
 @interface Order : NSObject {
     NSNumber* orderId;
-    NSNumber* productId;
-    NSString* accessToken;
-    NSString* accessCode;
+    NSNumber* storeId;
+    NSNumber* tableId;
     NSString* status;
-    NSNumber* quantity;
     float price;
-    NSString* comment;
+    NSString* accessCode;
 }
 
 @property (nonatomic,retain) NSNumber* orderId;
-@property (nonatomic,retain) NSNumber* productId;
-@property (nonatomic,retain) NSString* accessToken;
+@property (nonatomic,retain) NSNumber* storeId;
+@property (nonatomic,retain) NSNumber* tableId;
 @property (nonatomic,retain) NSString* status;
-@property (nonatomic,retain) NSString* accessCode;
-@property (nonatomic,retain) NSNumber* quantity;
 @property (nonatomic,assign) float price;
-@property (nonatomic,retain) NSString* comment;
+@property (nonatomic,retain) NSString* accessCode;
 
 @end

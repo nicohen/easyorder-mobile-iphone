@@ -15,7 +15,7 @@
 
 @implementation SigninViewController
 
-@synthesize storeId;
+@synthesize delegate, storeId;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -37,6 +37,10 @@
     [LoginService signin:self:email.text:password.text];
 }
 
+- (IBAction)cancel:(id)sender {
+    [self dismissModalViewControllerAnimated:YES];
+}
+
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
@@ -50,6 +54,11 @@
     self.navigationItem.rightBarButtonItem = buttonLogin;
     [buttonLogin release];
     
+    //Cancel button definition
+    UIBarButtonItem *buttonCancel = [[UIBarButtonItem alloc] initWithTitle:@"Cancelar" style:UIBarButtonItemStylePlain target:self action:@selector(cancel:)];
+    self.navigationItem.leftBarButtonItem = buttonCancel;
+    [buttonCancel release];
+    
     [email becomeFirstResponder];
 }
 
@@ -58,20 +67,19 @@
 - (void)objectLoader:(RKObjectLoader*)objectLoader didLoadObject:(id)object {
     User* user = object;
     
-    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-    [prefs setObject:user.accessToken forKey:@"access_token"];
+    if(![[StringUtils nilValue:user.accessToken] isEqualToString:@""]) {
+        NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+        [prefs setObject:user.accessToken forKey:@"access_token"];
     
-    ProductListViewController *productListController = [[ProductListViewController alloc] initWithNibName:@"ProductListViewController" bundle:nil];
-    productListController.storeId = storeId;
-    
-    [self.navigationController pushViewController:productListController animated:YES];
-    [productListController release];
+        [self dismissModalViewControllerAnimated:YES];
+        [self.delegate didSignin];
+    }
 }
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didFailWithError:(NSError*)error {
     if([[ReachabilityService sharedService] isNetworkServiceAvailable]) {
         [password setText:@""];
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Error en datos ingresados" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Email o contraseña inválidos" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
         [alert release];
     } else {

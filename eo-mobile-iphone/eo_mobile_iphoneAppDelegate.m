@@ -25,6 +25,11 @@
     //Start reachability observer for all the application
     [[ReachabilityService sharedService] setup];
     
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    [prefs setObject:@"" forKey:@"access_token"];
+    [prefs setInteger:0 forKey:@"order_id"];
+    [prefs setInteger:0 forKey:@"store_id"];
+
     //Calls the LoginViewController
     viewController = [[StoreSearchViewController alloc] initWithNibName:@"StoreSearchViewController" bundle:nil];
 
