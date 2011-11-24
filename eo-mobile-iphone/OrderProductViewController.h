@@ -22,4 +22,6 @@
 @property (nonatomic,retain) NSNumber* productId;
 @property (nonatomic, retain) UIPickerView *myPickerView;
 
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil productId:(NSInteger)myProductId;
+
 @end

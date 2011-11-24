@@ -34,30 +34,26 @@
     [[RKObjectManager sharedManager] loadObjectsAtResourcePath:[NSString stringWithFormat:@"/orders/%d/products", orderId] delegate:sender];
 }
 
-+ (void) orderProduct:(id)sender accessToken:(NSString*)accessToken productId:(long)productId orderId:(long)orderId accessCode:(NSString*)accessCode quantity:(int)quantity comment:(NSString*)comment {
++ (void) orderProduct:(id)sender accessToken:(NSString*)accessToken productId:(long)productId orderId:(NSNumber*)orderId quantity:(int)quantity comment:(NSString*)comment {
 
-    /*
     OrderProduct* order = [[OrderProduct alloc] init];
     order.accessToken = accessToken;
-    order.productId = [NSNumber numberWithLong:productId]; 
-    order.orderId = [NSNumber numberWithLong:orderId]; 
-    order.accessCode = accessCode;
+    order.orderId = orderId;
+    order.productId = [NSNumber numberWithInt:productId];
     order.quantity = [NSNumber numberWithInt:quantity];
     order.comment = comment;
     
     RKObjectMapping* orderMapping = [RKObjectMapping mappingForClass:[Order class]];
     [orderMapping mapAttributes:@"quantity", @"comment", nil];
-    [orderMapping mapKeyPath:@"access_code" toAttribute:@"accessCode"];
     [orderMapping mapKeyPath:@"order_id" toAttribute:@"orderId"];
     [orderMapping mapKeyPath:@"product_id" toAttribute:@"productId"];
     [orderMapping mapKeyPath:@"access_token" toAttribute:@"accessToken"];
     
     [[RKObjectManager sharedManager].mappingProvider setMapping:orderMapping forKeyPath:@"orderProduct"]; 
-    [[RKObjectManager sharedManager].mappingProvider setSerializationMapping:[orderMapping inverseMapping] forClass:[Order class]]; 
+    [[RKObjectManager sharedManager].mappingProvider setSerializationMapping:[orderMapping inverseMapping] forClass:[OrderProduct class]]; 
     [[RKObjectManager sharedManager] setSerializationMIMEType:RKMIMETypeJSON];
     
     [[RKObjectManager sharedManager] postObject:order delegate:sender];
-     */
 }
 
 @end

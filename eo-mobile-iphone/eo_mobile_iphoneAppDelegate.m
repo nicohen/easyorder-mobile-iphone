@@ -10,6 +10,7 @@
 #import "StoreSearchViewController.h"
 #import "ReachabilityService.h"
 #import "User.h"
+#import "OrderProduct.h"
 #import <RestKit/RestKit.h>
 
 @implementation eo_mobile_iphoneAppDelegate
@@ -21,6 +22,7 @@
     //Initialize objectManager for all the application with the base url
     [RKObjectManager objectManagerWithBaseURL:@"http://127.0.0.1:9095/eo-services/api"];
     [User initUser];
+    [OrderProduct initOrderProduct];
     
     //Start reachability observer for all the application
     [[ReachabilityService sharedService] setup];

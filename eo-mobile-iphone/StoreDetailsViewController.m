@@ -97,7 +97,7 @@
     [table setScrollEnabled:NO];
 
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-    if(![[StringUtils nilValue:[prefs objectForKey:@"access_token"]] isEqualToString:@""]) {
+    if([[StringUtils nilValue:[prefs objectForKey:@"access_token"]] isEqualToString:@""]) {
         //Login button definition
         UIBarButtonItem *buttonLogin = [[UIBarButtonItem alloc] initWithTitle:@"Iniciar sesión" style:UIBarButtonItemStylePlain target:self action:@selector(login:)];
         self.navigationItem.rightBarButtonItem = buttonLogin;

@@ -12,7 +12,7 @@
 
 @implementation OrderProduct
 
-@synthesize orderProductId, orderId, product, userId, status, quantity, price, comment;
+@synthesize orderProductId, orderId, product, userId, status, quantity, price, comment, accessToken, productId;
 
 - (void)dealloc {
     [orderProductId release];
@@ -23,10 +23,12 @@
     [quantity release];
     [price release];
     [comment release];
+    [accessToken release];
+    [productId release];
     [super dealloc];
 }
 
-+ (void) initOrder {
++ (void) initOrderProduct {
     // Grab the reference to the router from the manager
     RKObjectRouter *router = [RKObjectManager sharedManager].router;
     [router routeClass:[OrderProduct class] toResourcePath:@"/products/(productId)/order" forMethod:RKRequestMethodPOST];

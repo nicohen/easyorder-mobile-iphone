@@ -9,16 +9,17 @@
 #import "OrderProductViewController.h"
 #import "ReachabilityService.h"
 #import "OrderService.h"
+#import "OrderProduct.h"
 
 @implementation OrderProductViewController
 
 @synthesize descr, myPickerView, order, productId;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil productId:(NSInteger)myProductId
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        productId = [[NSNumber alloc] initWithInt:myProductId];
     }
     return self;
 }
@@ -39,7 +40,11 @@
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     if(buttonIndex == 0) {
-        productQtyField.text = [NSString stringWithFormat:@"%d", productQty];
+        if(productQty > 0) {
+            productQtyField.text = [NSString stringWithFormat:@"%d", productQty];
+        } else {
+            productQtyField.text = @"1";
+        }
     }
 }
 
@@ -107,7 +112,7 @@
 - (IBAction)placeOrder:(id)sender {
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
 
-    [OrderService orderProduct:sender accessToken:[prefs objectForKey:@"access_token"] productId:[productId longValue] orderId:[order.orderId longValue] accessCode:@"" quantity:productQty comment:@""];
+    [OrderService orderProduct:sender accessToken:[prefs objectForKey:@"access_token"] productId:[productId longValue] orderId:[prefs objectForKey:@"order_id"] quantity:productQty comment:@""];
 
     [self dismissModalViewControllerAnimated:YES];
 }
@@ -119,12 +124,15 @@
     [super viewDidLoad];
 
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Textures 78.jpg"]];
-
+    
+    productQty = 1;
 }
 
 #pragma mark - Rest service
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didLoadObject:(id)object {
+    OrderProduct* orderProduct = object;
+    
     [self dismissModalViewControllerAnimated:YES];
 }
 

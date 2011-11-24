@@ -33,7 +33,8 @@
 
 - (IBAction)orderProduct:(id)sender {
     //Calls OrderProductViewController
-    OrderProductViewController *targetController = [[OrderProductViewController alloc] initWithNibName:@"OrderProductViewController" bundle:nil];
+    OrderProductViewController *targetController = [[OrderProductViewController alloc] initWithNibName:@"OrderProductViewController" bundle:nil productId:[productId longValue]];
+
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:targetController];
     [targetController release];
     [self presentModalViewController:navController animated:YES];
