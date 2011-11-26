@@ -14,7 +14,7 @@
 
 @implementation StoreAccessViewController
 
-@synthesize storeId;
+@synthesize storeId, delegate;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -25,6 +25,10 @@
     return self;
 }
 
+- (IBAction)cancel:(id)sender {
+    [self dismissModalViewControllerAnimated:YES];
+}
+
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
@@ -32,6 +36,11 @@
     [super viewDidLoad];
     
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Textures 78.jpg"]];
+
+    //Cancel button definition
+    UIBarButtonItem *buttonCancel = [[UIBarButtonItem alloc] initWithTitle:@"Cancelar" style:UIBarButtonItemStylePlain target:self action:@selector(cancel:)];
+    self.navigationItem.leftBarButtonItem = buttonCancel;
+    [buttonCancel release];
 }
 
 - (IBAction)accessStore:(id)sender {
@@ -79,22 +88,23 @@
     [prefs setInteger:[order.orderId intValue] forKey:@"order_id"];
     [prefs setInteger:[order.storeId intValue] forKey:@"store_id"];
     
-    ProductListViewController *productListController = [[ProductListViewController alloc] initWithNibName:@"ProductListViewController" bundle:nil];
-    productListController.storeId = storeId;
-    productListController.title = @"TEST";
-    
-    [self.navigationController pushViewController:productListController animated:YES];
-    
-    [productListController release];
+    [self dismissModalViewControllerAnimated:NO];
+    [self.delegate didMatchAccessCode];
 }
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didFailWithError:(NSError*)error {
-    if([[ReachabilityService sharedService] isNetworkServiceAvailable]) {
-        UIAlertView* alert = [[[UIAlertView alloc] initWithTitle:@"Error de acceso" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+    if(objectLoader.response.statusCode == 401) {
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"La código de acceso ingresado es incorrecto" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
-        NSLog(@"Hit error: %@", error);
+        [alert release];
     } else {
-        [[ReachabilityService sharedService] notifyNetworkUnreachable];
+        if([[ReachabilityService sharedService] isNetworkServiceAvailable]) {
+            UIAlertView* alert = [[[UIAlertView alloc] initWithTitle:@"Error de acceso" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+            [alert show];
+            NSLog(@"Hit error: %@", error);
+        } else {
+            [[ReachabilityService sharedService] notifyNetworkUnreachable];
+        }
     }
 }
 

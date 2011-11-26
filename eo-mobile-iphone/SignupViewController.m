@@ -15,7 +15,7 @@
 
 @implementation SignupViewController
 
-@synthesize storeId;
+@synthesize storeId, delegate;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -27,9 +27,9 @@
 }
 
 // If the user press DONE button or ENTER
-- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
-    if([text isEqualToString:@"\n"]) {
-        [textView resignFirstResponder];
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    if([string isEqualToString:@"\n"]) {
+        [textField resignFirstResponder];
         return NO;
     }
     return YES;
@@ -56,7 +56,12 @@
         return;
     }
     
-    [LoginService signup:self:name.text:surname.text:email.text:password.text:genderStr:[NSNumber numberWithLong:(long)[datePicked timeIntervalSince1970]]];
+    NSNumber* birthdate = [NSNumber numberWithLong:(long)[datePicked timeIntervalSince1970]];
+    [LoginService signup:self:name.text:surname.text:email.text:password.text:genderStr:[NSNumber numberWithDouble:[birthdate doubleValue]*1000]];
+}
+
+- (IBAction)cancel:(id)sender {
+    [self dismissModalViewControllerAnimated:YES];
 }
 
 #pragma mark - View lifecycle
@@ -71,6 +76,11 @@
     UIBarButtonItem *buttonSignin = [[UIBarButtonItem alloc] initWithTitle:@"Aceptar" style:UIBarButtonItemStyleDone target:self action:@selector(signup:)];
     self.navigationItem.rightBarButtonItem = buttonSignin;
     [buttonSignin release];
+
+    //Cancel button definition
+    UIBarButtonItem *buttonCancel = [[UIBarButtonItem alloc] initWithTitle:@"Cancelar" style:UIBarButtonItemStylePlain target:self action:@selector(cancel:)];
+    self.navigationItem.leftBarButtonItem = buttonCancel;
+    [buttonCancel release];
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
@@ -115,24 +125,29 @@
 - (void)objectLoader:(RKObjectLoader*)objectLoader didLoadObject:(id)object {
     User* user = object;
     
-    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-    [prefs setObject:user.accessToken forKey:@"access_token"];
-    
-    ProductListViewController *productListController = [[ProductListViewController alloc] initWithNibName:@"ProductListViewController" bundle:nil];
-    productListController.storeId = storeId;
-    
-    [self.navigationController pushViewController:productListController animated:YES];
-    [productListController release];
+    if(![[StringUtils nilValue:user.accessToken] isEqualToString:@""]) {
+        NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+        [prefs setObject:user.accessToken forKey:@"access_token"];
+        
+        [self dismissModalViewControllerAnimated:YES];
+        [self.delegate didSignup];
+    }
 }
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didFailWithError:(NSError*)error {
-    if([[ReachabilityService sharedService] isNetworkServiceAvailable]) {
-        [password setText:@""];
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Error en datos ingresados" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    if(objectLoader.response.statusCode == 401) {
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"La dirección de email ingresada ya existe, ingrese otra" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
         [alert release];
     } else {
-        [[ReachabilityService sharedService] notifyNetworkUnreachable];
+        if([[ReachabilityService sharedService] isNetworkServiceAvailable]) {
+            [password setText:@""];
+            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error en registración" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alert show];
+            [alert release];
+        } else {
+            [[ReachabilityService sharedService] notifyNetworkUnreachable];
+        }
     }
 }
 

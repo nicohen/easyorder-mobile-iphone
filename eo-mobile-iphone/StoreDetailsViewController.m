@@ -36,6 +36,23 @@
     [buttonLogout release];
 }
 
+- (void)didSignup {
+    //Logout button definition
+    UIBarButtonItem *buttonLogout = [[UIBarButtonItem alloc] initWithTitle:@"Cerrar sesión" style:UIBarButtonItemStylePlain target:self action:@selector(logout:)];
+    self.navigationItem.rightBarButtonItem = buttonLogout;
+    [buttonLogout release];
+}
+
+- (void)didMatchAccessCode {
+    ProductListViewController *productListController = [[ProductListViewController alloc] initWithNibName:@"ProductListViewController" bundle:nil];
+    productListController.storeId = storeId;
+    productListController.title = store.name;
+    
+    [self.navigationController pushViewController:productListController animated:YES];
+    
+    [productListController release];
+}
+
 - (void)back:(id)sender{
     //Cancel downloads
     [[RKRequestQueue requestQueue] cancelAllRequests];
@@ -60,10 +77,16 @@
 
     } else if (buttonIndex == 1) {
         SignupViewController *signupController = [[SignupViewController alloc] initWithNibName:@"SignupViewController" bundle:nil];
+        signupController.delegate = self;
+        [signupController setModalTransitionStyle:UIModalTransitionStyleCoverVertical];
+        UINavigationController *navigationController = [[UINavigationController alloc]
+                                                        initWithRootViewController:signupController];
+        [self presentModalViewController:navigationController animated:YES];
+        
+        signupController.storeId = [storeId retain];
         signupController.title = @"Nuevo usuario";
-        signupController.storeId = storeId;
-        [self.navigationController pushViewController:signupController animated:YES];
-        [signupController release];    
+        [navigationController release];
+        [signupController release];
     } 
 }
 
@@ -143,13 +166,20 @@
     if(![[StringUtils nilValue:[prefs objectForKey:@"access_token"]] isEqualToString:@""]) {
 
         if([prefs integerForKey:@"order_id"] == 0 || ([prefs integerForKey:@"order_id"] > 0 && [prefs integerForKey:@"store_id"] != [storeId integerValue])) {
+            
             StoreAccessViewController *accessController = [[StoreAccessViewController alloc] initWithNibName:@"StoreAccessViewController" bundle:nil];
+            
+            accessController.delegate = self;
+            [accessController setModalTransitionStyle:UIModalTransitionStyleCoverVertical];
+            UINavigationController *navigationController = [[UINavigationController alloc]
+                                                            initWithRootViewController:accessController];
+            [self presentModalViewController:navigationController animated:YES];
+            
             accessController.storeId = store.storeId;
             accessController.title = @"Acceder";
-        
-            [self.navigationController pushViewController:accessController animated:YES];
-        
+            [navigationController release];
             [accessController release];
+        
         } else {
             ProductListViewController *productListController = [[ProductListViewController alloc] initWithNibName:@"ProductListViewController" bundle:nil];
             productListController.storeId = storeId;

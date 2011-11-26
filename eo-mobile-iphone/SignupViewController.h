@@ -8,8 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SignupViewController : UIViewController <UIActionSheetDelegate, UITextViewDelegate> {
+@protocol SignupDelegate
+- (void)didSignup;
+@end
+
+@interface SignupViewController : UIViewController <UIActionSheetDelegate, UITextFieldDelegate> {
     NSDate *datePicked;
+    id <SignupDelegate> delegate;
     IBOutlet UITextField* name;
     IBOutlet UITextField* surname;
     IBOutlet UITextField* email;
@@ -19,6 +24,7 @@
     NSNumber* storeId;
 }
 
+@property (assign) id <SignupDelegate> delegate;
 @property (nonatomic,retain) NSNumber* storeId;
 
 @end

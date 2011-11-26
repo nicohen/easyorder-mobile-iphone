@@ -77,13 +77,19 @@
 }
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didFailWithError:(NSError*)error {
-    if([[ReachabilityService sharedService] isNetworkServiceAvailable]) {
-        [password setText:@""];
+    if(objectLoader.response.statusCode == 401) {
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Email o contraseña inválidos" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
         [alert release];
     } else {
-        [[ReachabilityService sharedService] notifyNetworkUnreachable];
+        if([[ReachabilityService sharedService] isNetworkServiceAvailable]) {
+            [password setText:@""];
+            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error en registración" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alert show];
+            [alert release];
+        } else {
+            [[ReachabilityService sharedService] notifyNetworkUnreachable];
+        }
     }
 }
 

@@ -103,7 +103,6 @@
 // called by our ImageDownloader when an image is ready to be displayed
 - (void)appImageDidLoad:(NSIndexPath *)indexPath {
     
-    NSLog(@"ROW: %@",[NSString stringWithFormat:@"%d", indexPath.row]);
     ImageDownloader *imageDownloader = [imageDownloadsInProgress objectForKey:indexPath];
     if (imageDownloader != nil) {
         UITableViewCell *cell = [table cellForRowAtIndexPath:imageDownloader.indexPathInTableView];
