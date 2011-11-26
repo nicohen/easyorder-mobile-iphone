@@ -15,6 +15,7 @@
 #define TITLE_TAG 2
 #define DESCR_TAG 3
 #define PRICE_TAG 4
+#define QUANTITY_TAG 5
 
 @implementation OrderDetailsViewController
 
@@ -302,13 +303,21 @@
         [(UIImageView *)[cell viewWithTag:IMAGE_TAG] setImage:[ImageUtils imageByScalingAndCroppingForSize:myImage:CGSizeMake(80,80)]];
     }
 
+    if([orderProduct.comment isEqualToString:@""]) {
+        [commentImage setHidden:YES];
+    } else {
+        [commentImage setHidden:NO];
+    }
+    
     [(UILabel *)[cell viewWithTag:TITLE_TAG] setText:product.name];
     [(UILabel *)[cell viewWithTag:DESCR_TAG] setText:product.descr];
+    [(UILabel *)[cell viewWithTag:QUANTITY_TAG] setText:[NSString stringWithFormat:@"%@u",[orderProduct.quantity stringValue]]];
 
     NSNumberFormatter *format=[[NSNumberFormatter alloc] init];
     [format setCurrencyGroupingSeparator:@","];
     [format setNumberStyle:NSNumberFormatterCurrencyStyle];
-    NSString *convertNumber = [format stringFromNumber:orderProduct.price];
+    double subtotal = [orderProduct.price doubleValue] * [orderProduct.quantity intValue];
+    NSString *convertNumber = [format stringFromNumber:[NSNumber numberWithDouble:subtotal]];
     [(UILabel *)[cell viewWithTag:PRICE_TAG] setText:[NSString stringWithFormat:@"%@", convertNumber]];
     [format release];
     
@@ -319,7 +328,26 @@
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    //Nothing to do
+    OrderProduct *orderProduct = nil;
+    if (indexPath.section == 0) {
+        if([pendingArray count] > 0) {
+            orderProduct = [pendingArray objectAtIndex:indexPath.row];
+        }
+    } else if(indexPath.section == 1) {
+        if([inprogressArray count] > 0) {
+            orderProduct = [inprogressArray objectAtIndex:indexPath.row];
+        }
+    } else if(indexPath.section == 2) {
+        if([doneArray count] > 0) {
+            orderProduct = [doneArray objectAtIndex:indexPath.row];
+        }
+    }
+    
+    if(orderProduct != nil && ![orderProduct.comment isEqualToString:@""]) {
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Comentario" message:orderProduct.comment delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+        [alert release];
+    }
 }
 
 - (void)reloadTable {
@@ -367,7 +395,7 @@
         } else {
             [doneArray addObject:myProduct];
         }
-        totalPrice += [myProduct.price doubleValue];
+        totalPrice += [myProduct.price doubleValue] * [myProduct.quantity intValue];
     }
     [table reloadData];                     
 }
@@ -378,7 +406,7 @@
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     
     if([[ReachabilityService sharedService] isNetworkServiceAvailable]) {
-        UIAlertView* alert = [[[UIAlertView alloc] initWithTitle:@"Projects error" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+        UIAlertView* alert = [[[UIAlertView alloc] initWithTitle:@"Error en pedido" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
         [alert show];
         NSLog(@"Hit error: %@", error);
     } else {

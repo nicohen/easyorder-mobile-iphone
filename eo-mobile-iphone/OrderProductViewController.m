@@ -13,7 +13,7 @@
 
 @implementation OrderProductViewController
 
-@synthesize descr, myPickerView, order, productId;
+@synthesize descr, order, productId; //, myPickerView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil productId:(NSInteger)myProductId
 {
@@ -24,6 +24,7 @@
     return self;
 }
 
+/*
 #pragma mark -
 #pragma mark UIPickerView
 
@@ -78,8 +79,7 @@
     [myPickerView setFrame:CGRectMake(0, 150, 320, 216)];        
     
     [myPickerView release];
-    [actionSheet release];        
-
+    [actionSheet release];
 }
 
 #pragma mark -
@@ -104,17 +104,30 @@
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
 	return 1;
 }
+*/
 
-- (IBAction)cancelOrder:(id)sender {
+- (void)cancelOrder:(id)sender {
     [self dismissModalViewControllerAnimated:YES];
 }
 
-- (IBAction)placeOrder:(id)sender {
+- (void)placeOrder:(id)sender {
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
 
-    [OrderService orderProduct:sender accessToken:[prefs objectForKey:@"access_token"] productId:[productId longValue] orderId:[prefs objectForKey:@"order_id"] quantity:productQty comment:@""];
+    [OrderService orderProduct:sender accessToken:[prefs objectForKey:@"access_token"] productId:[productId longValue] orderId:[prefs objectForKey:@"order_id"] quantity:productQty comment:productDescr.text];
 
     [self dismissModalViewControllerAnimated:YES];
+}
+
+- (IBAction)increaseQuantity {
+    productQty += 1;
+    productQtyField.text = [[NSNumber numberWithInt:productQty] stringValue];
+}
+
+- (IBAction)decreaseQuantity {
+    if(productQty > 1) {
+        productQty -= 1;
+        productQtyField.text = [[NSNumber numberWithInt:productQty] stringValue];
+    }
 }
 
 #pragma mark - View lifecycle
@@ -126,19 +139,30 @@
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Textures 78.jpg"]];
     
     productQty = 1;
+    
+    //Order button definition
+    UIBarButtonItem *buttonSave = [[UIBarButtonItem alloc] initWithTitle:@"Aceptar" style:UIBarButtonItemStyleDone target:self action:@selector(placeOrder:)];
+    self.navigationItem.rightBarButtonItem = buttonSave;
+    [buttonSave release];
+    
+    //Cancel button definition
+    UIBarButtonItem *buttonCancel = [[UIBarButtonItem alloc] initWithTitle:@"Cancelar" style:UIBarButtonItemStyleBordered target:self action:@selector(cancelOrder:)];
+    self.navigationItem.leftBarButtonItem = buttonCancel;
+    [buttonCancel release];
+
 }
 
 #pragma mark - Rest service
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didLoadObject:(id)object {
-    OrderProduct* orderProduct = object;
+    //OrderProduct* orderProduct = object;
     
     [self dismissModalViewControllerAnimated:YES];
 }
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didFailWithError:(NSError*)error {
     if([[ReachabilityService sharedService] isNetworkServiceAvailable]) {
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Error en pedido" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Error realizando pedido" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
         [alert release];
     } else {

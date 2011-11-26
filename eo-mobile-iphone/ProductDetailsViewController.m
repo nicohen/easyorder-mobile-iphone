@@ -12,6 +12,7 @@
 #import "ReachabilityService.h"
 #import <QuartzCore/QuartzCore.h>
 #import "OrderProductViewController.h"
+#import "ImageUtils.h"
 
 @implementation ProductDetailsViewController
 
@@ -35,7 +36,7 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (IBAction)orderProduct:(id)sender {
+- (void)orderProduct:(id)sender {
     //Calls OrderProductViewController
     OrderProductViewController *targetController = [[OrderProductViewController alloc] initWithNibName:@"OrderProductViewController" bundle:nil productId:[productId longValue]];
 
@@ -46,15 +47,6 @@
 }
 
 #pragma mark - View lifecycle
-
-- (void)viewWillAppear:(BOOL)animated {
-    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-    if([prefs integerForKey:@"order_id"] > 0) {
-        [orderButton setHidden:NO];
-    } else {
-        [orderButton setHidden:YES];
-    }
-}
 
 - (void)viewDidLoad
 {
@@ -71,6 +63,14 @@
     
     [scrollView setScrollEnabled:YES];
     
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    if([prefs integerForKey:@"order_id"] > 0) {
+        //Order button definition
+        UIBarButtonItem *buttonLogin = [[UIBarButtonItem alloc] initWithTitle:@"Pedir" style:UIBarButtonItemStyleDone target:self action:@selector(orderProduct:)];
+        self.navigationItem.rightBarButtonItem = buttonLogin;
+        [buttonLogin release];
+    }
+
     UIButton* backButton = [UIButton buttonWithType:101]; // left-pointing shape!
     [backButton addTarget:self action:@selector(back:) forControlEvents:UIControlEventTouchUpInside];
     [backButton setTitle:@"Atras" forState:UIControlStateNormal];
@@ -98,6 +98,28 @@
     [productTitle setText:product.name];
     [description setText:product.descr];
     
+    NSNumberFormatter *format=[[NSNumberFormatter alloc] init];
+    [format setCurrencyGroupingSeparator:@","];
+    [format setNumberStyle:NSNumberFormatterCurrencyStyle];
+    NSString *convertNumber = [format stringFromNumber:product.price];
+    [productPrice setText:convertNumber];
+    
+    bool imageError = NO;
+    UIImage* myImage = nil;
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    NSString *url = [NSString stringWithFormat:@"%@/products/%d/image", [prefs objectForKey:@"base_url"], [productId longValue]];
+    NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
+    if (imageData==nil) {
+        imageError = YES;
+    } else {
+        myImage = [UIImage imageWithData:imageData];
+        [image setImage:[ImageUtils imageByScalingAndCroppingForSize:myImage:CGSizeMake(264,198)]];
+    }
+    
+    if(imageError) {
+        [image setHidden:YES];
+    }
+    
     description.layer.borderWidth = 1;
     description.layer.borderColor = [[UIColor grayColor] CGColor];
     description.layer.cornerRadius = 8;
@@ -112,7 +134,7 @@
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didFailWithError:(NSError*)error {
     if([[ReachabilityService sharedService] isNetworkServiceAvailable]) {
-        UIAlertView* alert = [[[UIAlertView alloc] initWithTitle:@"Product error" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+        UIAlertView* alert = [[[UIAlertView alloc] initWithTitle:@"Error obteniendo los detalles del producto" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
         [alert show];
         NSLog(@"Hit error: %@", error);
     } else {

@@ -267,7 +267,7 @@
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     
     if([[ReachabilityService sharedService] isNetworkServiceAvailable]) {
-        UIAlertView* alert = [[[UIAlertView alloc] initWithTitle:@"Feeding Station error" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+        UIAlertView* alert = [[[UIAlertView alloc] initWithTitle:@"Error obteniendo los productos" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
         [alert show];
         NSLog(@"Hit error: %@", error);
     } else {

@@ -279,7 +279,6 @@
         [image setImage:[ImageUtils imageByScalingAndCroppingForSize:myImage:CGSizeMake(60,60)]];
     }
 
-    
     [scrollView setContentSize:(CGSizeMake(320, tableFrame.origin.y+tableFrame.size.height+40))];
     [scrollView setContentOffset:CGPointMake(0, 0) animated:YES];
     [store retain];
@@ -288,7 +287,7 @@
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didFailWithError:(NSError*)error {
     if([[ReachabilityService sharedService] isNetworkServiceAvailable]) {
-        UIAlertView* alert = [[[UIAlertView alloc] initWithTitle:@"Stores error" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+        UIAlertView* alert = [[[UIAlertView alloc] initWithTitle:@"Error obteniendo los detalles del restaurant" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
         [alert show];
         NSLog(@"Hit error: %@", error);
     } else {

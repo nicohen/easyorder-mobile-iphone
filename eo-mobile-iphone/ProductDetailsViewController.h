@@ -13,10 +13,10 @@
     NSNumber* storeId;
     NSNumber* productId;
     IBOutlet UILabel* productTitle;
-    IBOutlet UIButton* image;
+    IBOutlet UILabel* productPrice;
+    IBOutlet UIImageView* image;
     IBOutlet UITextView* description;
     IBOutlet UIScrollView *scrollView;
-    IBOutlet UIButton* orderButton;
 }
 
 @property (nonatomic,assign) NSNumber* storeId;

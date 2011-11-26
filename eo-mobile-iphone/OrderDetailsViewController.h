@@ -24,6 +24,7 @@
     UIActivityIndicatorView *activityIndicator;
     NSNumber* orderId;
     double totalPrice;
+    IBOutlet UIImageView* commentImage;
     //NSMutableDictionary *imageDownloadsInProgress;
 }
 
