@@ -304,6 +304,22 @@ AAgACAAIAAEAAQABAAE</bytes>
 					<int key="connectionID">14</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">orderButton</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="343291628"/>
+					</object>
+					<int key="connectionID">16</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">scrollView</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="888362029"/>
+					</object>
+					<int key="connectionID">17</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">orderProduct:</string>
 						<reference key="source" ref="343291628"/>
@@ -427,7 +443,7 @@ AAgACAAIAAEAAQABAAE</bytes>
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">15</int>
+			<int key="maxID">17</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -442,6 +458,7 @@ AAgACAAIAAEAAQABAAE</bytes>
 							<string>activityIndicator</string>
 							<string>description</string>
 							<string>image</string>
+							<string>orderButton</string>
 							<string>productTitle</string>
 							<string>scrollView</string>
 						</object>
@@ -449,6 +466,7 @@ AAgACAAIAAEAAQABAAE</bytes>
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>UIActivityIndicatorView</string>
 							<string>UITextView</string>
+							<string>UIButton</string>
 							<string>UIButton</string>
 							<string>UILabel</string>
 							<string>UIScrollView</string>
@@ -461,6 +479,7 @@ AAgACAAIAAEAAQABAAE</bytes>
 							<string>activityIndicator</string>
 							<string>description</string>
 							<string>image</string>
+							<string>orderButton</string>
 							<string>productTitle</string>
 							<string>scrollView</string>
 						</object>
@@ -476,6 +495,10 @@ AAgACAAIAAEAAQABAAE</bytes>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">image</string>
+								<string key="candidateClassName">UIButton</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">orderButton</string>
 								<string key="candidateClassName">UIButton</string>
 							</object>
 							<object class="IBToOneOutletInfo">

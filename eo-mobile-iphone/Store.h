@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "NSObjectWithImage.h"
 
-@interface Store : NSObject {
+@interface Store : NSObjectWithImage {
     NSNumber* storeId;
     NSString* address;
     NSString* category;

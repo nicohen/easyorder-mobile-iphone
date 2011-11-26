@@ -8,8 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import "Product.h"
+#import "NSObjectWithImage.h"
 
-@interface OrderProduct : NSObject {
+@interface OrderProduct : NSObjectWithImage {
     NSNumber* orderProductId;
     NSNumber* orderId;
     NSNumber* productId;

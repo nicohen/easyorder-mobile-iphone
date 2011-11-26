@@ -16,6 +16,7 @@
     IBOutlet UIButton* image;
     IBOutlet UITextView* description;
     IBOutlet UIScrollView *scrollView;
+    IBOutlet UIButton* orderButton;
 }
 
 @property (nonatomic,assign) NSNumber* storeId;

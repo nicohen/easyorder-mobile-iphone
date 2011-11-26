@@ -21,10 +21,16 @@
     IBOutlet UITableView *table;
     UIActivityIndicatorView *activityIndicator;
     NSNumber* orderId;
+    //NSMutableDictionary *imageDownloadsInProgress;
 }
 
 @property (nonatomic,assign) IBOutlet UITableViewCell* orderCell;
 @property (nonatomic,retain) NSMutableArray* orderArray;
 @property (nonatomic,retain) NSNumber* orderId;
+
+/*@property (nonatomic,retain) NSMutableDictionary *imageDownloadsInProgress;
+
+- (void)appImageDidLoad:(NSIndexPath *)indexPath;
+*/
 
 @end

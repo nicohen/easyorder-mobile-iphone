@@ -7,16 +7,22 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ImageDownloader.h"
+#import "Store.h"
 
-@interface StoreSearchViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate, UISearchBarDelegate> {
+@interface StoreSearchViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate, UISearchBarDelegate, ImageDownloaderDelegate> {
     NSMutableArray* storeArray;
     UITableViewCell* storeCell;
     IBOutlet UIActivityIndicatorView *activityIndicator;
     IBOutlet UITableView *table;
     IBOutlet UISearchBar* search;
+    NSMutableDictionary *imageDownloadsInProgress;
 }
 
 @property (nonatomic,retain) NSMutableArray *storeArray;
 @property (nonatomic,retain) UITableViewCell *storeCell;
+@property (nonatomic,retain) NSMutableDictionary *imageDownloadsInProgress;
+
+- (void)appImageDidLoad:(NSIndexPath *)indexPath;
 
 @end

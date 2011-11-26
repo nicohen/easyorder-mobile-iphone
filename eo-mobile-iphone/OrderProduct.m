@@ -31,7 +31,7 @@
 + (void) initOrderProduct {
     // Grab the reference to the router from the manager
     RKObjectRouter *router = [RKObjectManager sharedManager].router;
-    [router routeClass:[OrderProduct class] toResourcePath:@"/products/(productId)/order" forMethod:RKRequestMethodPOST];
+    [router routeClass:[OrderProduct class] toResourcePath:@"/products/:productId/order" forMethod:RKRequestMethodPOST];
 }
 
 @end

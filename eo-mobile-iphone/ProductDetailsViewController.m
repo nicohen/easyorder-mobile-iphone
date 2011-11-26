@@ -28,6 +28,10 @@
 }
 
 - (void)back:(id)sender{
+    //Cancel downloads
+    [[RKRequestQueue requestQueue] cancelAllRequests];
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -42,6 +46,15 @@
 }
 
 #pragma mark - View lifecycle
+
+- (void)viewWillAppear:(BOOL)animated {
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    if([prefs integerForKey:@"order_id"] > 0) {
+        [orderButton setHidden:NO];
+    } else {
+        [orderButton setHidden:YES];
+    }
+}
 
 - (void)viewDidLoad
 {
@@ -89,10 +102,7 @@
     description.layer.borderColor = [[UIColor grayColor] CGColor];
     description.layer.cornerRadius = 8;
     
-    CGFloat deltaOrigin = 0.0;
-    
     CGRect descFrame = description.frame;
-    deltaOrigin += description.contentSize.height - description.frame.size.height;
     descFrame.size.height = description.contentSize.height;
     description.frame = descFrame;
     

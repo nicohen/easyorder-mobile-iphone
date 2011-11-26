@@ -8,14 +8,14 @@
 
 #import "StoreSearchViewController.h"
 #import "StoreService.h"
-#import "Store.h"
 #import "StringUtils.h"
+#import "ImageUtils.h"
 #import "ReachabilityService.h"
 #import "StoreDetailsViewController.h"
 
 @implementation StoreSearchViewController
 
-@synthesize storeCell, storeArray;
+@synthesize storeCell, storeArray, imageDownloadsInProgress;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -24,6 +24,16 @@
         // Custom initialization
     }
     return self;
+}
+
+- (void)didReceiveMemoryWarning
+{
+    // Releases the view if it doesn't have a superview.
+    [super didReceiveMemoryWarning];
+    
+    // terminate all pending download connections
+    NSArray *allDownloads = [self.imageDownloadsInProgress allValues];
+    [allDownloads makeObjectsPerformSelector:@selector(cancelDownload)];
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
@@ -38,7 +48,7 @@
     [searchBar resignFirstResponder];
 
     //Calls the service to retrieve the stands list
-    [StoreService getStoreByName:self:[searchBar text]];
+    [StoreService getStoreByName:self:[[searchBar text] stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding]];
 }
 
 #pragma mark - View lifecycle
@@ -48,18 +58,71 @@
     [super viewDidLoad];
 
     [search becomeFirstResponder];
-    
+
+    self.imageDownloadsInProgress = [NSMutableDictionary dictionary];
+
     activityIndicator = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
 	activityIndicator.frame = CGRectMake(0.0, 0.0, 40.0, 40.0);
 	activityIndicator.center = self.view.center;
 	[self.view addSubview:activityIndicator];
 }
 
-- (void)viewDidUnload
+#pragma mark Table cell image support
+
+- (void)startImageDownload:(Store*)store forIndexPath:(NSIndexPath *)indexPath
 {
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+    ImageDownloader *imageDownloader = [imageDownloadsInProgress objectForKey:indexPath];
+    if (imageDownloader == nil) {
+        imageDownloader = [[ImageDownloader alloc] init];
+        
+        NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+        NSString *url = [NSString stringWithFormat:@"%@/stores/%d/image", [prefs objectForKey:@"base_url"], [store.storeId longValue]];
+        
+        imageDownloader.imageUrl = url;
+        imageDownloader.object = store;
+        imageDownloader.indexPathInTableView = indexPath;
+        imageDownloader.delegate = self;
+        [imageDownloadsInProgress setObject:imageDownloader forKey:indexPath];
+        
+        [imageDownloader startDownload];
+        [imageDownloader release];   
+    }
+}
+
+// this method is used in case the user scrolled into a set of cells that don't have their app images yet
+- (void)loadImagesForOnscreenRows {
+    
+    if ([storeArray count] > 0) {
+        NSArray *visiblePaths = [table indexPathsForVisibleRows];
+        for (NSIndexPath *indexPath in visiblePaths) {
+            Store *store = [storeArray objectAtIndex:indexPath.row];
+            
+            // avoid the app image download if the app already has an image
+            if (!store.image) {
+                [self startImageDownload:store forIndexPath:indexPath];
+            }
+        }
+    }
+}
+
+// called by our ImageDownloader when an image is ready to be displayed
+- (void)appImageDidLoad:(NSIndexPath *)indexPath {
+    
+    ImageDownloader *imageDownloader = [imageDownloadsInProgress objectForKey:indexPath];
+    if (imageDownloader != nil) {
+        UITableViewCell *cell = [table cellForRowAtIndexPath:imageDownloader.indexPathInTableView];
+        
+        // Display the newly loaded image
+        cell.imageView.image = imageDownloader.object.image;
+    }
+}
+
+// called by our ImageDownloader when an image fail to be displayed
+- (void)appImageDidFailLoad:(NSIndexPath *)indexPath {
+    
+    UITableViewCell *cell = [table cellForRowAtIndexPath:indexPath];
+    
+    cell.imageView.image = [UIImage imageNamed:[ImageUtils noImageThumb]];
 }
 
 #pragma mark - Table view data source
@@ -96,16 +159,15 @@
     cell.textLabel.text = [NSString stringWithFormat:@"%@", [StringUtils nilValue:standName]];
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", [StringUtils nilValue:standDesc]];
 
-    /*
-    if(!stand.image) {
+    if(!store.image) {
         if (table.dragging == NO && table.decelerating == NO) {
-            [self startImageDownload:stand forIndexPath:indexPath];
+            [self startImageDownload:store forIndexPath:indexPath];
         }
-        cell.imageView.image = [UIImage imageNamed:[ImageUtils logoMini]];
+        cell.imageView.image = [UIImage imageNamed:[ImageUtils noImageThumb]];
     } else {
-        cell.imageView.image = stand.image;
+        cell.imageView.image = store.image;
     }
-    */
+
     cell.tag = [[[storeArray objectAtIndex:indexPath.row] storeId] longValue];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     return cell;
@@ -128,65 +190,6 @@
     [detailController release];
 }
 
-#pragma mark Table cell image support
-/*
-- (void)startImageDownload:(Stand*)stand forIndexPath:(NSIndexPath *)indexPath
-{
-    ImageDownloader *imageDownloader = [imageDownloadsInProgress objectForKey:indexPath];
-    if (imageDownloader == nil) {
-        imageDownloader = [[ImageDownloader alloc] init];
-        
-        NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-        NSString *url = [NSString stringWithFormat:@"%@/%@", [prefs objectForKey:@"fileServerUrl"], [NSString stringWithFormat:@"%d", [prefs integerForKey:@"teamId"]]];
-        
-        imageDownloader.imageFilename = [stand imageFilename];
-        imageDownloader.imageBaseUrl = url;
-        imageDownloader.object = stand;
-        imageDownloader.indexPathInTableView = indexPath;
-        imageDownloader.delegate = self;
-        [imageDownloadsInProgress setObject:imageDownloader forKey:indexPath];
-        
-        [imageDownloader startDownload];
-        [imageDownloader release];   
-    }
-}
-
-// this method is used in case the user scrolled into a set of cells that don't have their app images yet
-- (void)loadImagesForOnscreenRows {
-    
-    if ([standArray count] > 0) {
-        NSArray *visiblePaths = [table indexPathsForVisibleRows];
-        for (NSIndexPath *indexPath in visiblePaths) {
-            Stand *stand = [standArray objectAtIndex:indexPath.row];
-            
-            // avoid the app image download if the app already has an image
-            if (!stand.image) {
-                [self startImageDownload:stand forIndexPath:indexPath];
-            }
-        }
-    }
-}
-
-// called by our ImageDownloader when an image is ready to be displayed
-- (void)appImageDidLoad:(NSIndexPath *)indexPath {
-    
-    ImageDownloader *imageDownloader = [imageDownloadsInProgress objectForKey:indexPath];
-    if (imageDownloader != nil) {
-        UITableViewCell *cell = [table cellForRowAtIndexPath:imageDownloader.indexPathInTableView];
-        
-        // Display the newly loaded image
-        cell.imageView.image = imageDownloader.object.image;
-    }
-}
-
-// called by our ImageDownloader when an image fail to be displayed
-- (void)appImageDidFailLoad:(NSIndexPath *)indexPath {
-    
-    UITableViewCell *cell = [table cellForRowAtIndexPath:indexPath];
-    
-    cell.imageView.image = [UIImage imageNamed:[ImageUtils logoMini]];
-}
-
 #pragma mark - Deferred image loading (UIScrollViewDelegate)
 
 // Load images for all onscreen rows when scrolling is finished
@@ -199,16 +202,11 @@
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
     [self loadImagesForOnscreenRows];
 }
-*/
 
 #pragma mark - Rest service
 
-- (void)request:(RKRequest*)request didLoadResponse:(RKResponse*)response {  
-    NSLog(@"Retrieved XML: %@", [response bodyAsString]);  
-}
-
 - (void)objectLoader:(RKObjectLoader*)objectLoader didLoadObjects:(NSArray*)objects {
-    //[imageDownloadsInProgress removeAllObjects];
+    [imageDownloadsInProgress removeAllObjects];
     
     //Stops the spinner and the network activity
     [activityIndicator stopAnimating];
@@ -237,6 +235,7 @@
 	[activityIndicator release];
     [storeArray release];
     [storeCell release];
+    [imageDownloadsInProgress release];
     [super dealloc];
 }
 

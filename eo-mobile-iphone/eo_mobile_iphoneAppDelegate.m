@@ -31,6 +31,7 @@
     [prefs setObject:@"" forKey:@"access_token"];
     [prefs setInteger:0 forKey:@"order_id"];
     [prefs setInteger:0 forKey:@"store_id"];
+    [prefs setObject:@"http://localhost:9095/eo-services/api" forKey:@"base_url"];
 
     //Calls the LoginViewController
     viewController = [[StoreSearchViewController alloc] initWithNibName:@"StoreSearchViewController" bundle:nil];

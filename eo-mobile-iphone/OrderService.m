@@ -54,6 +54,7 @@
     [[RKObjectManager sharedManager] setSerializationMIMEType:RKMIMETypeJSON];
     
     [[RKObjectManager sharedManager] postObject:order delegate:sender];
+    [order release];
 }
 
 @end

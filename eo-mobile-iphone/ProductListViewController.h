@@ -7,18 +7,23 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ImageDownloader.h"
 
-@interface ProductListViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate> {
+@interface ProductListViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate, ImageDownloaderDelegate> {
     
     IBOutlet UIActivityIndicatorView *activityIndicator;
     IBOutlet UITableView *table;
     UITableViewCell *productListCell;
     NSMutableArray *productListArray;
     NSNumber* storeId;
+    NSMutableDictionary *imageDownloadsInProgress;
 }
 
 @property (nonatomic,assign) NSNumber* storeId;
 @property (nonatomic,assign) IBOutlet UITableViewCell *productListCell;
 @property (nonatomic,retain) NSMutableArray *productListArray;
+@property (nonatomic,retain) NSMutableDictionary *imageDownloadsInProgress;
+
+- (void)appImageDidLoad:(NSIndexPath *)indexPath;
 
 @end

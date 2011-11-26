@@ -37,6 +37,9 @@
 }
 
 - (void)back:(id)sender{
+    //Cancel downloads
+    [[RKRequestQueue requestQueue] cancelAllRequests];
+
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -261,18 +264,17 @@
     
     bool imageError = NO;
     UIImage* myImage = nil;
-    if([store imagePath]!=nil) {
-        NSString *url = [NSString stringWithFormat:@"%@", [store imagePath]];
-        NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
-        if (imageData==nil) {
-            imageError = YES;
-        } else {
-            myImage = [UIImage imageWithData:imageData];
-            [image setImage:[ImageUtils imageByScalingAndCroppingForSize:myImage:CGSizeMake(60,60)]];
-        }
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    NSString *url = [NSString stringWithFormat:@"%@/stores/%d/image", [prefs objectForKey:@"base_url"], [[store storeId] longValue]];
+    NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
+    if (imageData==nil) {
+        imageError = YES;
+    } else {
+        myImage = [UIImage imageWithData:imageData];
+        [image setImage:[ImageUtils imageByScalingAndCroppingForSize:myImage:CGSizeMake(60,60)]];
     }
     
-    if([store imagePath]==nil || imageError) {
+    if(imageError) {
         myImage = [UIImage imageNamed:[ImageUtils noImageThumb]];
         [image setImage:[ImageUtils imageByScalingAndCroppingForSize:myImage:CGSizeMake(60,60)]];
     }

@@ -21,7 +21,7 @@
 
 @implementation ProductListViewController
 
-@synthesize productListCell, productListArray, storeId;
+@synthesize productListCell, productListArray, storeId, imageDownloadsInProgress;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -32,7 +32,25 @@
     return self;
 }
 
+- (void)didReceiveMemoryWarning
+{
+    // Releases the view if it doesn't have a superview.
+    [super didReceiveMemoryWarning];
+    
+    // terminate all pending download connections
+    NSArray *allDownloads = [self.imageDownloadsInProgress allValues];
+    [allDownloads makeObjectsPerformSelector:@selector(cancelDownload)];
+}
+
 - (void)back:(id)sender {
+    // terminate all pending download connections
+    NSArray *allDownloads = [self.imageDownloadsInProgress allValues];
+    [allDownloads makeObjectsPerformSelector:@selector(cancelDownload)];
+
+    //Cancel downloads
+    [[RKRequestQueue requestQueue] cancelAllRequests];
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -44,11 +62,86 @@
     [viewOrder release];
 }
 
+#pragma mark Table cell image support
+
+- (void)startImageDownload:(Product*)product forIndexPath:(NSIndexPath *)indexPath
+{
+    ImageDownloader *imageDownloader = [imageDownloadsInProgress objectForKey:indexPath];
+    if (imageDownloader == nil) {
+        imageDownloader = [[ImageDownloader alloc] init];
+        
+        NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+        NSString *url = [NSString stringWithFormat:@"%@/products/%d/image/thumb", [prefs objectForKey:@"base_url"], [product.productId longValue]];
+        
+        imageDownloader.imageUrl = url;
+        imageDownloader.object = product;
+        imageDownloader.indexPathInTableView = indexPath;
+        imageDownloader.delegate = self;
+        [imageDownloadsInProgress setObject:imageDownloader forKey:indexPath];
+        
+        [imageDownloader startDownload];
+        [imageDownloader release];   
+    }
+}
+
+// this method is used in case the user scrolled into a set of cells that don't have their app images yet
+- (void)loadImagesForOnscreenRows {
+    
+    if ([productListArray count] > 0) {
+        NSArray *visiblePaths = [table indexPathsForVisibleRows];
+        for (NSIndexPath *indexPath in visiblePaths) {
+            Product *product = [productListArray objectAtIndex:indexPath.row];
+            
+            // avoid the app image download if the app already has an image
+            if (!product.image) {
+                [self startImageDownload:product forIndexPath:indexPath];
+            }
+        }
+    }
+}
+
+// called by our ImageDownloader when an image is ready to be displayed
+- (void)appImageDidLoad:(NSIndexPath *)indexPath {
+    
+    NSLog(@"ROW: %@",[NSString stringWithFormat:@"%d", indexPath.row]);
+    ImageDownloader *imageDownloader = [imageDownloadsInProgress objectForKey:indexPath];
+    if (imageDownloader != nil) {
+        UITableViewCell *cell = [table cellForRowAtIndexPath:imageDownloader.indexPathInTableView];
+        
+        // Display the newly loaded image
+        [(UIImageView *)[cell viewWithTag:IMAGE_TAG] setImage:imageDownloader.object.image];
+    }
+}
+
+// called by our ImageDownloader when an image fail to be displayed
+- (void)appImageDidFailLoad:(NSIndexPath *)indexPath {
+    
+    UITableViewCell *cell = [table cellForRowAtIndexPath:indexPath];
+    
+    // Display the newly loaded image
+    [(UIImageView *)[cell viewWithTag:IMAGE_TAG] setImage:[UIImage imageNamed:[ImageUtils noImageThumb]]];
+}
+
+#pragma mark - Deferred image loading (UIScrollViewDelegate)
+
+// Load images for all onscreen rows when scrolling is finished
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+    if (!decelerate) {
+        [self loadImagesForOnscreenRows];
+    }
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    [self loadImagesForOnscreenRows];
+}
+
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    self.imageDownloadsInProgress = [NSMutableDictionary dictionary];
 
     activityIndicator = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
 	activityIndicator.frame = CGRectMake(0.0, 0.0, 40.0, 40.0);
@@ -66,11 +159,14 @@
     [self.navigationController setToolbarItems:[NSArray arrayWithObject:backItem]];
     self.navigationItem.leftBarButtonItem = backItem;
     [backItem release];
-
-    //Order button definition
-    UIBarButtonItem *buttonOrder = [[UIBarButtonItem alloc] initWithTitle:@"Ver pedido" style:UIBarButtonItemStyleBordered target:self action:@selector(viewOrder:)];
-    self.navigationItem.rightBarButtonItem = buttonOrder;
-    [buttonOrder release];
+    
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    if([prefs integerForKey:@"order_id"] > 0) {
+        //Order button definition
+        UIBarButtonItem *buttonOrder = [[UIBarButtonItem alloc] initWithTitle:@"Mi pedido" style:UIBarButtonItemStyleBordered target:self action:@selector(viewOrder:)];
+        self.navigationItem.rightBarButtonItem = buttonOrder;
+        [buttonOrder release];
+    }
     
     //Sets the table hidden and shows the animator
     [table setHidden:YES];
@@ -93,7 +189,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 80;
+    return 83;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -107,20 +203,14 @@
     //Get the row for the Bate
     Product *product = [productListArray objectAtIndex:indexPath.row];
     
-    bool imageError = NO;
     //Lazy load for the image
-    if(!product.imagePath) {
-        [(UIButton *)[cell viewWithTag:IMAGE_TAG] setImage:[UIImage imageNamed:[ImageUtils noImageThumb]] forState:UIControlStateNormal];
-    } else {
-        NSString *url = [NSString stringWithFormat:@"%@", [product imagePath]];
-        NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
-        if (imageData==nil) {
-            imageError = YES;
-        } else {
-            UIImage* myImage = [UIImage imageWithData:imageData];
-            [(UIButton *)[cell viewWithTag:IMAGE_TAG] setImage:[ImageUtils imageByScalingAndCroppingForSize:myImage:CGSizeMake(50,50)] forState:UIControlStateNormal];
+    if(!product.image) {
+        if (table.dragging == NO && table.decelerating == NO) {
+            [self startImageDownload:product forIndexPath:indexPath];
         }
-
+        [(UIImageView *)[cell viewWithTag:IMAGE_TAG] setImage:[UIImage imageNamed:[ImageUtils noImageThumb]]];
+    } else {
+        [(UIImageView *)[cell viewWithTag:IMAGE_TAG] setImage:product.image];
     }
     
     //Set the labels
@@ -129,9 +219,10 @@
     
     NSNumberFormatter *format=[[NSNumberFormatter alloc] init];
     [format setCurrencyGroupingSeparator:@","];
-    [format setNumberStyle:NSNumberFormatterDecimalStyle];
+    [format setNumberStyle:NSNumberFormatterCurrencyStyle];
     NSString *convertNumber = [format stringFromNumber:product.price];
-    [(UILabel *)[cell viewWithTag:PRICELABEL_TAG] setText:[NSString stringWithFormat:@"$%@", convertNumber]];
+    [(UILabel *)[cell viewWithTag:PRICELABEL_TAG] setText:[NSString stringWithFormat:@"%@", convertNumber]];
+    [format release];
     
     cell.tag = [[[productListArray objectAtIndex:indexPath.row] productId] longValue];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -156,6 +247,8 @@
 #pragma mark - Rest service
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didLoadObjects:(NSArray*)objects {    
+    [imageDownloadsInProgress removeAllObjects];
+
     //Stops the spinner and the network activity
     [activityIndicator stopAnimating];
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
@@ -183,10 +276,13 @@
 }
 
 #pragma mark - Memory management
-
 - (void)dealloc {
 	[activityIndicator release];
+    [table release];
+    [productListCell release];
     [productListArray release];
+    [storeId release];
+    [imageDownloadsInProgress release];
     [super dealloc];
 }
 

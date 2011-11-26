@@ -32,6 +32,7 @@
     [[RKObjectManager sharedManager] setSerializationMIMEType:RKMIMETypeJSON];
     
     [[RKObjectManager sharedManager] postObject:user delegate:sender];
+    [user release];
 }
 
 + (void) signin:(id)sender:(NSString*)email:(NSString*)password {
@@ -48,6 +49,7 @@
     [[RKObjectManager sharedManager] setSerializationMIMEType:RKMIMETypeJSON];
     
     [[RKObjectManager sharedManager] putObject:user delegate:sender];
+    [user release];
 }
 
 + (void) access:(id)sender:(long)storeId:(NSString*)accessCode {
