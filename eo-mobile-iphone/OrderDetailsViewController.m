@@ -18,7 +18,7 @@
 
 @implementation OrderDetailsViewController
 
-@synthesize orderCell, orderArray, orderId;//, imageDownloadsInProgress;
+@synthesize orderCell, orderArray, totalCell, emptyCell, orderId;//, imageDownloadsInProgress;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -166,20 +166,55 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 3;
+    return 4;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 83;
+    if (indexPath.section == 0) {
+        if([pendingArray count] > 0) {
+            return 83;
+        } else {
+            return 44;
+        }
+    } else if(indexPath.section == 1) {
+        if([inprogressArray count] > 0) {
+            return 83;
+        } else {
+            return 44;
+        }
+    } else if(indexPath.section == 2) {
+        if([doneArray count] > 0) {
+            return 83;
+        } else {
+            return 44;
+        }
+    } else {
+        return 83;
+    }
+
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (section == 0) {
-        return [pendingArray count];
+        if([pendingArray count] > 0) {
+            return [pendingArray count];
+        } else {
+            return 1;
+        }
     } else if(section == 1) {
-        return [inprogressArray count];
+        if([inprogressArray count] > 0) {
+            return [inprogressArray count];
+        } else {
+            return 1;
+        }
+    } else if(section == 2) {
+        if([doneArray count] > 0) {
+            return [doneArray count];
+        } else {
+            return 1;
+        }
     } else {
-        return [doneArray count];
+        return 1;
     }
 }
 
@@ -188,32 +223,69 @@
         return @"Pendientes";
     } else if(section == 1) {
         return @"En curso";
+    } else if(section == 2) {
+        return @"Entregados";
     } else {
-        return @"Finalizados";
+        return @"Total";
     }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+
+    if(indexPath.section == 3) {
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"orderTotalCell"];
+        if(cell==nil) {
+            [[NSBundle mainBundle] loadNibNamed:@"OrderTotalTableCell" owner:self options:nil];
+            cell = totalCell;
+            totalCell = nil;
+        }
+
+        NSNumberFormatter *format=[[NSNumberFormatter alloc] init];
+        [format setCurrencyGroupingSeparator:@","];
+        [format setNumberStyle:NSNumberFormatterCurrencyStyle];
+        NSString *convertNumber = [format stringFromNumber:[NSNumber numberWithDouble:totalPrice]];
+        [(UILabel *)[cell viewWithTag:PRICE_TAG] setText:[NSString stringWithFormat:@"%@", convertNumber]];
+        [format release];
+        return cell;
+    }
+
+    OrderProduct *orderProduct = nil;
+    switch (indexPath.section) {
+        case 0:
+            if([pendingArray count] > 0) {
+                orderProduct = [pendingArray objectAtIndex:indexPath.row];
+            }
+            break;
+        case 1:
+            if([inprogressArray count] > 0) {
+                orderProduct = [inprogressArray objectAtIndex:indexPath.row];
+            }
+            break;
+        case 2:
+            if([doneArray count] > 0) {
+                orderProduct = [doneArray objectAtIndex:indexPath.row];
+            }
+            break;
+        default:
+            break;
+    }
+
+    //This section doesn't have products
+    if(orderProduct == nil) {
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"emptyCell"];
+        if(cell==nil) {
+            [[NSBundle mainBundle] loadNibNamed:@"OrderEmptyProductsTableCell" owner:self options:nil];
+            cell = emptyCell;
+            emptyCell = nil;
+        }
+        return cell;
+    }
+    
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"orderDetailsCell"];
     if (cell == nil) {
         [[NSBundle mainBundle] loadNibNamed:@"OrderDetailsTableCell" owner:self options:nil];
         cell = orderCell;
         self.orderCell = nil;
-    }
-    
-    OrderProduct *orderProduct = nil;
-    switch (indexPath.section) {
-        case 0:
-            orderProduct = [pendingArray objectAtIndex:indexPath.row];
-            break;
-        case 1:
-            orderProduct = [inprogressArray objectAtIndex:indexPath.row];
-            break;
-        case 2:
-            orderProduct = [doneArray objectAtIndex:indexPath.row];
-            break;
-        default:
-            break;
     }
 
     Product* product = orderProduct.product;
@@ -286,6 +358,7 @@
         doneArray = [[NSMutableArray alloc] init];
     }
     
+    totalPrice = 0.0;
     for (OrderProduct *myProduct in objects) {
         if ([myProduct.status isEqualToString:@"pending"]) {
             [pendingArray addObject:myProduct];
@@ -294,6 +367,7 @@
         } else {
             [doneArray addObject:myProduct];
         }
+        totalPrice += [myProduct.price doubleValue];
     }
     [table reloadData];                     
 }
@@ -316,6 +390,8 @@
 
 - (void)dealloc {
     [orderCell release];
+    [totalCell release];
+    [emptyCell release];
     [pendingArray release];
     [inprogressArray release];
     [doneArray release];

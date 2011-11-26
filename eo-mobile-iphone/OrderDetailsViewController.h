@@ -14,6 +14,8 @@
 @interface OrderDetailsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate> {
 
     UITableViewCell *orderCell;
+    UITableViewCell *totalCell;
+    UITableViewCell *emptyCell;
     NSMutableArray *orderArray;
     NSMutableArray *pendingArray;
     NSMutableArray *inprogressArray;
@@ -21,10 +23,13 @@
     IBOutlet UITableView *table;
     UIActivityIndicatorView *activityIndicator;
     NSNumber* orderId;
+    double totalPrice;
     //NSMutableDictionary *imageDownloadsInProgress;
 }
 
 @property (nonatomic,assign) IBOutlet UITableViewCell* orderCell;
+@property (nonatomic,assign) IBOutlet UITableViewCell* totalCell;
+@property (nonatomic,assign) IBOutlet UITableViewCell* emptyCell;
 @property (nonatomic,retain) NSMutableArray* orderArray;
 @property (nonatomic,retain) NSNumber* orderId;
 

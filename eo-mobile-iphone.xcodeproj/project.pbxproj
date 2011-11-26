@@ -27,6 +27,7 @@
 		386D48C9147F21D2005340AC /* ImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 386D48C8147F21D1005340AC /* ImageDownloader.m */; };
 		386D48CC147F220B005340AC /* NSObjectWithImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 386D48CB147F220B005340AC /* NSObjectWithImage.m */; };
 		386D48CE14803782005340AC /* OrderTotalTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 386D48CD14803782005340AC /* OrderTotalTableCell.xib */; };
+		386D48D0148162D5005340AC /* OrderEmptyProductsTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 386D48CF148162D5005340AC /* OrderEmptyProductsTableCell.xib */; };
 		38C5ACCC144FD4E600F23CB8 /* libRestKitCoreData.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38C5ACC5144FD4C800F23CB8 /* libRestKitCoreData.a */; };
 		38C5ACCD144FD4E600F23CB8 /* libRestKitJSONParserJSONKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38C5ACC1144FD4C800F23CB8 /* libRestKitJSONParserJSONKit.a */; };
 		38C5ACCE144FD4E600F23CB8 /* libRestKitNetwork.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38C5ACB5144FD4C800F23CB8 /* libRestKitNetwork.a */; };
@@ -201,6 +202,7 @@
 		386D48CA147F220A005340AC /* NSObjectWithImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSObjectWithImage.h; sourceTree = "<group>"; };
 		386D48CB147F220B005340AC /* NSObjectWithImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSObjectWithImage.m; sourceTree = "<group>"; };
 		386D48CD14803782005340AC /* OrderTotalTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderTotalTableCell.xib; sourceTree = "<group>"; };
+		386D48CF148162D5005340AC /* OrderEmptyProductsTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderEmptyProductsTableCell.xib; sourceTree = "<group>"; };
 		38C5ACA0144FD4C800F23CB8 /* RestKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RestKit.xcodeproj; path = RestKit/RestKit.xcodeproj; sourceTree = "<group>"; };
 		38C5ACD1144FD4E600F23CB8 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		38C5ACD2144FD4E600F23CB8 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -571,6 +573,7 @@
 				383824E9145F385C00C459E6 /* OrderProductViewController.xib */,
 				383824F61462D8C400C459E6 /* OrderDetailsTableCell.xib */,
 				386D48CD14803782005340AC /* OrderTotalTableCell.xib */,
+				386D48CF148162D5005340AC /* OrderEmptyProductsTableCell.xib */,
 			);
 			name = Order;
 			sourceTree = "<group>";
@@ -768,6 +771,7 @@
 				3864BCBB1479EEB500F5AA62 /* padlock.png in Resources */,
 				386D48C6147F08F3005340AC /* StoreContainerViewController.xib in Resources */,
 				386D48CE14803782005340AC /* OrderTotalTableCell.xib in Resources */,
+				386D48D0148162D5005340AC /* OrderEmptyProductsTableCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
