@@ -12,7 +12,7 @@
 
 @implementation OrderProduct
 
-@synthesize orderProductId, orderId, product, userId, status, quantity, price, comment, accessToken, productId;
+@synthesize orderProductId, orderId, product, userId, status, quantity, price, comment, accessToken, accessCode, productId;
 
 - (void)dealloc {
     [orderProductId release];
@@ -24,6 +24,7 @@
     [price release];
     [comment release];
     [accessToken release];
+    [accessCode release];
     [productId release];
     [super dealloc];
 }

@@ -22,7 +22,6 @@
     NSMutableArray *doneArray;
     IBOutlet UITableView *table;
     UIActivityIndicatorView *activityIndicator;
-    NSNumber* orderId;
     double totalPrice;
     IBOutlet UIImageView* commentImage;
     //NSMutableDictionary *imageDownloadsInProgress;
@@ -32,7 +31,6 @@
 @property (nonatomic,assign) IBOutlet UITableViewCell* totalCell;
 @property (nonatomic,assign) IBOutlet UITableViewCell* emptyCell;
 @property (nonatomic,retain) NSMutableArray* orderArray;
-@property (nonatomic,retain) NSNumber* orderId;
 
 /*@property (nonatomic,retain) NSMutableDictionary *imageDownloadsInProgress;
 

@@ -101,6 +101,7 @@
 - (void)logout:(id)sender{
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
     [prefs setObject:@"" forKey:@"access_token"];
+    [prefs setObject:@"" forKey:@"access_code"];
     [prefs setInteger:0 forKey:@"order_id"];
     [prefs setInteger:0 forKey:@"store_id"];
     

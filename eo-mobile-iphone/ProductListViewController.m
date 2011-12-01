@@ -56,7 +56,6 @@
 
 - (void)viewOrder:(id)sender {
     OrderDetailsViewController *viewOrder = [[OrderDetailsViewController alloc] initWithNibName:@"OrderDetailsViewController" bundle:nil];
-    viewOrder.orderId = [NSNumber numberWithInt:1];
     viewOrder.title = @"Pedido";
     [self.navigationController pushViewController:viewOrder animated:YES];
     [viewOrder release];

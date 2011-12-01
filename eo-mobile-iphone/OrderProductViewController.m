@@ -113,9 +113,7 @@
 - (void)placeOrder:(id)sender {
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
 
-    [OrderService orderProduct:sender accessToken:[prefs objectForKey:@"access_token"] productId:[productId longValue] orderId:[prefs objectForKey:@"order_id"] quantity:productQty comment:productDescr.text];
-
-    [self dismissModalViewControllerAnimated:YES];
+    [OrderService orderProduct:self accessToken:[prefs objectForKey:@"access_token"] productId:[productId longValue] accessCode:[prefs stringForKey:@"access_code"] quantity:productQty comment:productDescr.text];
 }
 
 - (IBAction)increaseQuantity {
@@ -161,12 +159,18 @@
 }
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didFailWithError:(NSError*)error {
-    if([[ReachabilityService sharedService] isNetworkServiceAvailable]) {
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Error realizando pedido" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    if(objectLoader.response.statusCode == 401) {
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Usted no está autorizado a realizar un pedido" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
         [alert release];
     } else {
-        [[ReachabilityService sharedService] notifyNetworkUnreachable];
+        if([[ReachabilityService sharedService] isNetworkServiceAvailable]) {
+            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Error realizando pedido" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alert show];
+            [alert release];
+        } else {
+            [[ReachabilityService sharedService] notifyNetworkUnreachable];
+        }
     }
 }
 

@@ -21,6 +21,7 @@
     NSNumber* price;
     NSString* comment;
     NSString* accessToken;
+    NSString* accessCode;
 }
 
 @property (nonatomic,retain) NSNumber* orderProductId;
@@ -33,6 +34,7 @@
 @property (nonatomic,retain) NSNumber* price;
 @property (nonatomic,retain) NSString* comment;
 @property (nonatomic,retain) NSString* accessToken;
+@property (nonatomic,retain) NSString* accessCode;
 
 + (void) initOrderProduct;
 

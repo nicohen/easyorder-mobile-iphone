@@ -17,6 +17,6 @@
 + (void) getOrderedProducts:(id)sender:(long)orderId;
 
 // POST /products/{product_id}/order
-+ (void) orderProduct:(id)sender accessToken:(NSString*)accessToken productId:(long)productId orderId:(NSNumber*)orderId quantity:(int)quantity comment:(NSString*)comment;
++ (void) orderProduct:(id)sender accessToken:(NSString*)accessToken productId:(long)productId accessCode:(NSString*)accessCode quantity:(int)quantity comment:(NSString*)comment;
 
 @end

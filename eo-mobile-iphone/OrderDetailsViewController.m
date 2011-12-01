@@ -19,7 +19,7 @@
 
 @implementation OrderDetailsViewController
 
-@synthesize orderCell, orderArray, totalCell, emptyCell, orderId;//, imageDownloadsInProgress;
+@synthesize orderCell, orderArray, totalCell, emptyCell;//, imageDownloadsInProgress;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -160,7 +160,8 @@
     //Sets the table hidden and shows the animator
     [table setHidden:YES];
     
-    [OrderService getOrderedProducts:self:[orderId longValue]];
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    [OrderService getOrderedProducts:self:[prefs integerForKey:@"order_id"]];
     [NSTimer scheduledTimerWithTimeInterval:10 target:self selector:@selector(reloadTable) userInfo:nil repeats:YES];
 }
 
@@ -358,7 +359,8 @@
     //Start animating the spinner with the network activity
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     
-    [OrderService getOrderedProducts:self:[orderId longValue]];
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    [OrderService getOrderedProducts:self:[prefs integerForKey:@"order_id"]];
 }
 
 #pragma mark - Rest service

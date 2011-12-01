@@ -86,6 +86,7 @@
     
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
     [prefs setInteger:[order.orderId intValue] forKey:@"order_id"];
+    [prefs setObject:order.accessCode forKey:@"access_code"];
     [prefs setInteger:[order.storeId intValue] forKey:@"store_id"];
     
     [self dismissModalViewControllerAnimated:NO];

@@ -29,6 +29,7 @@
     
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
     [prefs setObject:@"" forKey:@"access_token"];
+    [prefs setObject:@"" forKey:@"access_code"];
     [prefs setInteger:0 forKey:@"order_id"];
     [prefs setInteger:0 forKey:@"store_id"];
     [prefs setObject:@"http://localhost:9095/eo-services/api" forKey:@"base_url"];
