@@ -113,7 +113,7 @@
 - (void)placeOrder:(id)sender {
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
 
-    [OrderService orderProduct:self accessToken:[prefs objectForKey:@"access_token"] productId:[productId longValue] accessCode:[prefs stringForKey:@"access_code"] quantity:productQty comment:productDescr.text];
+    [OrderService orderProduct:self accessToken:[prefs objectForKey:@"access_token"] productId:[productId longValue] storeId:[prefs integerForKey:@"store_id"] accessCode:[prefs stringForKey:@"access_code"] quantity:productQty comment:productDescr.text];
 }
 
 - (IBAction)increaseQuantity {

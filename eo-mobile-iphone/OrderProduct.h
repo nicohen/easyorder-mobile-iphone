@@ -13,6 +13,7 @@
 @interface OrderProduct : NSObjectWithImage {
     NSNumber* orderProductId;
     NSNumber* orderId;
+    NSNumber* storeId;
     NSNumber* productId;
     Product* product;
     NSNumber* userId;
@@ -26,6 +27,7 @@
 
 @property (nonatomic,retain) NSNumber* orderProductId;
 @property (nonatomic,retain) NSNumber* orderId;
+@property (nonatomic,retain) NSNumber* storeId;
 @property (nonatomic,retain) NSNumber* productId;
 @property (nonatomic,retain) Product* product;
 @property (nonatomic,retain) NSNumber* userId;

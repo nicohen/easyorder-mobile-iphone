@@ -12,11 +12,12 @@
 
 @implementation OrderProduct
 
-@synthesize orderProductId, orderId, product, userId, status, quantity, price, comment, accessToken, accessCode, productId;
+@synthesize orderProductId, orderId, storeId, product, userId, status, quantity, price, comment, accessToken, accessCode, productId;
 
 - (void)dealloc {
     [orderProductId release];
     [orderId release];
+    [storeId release];
     [product release];
     [userId release];
     [status release];

@@ -34,18 +34,20 @@
     [[RKObjectManager sharedManager] loadObjectsAtResourcePath:[NSString stringWithFormat:@"/orders/%d/products", orderId] delegate:sender];
 }
 
-+ (void) orderProduct:(id)sender accessToken:(NSString*)accessToken productId:(long)productId accessCode:(NSString*)accessCode quantity:(int)quantity comment:(NSString*)comment {
++ (void) orderProduct:(id)sender accessToken:(NSString*)accessToken productId:(long)productId storeId:(long)storeId accessCode:(NSString*)accessCode quantity:(int)quantity comment:(NSString*)comment {
 
     OrderProduct* order = [[OrderProduct alloc] init];
     order.accessToken = accessToken;
     order.accessCode = accessCode;
-    order.productId = [NSNumber numberWithInt:productId];
+    order.storeId = [NSNumber numberWithLong:storeId];
+    order.productId = [NSNumber numberWithLong:productId];
     order.quantity = [NSNumber numberWithInt:quantity];
     order.comment = comment;
     
     RKObjectMapping* orderMapping = [RKObjectMapping mappingForClass:[Order class]];
     [orderMapping mapAttributes:@"quantity", @"comment", nil];
     [orderMapping mapKeyPath:@"access_code" toAttribute:@"accessCode"];
+    [orderMapping mapKeyPath:@"store_id" toAttribute:@"storeId"];
     [orderMapping mapKeyPath:@"product_id" toAttribute:@"productId"];
     [orderMapping mapKeyPath:@"access_token" toAttribute:@"accessToken"];
     

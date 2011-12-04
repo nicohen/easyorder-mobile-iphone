@@ -389,15 +389,22 @@
     }
     
     totalPrice = 0.0;
+    bool validProduct = false;
     for (OrderProduct *myProduct in objects) {
         if ([myProduct.status isEqualToString:@"pending"]) {
             [pendingArray addObject:myProduct];
+            validProduct = true;
         } else if([myProduct.status isEqualToString:@"in_progress"]) {
             [inprogressArray addObject:myProduct];
-        } else {
+            validProduct = true;
+        } else if([myProduct.status isEqualToString:@"done"]) {
             [doneArray addObject:myProduct];
+            validProduct = true;
         }
-        totalPrice += [myProduct.price doubleValue] * [myProduct.quantity intValue];
+        if(validProduct) {
+            totalPrice += [myProduct.price doubleValue] * [myProduct.quantity intValue];
+            validProduct = false;
+        }
     }
     [table reloadData];                     
 }

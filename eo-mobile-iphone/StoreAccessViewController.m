@@ -95,7 +95,7 @@
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didFailWithError:(NSError*)error {
     if(objectLoader.response.statusCode == 401) {
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"La código de acceso ingresado es incorrecto" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"El código de acceso ingresado es incorrecto" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
         [alert release];
     } else {
