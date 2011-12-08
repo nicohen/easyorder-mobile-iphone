@@ -12,7 +12,7 @@
 #import "SignupViewController.h"
 #import "StoreAccessViewController.h"
 
-@interface StoreDetailsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate, SigninDelegate, SignupDelegate, StoreAccessDelegate> {
+@interface StoreDetailsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate, SigninDelegate, SignupDelegate, StoreAccessDelegate, UIAlertViewDelegate> {
     IBOutlet UIImageView *image;
     IBOutlet UILabel* name;
     IBOutlet UITableView *table;

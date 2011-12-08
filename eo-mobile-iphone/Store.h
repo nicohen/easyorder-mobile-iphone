@@ -17,7 +17,8 @@
     NSString* country;
     NSString* description;
     NSString* email;
-    NSString* hours;
+    NSString* hoursFrom;
+    NSString* hoursTo;
     NSString* name;
     NSString* phone;
     NSString* state;
@@ -32,7 +33,8 @@
 @property (nonatomic,retain) NSString* country;
 @property (nonatomic,retain) NSString* description;
 @property (nonatomic,retain) NSString* email;
-@property (nonatomic,retain) NSString* hours;
+@property (nonatomic,retain) NSString* hoursFrom;
+@property (nonatomic,retain) NSString* hoursTo;
 @property (nonatomic,retain) NSString* name;
 @property (nonatomic,retain) NSString* phone;
 @property (nonatomic,retain) NSString* state;

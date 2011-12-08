@@ -60,21 +60,24 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
--(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-    if (buttonIndex == 0) {
-        SigninViewController *signinController = [[SigninViewController alloc] initWithNibName:@"SigninViewController" bundle:nil];
-        
-        signinController.delegate = self;
-        [signinController setModalTransitionStyle:UIModalTransitionStyleCoverVertical];
-        UINavigationController *navigationController = [[UINavigationController alloc]
-                                                        initWithRootViewController:signinController];
-        [self presentModalViewController:navigationController animated:YES];
-        
-        signinController.storeId = [storeId retain];
-        signinController.title = @"Usuario existente";
-        [navigationController release];
-        [signinController release];
+- (void)accessToSignin {
+    SigninViewController *signinController = [[SigninViewController alloc] initWithNibName:@"SigninViewController" bundle:nil];
+    
+    signinController.delegate = self;
+    [signinController setModalTransitionStyle:UIModalTransitionStyleCoverVertical];
+    UINavigationController *navigationController = [[UINavigationController alloc]
+                                                    initWithRootViewController:signinController];
+    [self presentModalViewController:navigationController animated:YES];
+    
+    signinController.storeId = [storeId retain];
+    signinController.title = @"Usuario existente";
+    [navigationController release];
+    [signinController release];
+}
 
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 0) {
+        [self accessToSignin];
     } else if (buttonIndex == 1) {
         SignupViewController *signupController = [[SignupViewController alloc] initWithNibName:@"SignupViewController" bundle:nil];
         signupController.delegate = self;
@@ -162,6 +165,12 @@
     
 }
 
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if(buttonIndex==1) {
+        [self accessToSignin];
+    }
+}
+
 - (IBAction)accessToOrder:(id)sender {
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
     if(![[StringUtils nilValue:[prefs objectForKey:@"access_token"]] isEqualToString:@""]) {
@@ -191,7 +200,7 @@
             [productListController release];
         }
     } else {
-        UIAlertView* alert = [[[UIAlertView alloc] initWithTitle:@"Acceso denegado" message:@"Para realizar un pedido, debes iniciar sesión" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+        UIAlertView* alert = [[[UIAlertView alloc] initWithTitle:@"Alerta" message:@"Para realizar un pedido, debes iniciar sesión" delegate:self cancelButtonTitle:@"Aceptar" otherButtonTitles:@"Iniciar sesión",nil] autorelease];
         [alert show];
     }
     
@@ -250,7 +259,7 @@
         } else if(indexPath.section == 1 && indexPath.row == 0) {
             cell.textLabel.text = @"Horario";
             lbl = [[UILabel alloc] initWithFrame:CGRectMake(130.0, 10, 150.0, 20.0)];
-            lbl.text = [store hours];
+            lbl.text = [NSString stringWithFormat:@"%@ a %@",[store hoursFrom],[store hoursTo]];
             [lbl setFont:[UIFont boldSystemFontOfSize:14]];
             [cell.contentView addSubview:lbl];
             [lbl release];

@@ -61,6 +61,24 @@
     [viewOrder release];
 }
 
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 0) {
+        [self viewOrder:self];
+    } else if (buttonIndex == 1) {
+        //Pedir la cuenta
+    } else if (buttonIndex == 2) {
+        //Llamar al mozo
+    } 
+}
+
+- (void)viewActions:(id)sender {
+    UIActionSheet *popupQuery = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancelar" destructiveButtonTitle:nil otherButtonTitles:@"Ver mi pedido", @"Pedir la cuenta", @"Llamar al mozo", nil];
+    
+    popupQuery.actionSheetStyle = UIActionSheetStyleBlackOpaque;
+    [popupQuery showInView:self.view];
+    [popupQuery release];
+}
+
 #pragma mark Table cell image support
 
 - (void)startImageDownload:(Product*)product forIndexPath:(NSIndexPath *)indexPath
@@ -160,10 +178,10 @@
     
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
     if([prefs integerForKey:@"order_id"] > 0) {
-        //Order button definition
-        UIBarButtonItem *buttonOrder = [[UIBarButtonItem alloc] initWithTitle:@"Mi pedido" style:UIBarButtonItemStyleBordered target:self action:@selector(viewOrder:)];
-        self.navigationItem.rightBarButtonItem = buttonOrder;
-        [buttonOrder release];
+        //Actions button definition
+        UIBarButtonItem *buttonActions = [[UIBarButtonItem alloc] initWithTitle:@"Acciones" style:UIBarButtonItemStyleBordered target:self action:@selector(viewActions:)];
+        self.navigationItem.rightBarButtonItem = buttonActions;
+        [buttonActions release];
     }
     
     //Sets the table hidden and shows the animator

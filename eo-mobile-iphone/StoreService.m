@@ -15,7 +15,9 @@
 
 + (void) getStores:(id)sender {
     RKObjectMapping* storeMapping = [RKObjectMapping mappingForClass:[Store class]];
-    [storeMapping mapAttributes:@"address", @"category", @"city", @"country", @"description", @"email", @"hours", @"name", @"phone", @"state", @"web", nil];
+    [storeMapping mapAttributes:@"address", @"category", @"city", @"country", @"description", @"email", @"name", @"phone", @"state", @"web", nil];
+    [storeMapping mapKeyPath:@"hours_from" toAttribute:@"hoursFrom"];
+    [storeMapping mapKeyPath:@"hours_to" toAttribute:@"hoursTo"];
     [storeMapping mapKeyPath:@"id" toAttribute:@"storeId"];
     [[RKObjectManager sharedManager].mappingProvider setMapping:storeMapping forKeyPath:@"store"];
     
@@ -24,7 +26,9 @@
 
 + (void) getStore:(id)sender:(long)storeId {
     RKObjectMapping* storeMapping = [RKObjectMapping mappingForClass:[Store class]];
-    [storeMapping mapAttributes:@"address", @"category", @"city", @"country", @"description", @"email", @"hours", @"name", @"phone", @"state", @"web", nil];
+    [storeMapping mapAttributes:@"address", @"category", @"city", @"country", @"description", @"email", @"name", @"phone", @"state", @"web", nil];
+    [storeMapping mapKeyPath:@"hours_from" toAttribute:@"hoursFrom"];
+    [storeMapping mapKeyPath:@"hours_to" toAttribute:@"hoursTo"];
     [storeMapping mapKeyPath:@"id" toAttribute:@"storeId"];
     [[RKObjectManager sharedManager].mappingProvider setMapping:storeMapping forKeyPath:@"store"];
     
@@ -33,7 +37,9 @@
 
 + (void) getStoreByName:(id)sender:(NSString*)storeName {
     RKObjectMapping* storeMapping = [RKObjectMapping mappingForClass:[Store class]];
-    [storeMapping mapAttributes:@"address", @"category", @"city", @"country", @"description", @"email", @"hours", @"name", @"phone", @"state", @"web", nil];
+    [storeMapping mapAttributes:@"address", @"category", @"city", @"country", @"description", @"email", @"name", @"phone", @"state", @"web", nil];
+    [storeMapping mapKeyPath:@"hours_from" toAttribute:@"hoursFrom"];
+    [storeMapping mapKeyPath:@"hours_to" toAttribute:@"hoursTo"];
     [storeMapping mapKeyPath:@"id" toAttribute:@"storeId"];
     [[RKObjectManager sharedManager].mappingProvider setMapping:storeMapping forKeyPath:@"store"];
     

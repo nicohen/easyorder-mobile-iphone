@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "ImageDownloader.h"
 
-@interface ProductListViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate, ImageDownloaderDelegate> {
+@interface ProductListViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate, ImageDownloaderDelegate, UIActionSheetDelegate> {
     
     IBOutlet UIActivityIndicatorView *activityIndicator;
     IBOutlet UITableView *table;
