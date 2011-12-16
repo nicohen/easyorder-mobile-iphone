@@ -165,9 +165,9 @@
     
 }
 
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
     if(buttonIndex==1) {
-        [self accessToSignin];
+        [self login:self];
     }
 }
 
@@ -259,7 +259,7 @@
         } else if(indexPath.section == 1 && indexPath.row == 0) {
             cell.textLabel.text = @"Horario";
             lbl = [[UILabel alloc] initWithFrame:CGRectMake(130.0, 10, 150.0, 20.0)];
-            lbl.text = [NSString stringWithFormat:@"%@ a %@",[store hoursFrom],[store hoursTo]];
+            lbl.text = @"9 a 23hs";
             [lbl setFont:[UIFont boldSystemFontOfSize:14]];
             [cell.contentView addSubview:lbl];
             [lbl release];

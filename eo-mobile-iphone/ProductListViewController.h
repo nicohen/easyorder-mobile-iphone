@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "ImageDownloader.h"
+#import "StoreAlertsDelegate.h"
 
 @interface ProductListViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate, ImageDownloaderDelegate, UIActionSheetDelegate> {
     
+    id<StoreAlertsDelegate> delegate;
     IBOutlet UIActivityIndicatorView *activityIndicator;
     IBOutlet UITableView *table;
     UITableViewCell *productListCell;

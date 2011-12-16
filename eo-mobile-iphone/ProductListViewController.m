@@ -13,6 +13,8 @@
 #import "Product.h"
 #import "ReachabilityService.h"
 #import "ImageUtils.h"
+#import "AlertsService.h"
+#import "StoreAlertsDelegate.h"
 
 #define IMAGE_TAG 1
 #define TITLELABEL_TAG 2
@@ -61,13 +63,25 @@
     [viewOrder release];
 }
 
+- (void)orderBill:(id)sender {
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    [AlertsService orderBill:delegate:[storeId longValue]:[prefs integerForKey:@"order_id"]];
+    [delegate release];
+}
+
+- (void)callTheWaiter:(id)sender {
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    [AlertsService callTheWaiter:delegate:[storeId longValue]:[prefs integerForKey:@"order_id"]];
+    [delegate release];
+}
+
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (buttonIndex == 0) {
         [self viewOrder:self];
     } else if (buttonIndex == 1) {
-        //Pedir la cuenta
+        [self orderBill:self];
     } else if (buttonIndex == 2) {
-        //Llamar al mozo
+        [self callTheWaiter:self];
     } 
 }
 

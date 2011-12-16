@@ -29,6 +29,10 @@
 		386D48CE14803782005340AC /* OrderTotalTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 386D48CD14803782005340AC /* OrderTotalTableCell.xib */; };
 		386D48D0148162D5005340AC /* OrderEmptyProductsTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 386D48CF148162D5005340AC /* OrderEmptyProductsTableCell.xib */; };
 		386D48D214817F57005340AC /* comment.png in Resources */ = {isa = PBXBuildFile; fileRef = 386D48D114817F57005340AC /* comment.png */; };
+		387356EF1492AC2400C50B09 /* AlertsService.m in Sources */ = {isa = PBXBuildFile; fileRef = 387356EE1492AC2300C50B09 /* AlertsService.m */; };
+		387356F21492AD1600C50B09 /* StoreAlertsDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 387356F11492AD1500C50B09 /* StoreAlertsDelegate.m */; };
+		387356F51492BD8B00C50B09 /* Alert.m in Sources */ = {isa = PBXBuildFile; fileRef = 387356F41492BD8A00C50B09 /* Alert.m */; };
+		387356F81495740000C50B09 /* Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 387356F71495740000C50B09 /* Category.m */; };
 		38C5ACCC144FD4E600F23CB8 /* libRestKitCoreData.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38C5ACC5144FD4C800F23CB8 /* libRestKitCoreData.a */; };
 		38C5ACCD144FD4E600F23CB8 /* libRestKitJSONParserJSONKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38C5ACC1144FD4C800F23CB8 /* libRestKitJSONParserJSONKit.a */; };
 		38C5ACCE144FD4E600F23CB8 /* libRestKitNetwork.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38C5ACB5144FD4C800F23CB8 /* libRestKitNetwork.a */; };
@@ -205,6 +209,14 @@
 		386D48CD14803782005340AC /* OrderTotalTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderTotalTableCell.xib; sourceTree = "<group>"; };
 		386D48CF148162D5005340AC /* OrderEmptyProductsTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderEmptyProductsTableCell.xib; sourceTree = "<group>"; };
 		386D48D114817F57005340AC /* comment.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = comment.png; path = Images/comment.png; sourceTree = "<group>"; };
+		387356ED1492AC2200C50B09 /* AlertsService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertsService.h; sourceTree = "<group>"; };
+		387356EE1492AC2300C50B09 /* AlertsService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertsService.m; sourceTree = "<group>"; };
+		387356F01492AD1500C50B09 /* StoreAlertsDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreAlertsDelegate.h; sourceTree = "<group>"; };
+		387356F11492AD1500C50B09 /* StoreAlertsDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreAlertsDelegate.m; sourceTree = "<group>"; };
+		387356F31492BD8A00C50B09 /* Alert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Alert.h; sourceTree = "<group>"; };
+		387356F41492BD8A00C50B09 /* Alert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Alert.m; sourceTree = "<group>"; };
+		387356F6149573FE00C50B09 /* Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Category.h; sourceTree = "<group>"; };
+		387356F71495740000C50B09 /* Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Category.m; sourceTree = "<group>"; };
 		38C5ACA0144FD4C800F23CB8 /* RestKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RestKit.xcodeproj; path = RestKit/RestKit.xcodeproj; sourceTree = "<group>"; };
 		38C5ACD1144FD4E600F23CB8 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		38C5ACD2144FD4E600F23CB8 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -363,6 +375,8 @@
 				38DCB3AE1457AC310042F8FE /* LoginService.m */,
 				383824F01460E59000C459E6 /* OrderService.h */,
 				383824F11460E59000C459E6 /* OrderService.m */,
+				387356ED1492AC2200C50B09 /* AlertsService.h */,
+				387356EE1492AC2300C50B09 /* AlertsService.m */,
 			);
 			name = Service;
 			sourceTree = "<group>";
@@ -505,6 +519,10 @@
 				383824F91462EDFE00C459E6 /* OrderProduct.m */,
 				386D48CA147F220A005340AC /* NSObjectWithImage.h */,
 				386D48CB147F220B005340AC /* NSObjectWithImage.m */,
+				387356F31492BD8A00C50B09 /* Alert.h */,
+				387356F41492BD8A00C50B09 /* Alert.m */,
+				387356F6149573FE00C50B09 /* Category.h */,
+				387356F71495740000C50B09 /* Category.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -530,6 +548,8 @@
 				38DCB38414562B5E0042F8FE /* ProductDetailsViewController.m */,
 				38DCB39B145630E50042F8FE /* CategoryListViewController.h */,
 				38DCB39C145630E50042F8FE /* CategoryListViewController.m */,
+				387356F01492AD1500C50B09 /* StoreAlertsDelegate.h */,
+				387356F11492AD1500C50B09 /* StoreAlertsDelegate.m */,
 			);
 			name = Product;
 			sourceTree = "<group>";
@@ -838,6 +858,10 @@
 				386D48C5147F08F3005340AC /* StoreContainerViewController.m in Sources */,
 				386D48C9147F21D2005340AC /* ImageDownloader.m in Sources */,
 				386D48CC147F220B005340AC /* NSObjectWithImage.m in Sources */,
+				387356EF1492AC2400C50B09 /* AlertsService.m in Sources */,
+				387356F21492AD1600C50B09 /* StoreAlertsDelegate.m in Sources */,
+				387356F51492BD8B00C50B09 /* Alert.m in Sources */,
+				387356F81495740000C50B09 /* Category.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

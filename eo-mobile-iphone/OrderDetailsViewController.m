@@ -30,18 +30,6 @@
     return self;
 }
 
-/*
-- (void)didReceiveMemoryWarning
-{
-    // Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
-    
-    // terminate all pending download connections
-    NSArray *allDownloads = [self.imageDownloadsInProgress allValues];
-    [allDownloads makeObjectsPerformSelector:@selector(cancelDownload)];
-}
-*/
-
 - (void)back:(id)sender {
     //Cancel downloads
     [[RKRequestQueue requestQueue] cancelAllRequests];
@@ -49,84 +37,6 @@
 
     [self.navigationController popViewControllerAnimated:YES];
 }
-
-/*
-#pragma mark Table cell image support
-
-- (void)startImageDownload:(Product*)product forIndexPath:(NSIndexPath *)indexPath
-{
-    ImageDownloader *imageDownloader = [imageDownloadsInProgress objectForKey:indexPath];
-    if (imageDownloader == nil) {
-        imageDownloader = [[ImageDownloader alloc] init];
-        
-        NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-        NSString *url = [NSString stringWithFormat:@"%@/products/%d/image/thumb", [prefs objectForKey:@"base_url"], [product.productId longValue]];
-        
-        imageDownloader.imageUrl = url;
-        imageDownloader.object = product;
-        imageDownloader.indexPathInTableView = indexPath;
-        imageDownloader.delegate = self;
-        [imageDownloadsInProgress setObject:imageDownloader forKey:indexPath];
-        
-        [imageDownloader startDownload];
-        [imageDownloader release];   
-    }
-}
-
-// this method is used in case the user scrolled into a set of cells that don't have their app images yet
-- (void)loadImagesForOnscreenRows {
-    
-    if ([pendingArray count] > 0 || [inprogressArray count] > 0 || [doneArray count] > 0) {
-        NSArray *visiblePaths = [table indexPathsForVisibleRows];
-        for (NSIndexPath *indexPath in visiblePaths) {
-            NSLog(@"ROW: %@",[NSString stringWithFormat:@"%d",indexPath.row]);
-            
-            Product *product = [pendingArray objectAtIndex:indexPath.row];
-            
-            // avoid the app image download if the app already has an image
-            if (!product.image) {
-                [self startImageDownload:product forIndexPath:indexPath];
-            }
-            
-        }
-    }
-}
-
-// called by our ImageDownloader when an image is ready to be displayed
-- (void)appImageDidLoad:(NSIndexPath *)indexPath {
-    
-    NSLog(@"ROW: %@",[NSString stringWithFormat:@"%d", indexPath.row]);
-    ImageDownloader *imageDownloader = [imageDownloadsInProgress objectForKey:indexPath];
-    if (imageDownloader != nil) {
-        UITableViewCell *cell = [table cellForRowAtIndexPath:imageDownloader.indexPathInTableView];
-        
-        // Display the newly loaded image
-        [(UIImageView *)[cell viewWithTag:IMAGE_TAG] setImage:imageDownloader.object.image];
-    }
-}
-
-// called by our ImageDownloader when an image fail to be displayed
-- (void)appImageDidFailLoad:(NSIndexPath *)indexPath {
-    
-    UITableViewCell *cell = [table cellForRowAtIndexPath:indexPath];
-    
-    // Display the newly loaded image
-    [(UIImageView *)[cell viewWithTag:IMAGE_TAG] setImage:[UIImage imageNamed:[ImageUtils noImageThumb]]];
-}
-
-#pragma mark - Deferred image loading (UIScrollViewDelegate)
-
-// Load images for all onscreen rows when scrolling is finished
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
-    if (!decelerate) {
-        [self loadImagesForOnscreenRows];
-    }
-}
-
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-    [self loadImagesForOnscreenRows];
-}
-*/
 
 #pragma mark - View lifecycle
 

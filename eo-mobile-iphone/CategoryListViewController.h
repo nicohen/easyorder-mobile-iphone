@@ -8,6 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CategoryListViewController : UIViewController
+@interface CategoryListViewController : UIViewController <UITableViewDelegate, UITableViewDataSource> {
+    NSNumber* storeId;
+
+    NSMutableArray* categoryArray;
+    NSMutableDictionary *categoryMap;
+    IBOutlet UITableView *table;
+    UIActivityIndicatorView *activityIndicator;
+}
+
+@property (nonatomic,assign) NSNumber* storeId;
+@property (nonatomic,retain) NSMutableArray *categoryArray;
 
 @end
